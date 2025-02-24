@@ -1,0 +1,59 @@
+📂Proyecto de Aula (EasyWash)
+|
+|
+---📂Models -> Reglas de negocio (lógica del mundo real)
+|  |
+|  |---📄Client.java
+|  |
+|  |---📄Service.java
+|  |
+|  |---📄Appointment.java
+|  |
+|  |---📄User.java
+|
+---📂Services -> Lógica de servicios individuales (utiliza a los modelos y repositorios para manejar lógica de la aplicación)
+|  |
+|  |---📄AppointmentBookingService.java --> Servicio para agendar las citas
+|  |
+|  |---📄ClientValidationService.java --> Servicio para validar la información de los clientes
+|  |
+|  |---📄AppointmentNotificationService.java --> Servicio de notificación de citas
+|  |
+|  |---📄AppointmentAvailabilityService.java --> Servicio de disponibilidad de citas
+|  |
+|  |---📄AuthenticationService.java --> Servicio para autenticar usuarios del sistema
+|  |
+|  |---📄EmailNotificationService.java --> Servicio de notificacion por correo
+|
+---📂Controllers -> Lógica de negocio (utiliza a los servicios y a los modelos, recibe y procesa información y devuelve modelos)
+|  |
+|  |---📄AppointmentController.java --> Controlador de citas (Devuelve, crea y edita citas)
+|  |
+|  |---📄ClientController.java --> Controlador de clientes (Devuelve y crea clientes)
+|  |
+|  |---📄ServiceController.java --> Controlador de servicios (Devuelve, crea, edita y elimina servicios)
+|  |
+|  |---📄AuthController.java --> Controlador de autenticación (Crea y autentica usuarios)
+|
+---📂Repository -> Lógica de persistencia (Para guardar la información, por el momento en archivos csv o texto)
+|  |
+|  |--📄RepositoryInterface.java --> Interfaz de Repositorio (Para declarar los métodos que deben seguir todos los repositorios en su implementación)
+|  |
+|  |--📂InMemoryRepository --> Repositorio basado en memoria (Para guardar datos en la memoria de la aplicación)
+|  |
+|  |--📂FileBasedRepsitory --> Repositorio basado en archivos (Para guardar datos en archivos, csv o texto)
+|  |
+|  |--📂DatabaseRepository --> Repositorio basado en base de datos (Para guardar datos en bases de datos)
+|
+---📂Views -> Vistas e interfaces de usuario
+|  |
+|  |--📄MainView.java --> Vista principal de la aplicación
+|  |
+|  |--📂Dashboard --> Vistas del panel de control / dashboard
+|  |
+|  |--📂Helpers --> Cuadros de dialogo, alertas, ventanas o avisos que sirven como utilidades reutilizables en las vistas
+|
+---📂Utils -> Utilidades o funciones reutilizables de lógica a corto plazo
+|
+|
+---📄Main.java --> Archivo de ejecución de todo la aplicación
