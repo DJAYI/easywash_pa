@@ -3,31 +3,46 @@
 |
 ---📂Models -> Reglas de negocio (lógica del mundo real)
 |  |
-|  |---📄Client.java
+|  |---📄Person.java
 |  |
-|  |---📄Service.java
+|  |---📄Client.java (Hereda de Persona)
 |  |
-|  |---📄Appointment.java
+|  |---📄Employee (Hereda de Persona)
 |  |
-|  |---📄User.java
+|  |---📄WashService.java
+|  |
+|  |---📄Appointment.java (Debe tener un servicio y un cliente; y tiene asociación con un Employee)
+|  |
+|  |---📄User.java (Hereda de Persona)
+|  |
+|  |---📄ClientAppointmentScore (Utiliza a Client)
 |
 ---📂Services -> Lógica de servicios individuales (utiliza a los modelos y repositorios para manejar lógica de la aplicación)
 |  |
-|  |---📄AppointmentBookingService.java --> Servicio para agendar las citas
+|  |---📄AppointmentBookingService.java --> Servicio para agendar las citas (Necesita de Appointment)
 |  |
-|  |---📄ClientValidationService.java --> Servicio para validar la información de los clientes
+|  |---📄ClientValidationService.java --> Servicio para validar la información de los clientes (Necesita un Client)
 |  |
-|  |---📄AppointmentNotificationService.java --> Servicio de notificación de citas
+|  |---📄AppointmentNotificationService.java --> Servicio de notificación de citas (Utiliza a Cliente, Appointment & Debe tener EmailNotificationService)
 |  |
-|  |---📄AppointmentAvailabilityService.java --> Servicio de disponibilidad de citas
+|  |---📄AppointmentAvailabilityService.java --> Servicio de disponibilidad de citas (Debe tener una Appointment)
 |  |
-|  |---📄AuthenticationService.java --> Servicio para autenticar usuarios del sistema
+|  |---📄AuthenticationService.java --> Servicio para autenticar usuarios del sistema (Debe tener un User)
 |  |
 |  |---📄EmailNotificationService.java --> Servicio de notificacion por correo
+|  |
+|  |---📄WashServiceOfferService.java --> Servicio para ofertas de servicios a los clientes según cuantas veces haya tenido una cita (Utiliza a ClientAppointmentScore)
+|  |
+|  |---📄SwitchAppointmentStateService.java --> Servicio para cambiar el estado de una Appointment (Utiliza a Appointment)
+|  |
+|  |---📄ChooseEmployeeService.java --> Servicio para elegir Employee (Necesita de una Appointment)
+|
 |
 ---📂Controllers -> Lógica de negocio (utiliza a los servicios y a los modelos, recibe y procesa información y devuelve modelos)
 |  |
 |  |---📄AppointmentController.java --> Controlador de citas (Devuelve, crea y edita citas)
+|  |
+|  |---📄EmployeeController.java --> Controlador de Empleados (Devuelve, crea, elimina y edita empleados)
 |  |
 |  |---📄ClientController.java --> Controlador de clientes (Devuelve y crea clientes)
 |  |
@@ -39,11 +54,11 @@
 |  |
 |  |--📄RepositoryInterface.java --> Interfaz de Repositorio (Para declarar los métodos que deben seguir todos los repositorios en su implementación)
 |  |
-|  |--📂InMemoryRepository --> Repositorio basado en memoria (Para guardar datos en la memoria de la aplicación)
+|  |--📂InMemoryRepository --> Repositorio basado en memoria (Para guardar datos en la memoria de la aplicación) (Implementa a RespositoryInterface)
 |  |
-|  |--📂FileBasedRepsitory --> Repositorio basado en archivos (Para guardar datos en archivos, csv o texto)
+|  |--📂FileBasedRepsitory --> Repositorio basado en archivos (Para guardar datos en archivos, csv o texto) (Implementa a RespositoryInterface)
 |  |
-|  |--📂DatabaseRepository --> Repositorio basado en base de datos (Para guardar datos en bases de datos)
+|  |--📂DatabaseRepository --> Repositorio basado en base de datos (Para guardar datos en bases de datos) (Implementa a RespositoryInterface)
 |
 ---📂Views -> Vistas e interfaces de usuario
 |  |
