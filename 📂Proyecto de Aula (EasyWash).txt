@@ -14,8 +14,7 @@
 |  |---📄Appointment.java (Debe tener un servicio y un cliente; y tiene asociación con un Employee)
 |  |
 |  |---📄User.java (Hereda de Persona)
-|  |
-|  |---📄ClientAppointmentScore (Utiliza a Client)
+|  
 |
 ---📂Services -> Lógica de servicios individuales (utiliza a los modelos y repositorios para manejar lógica de la aplicación)
 |  |
@@ -64,11 +63,21 @@
 |  |
 |  |--📄MainView.java --> Vista principal de la aplicación
 |  |
-|  |--📂Dashboard --> Vistas del panel de control / dashboard
+|  |--📂Admin --> Vistas del panel de control del admin
 |  |
 |  |--📂Helpers --> Cuadros de dialogo, alertas, ventanas o avisos que sirven como utilidades reutilizables en las vistas
 |
----📂Utils -> Utilidades o funciones reutilizables de lógica a corto plazo
+|--📂Dashboard --> Panel de control en general (vistas reutilizables)
+|  |
+|  |--📄MainDashboardClient.java --> Vista principal del panel de control de los clientes
+|  |
+|  |--📄AppointmentListDashboard.java --> Vista 
+|  |
+|  |--📄AppointmentHistory
 |
+---📂Utils -> Utilidades o funciones reutilizables de lógica a corto plazo
+|  |
+|  |---📄ClientAppointmentScore.java --> Modelo para contabilizar número de citas de clientes (Utiliza a Client)
+|  |
 |
 ---📄Main.java --> Archivo de ejecución de todo la aplicación
