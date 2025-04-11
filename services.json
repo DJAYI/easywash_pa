@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Servicio1",
+    "price": 12.99,
+    "description": "Descripcion",
+    "duration": "01:30"
+  },
+  {
+    "name": "Servicio1",
+    "price": 12.99,
+    "description": "Descripcion",
+    "duration": "01:30"
+  }
+]

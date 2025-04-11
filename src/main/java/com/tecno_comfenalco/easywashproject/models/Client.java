@@ -8,6 +8,19 @@ package com.tecno_comfenalco.easywashproject.models;
  *
  * @author danil
  */
-public class Client {
+public class Client extends Person {
+    private Vehicle vehicle;
+
+    public Client(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
     
 }

@@ -8,6 +8,6 @@ package com.tecno_comfenalco.easywashproject.controllers;
  *
  * @author danil
  */
-public class WashServiceController {
+public class ServiceController {
     
 }

@@ -4,20 +4,19 @@
  */
 package com.tecno_comfenalco.easywashproject.views;
 
-import java.awt.Color;
-import java.awt.Dimension;
+import com.tecno_comfenalco.easywashproject.views.Authentication.LoginClientView;
+import com.tecno_comfenalco.easywashproject.views.Authentication.RegisterClientView;
 
 /**
  *
  * @author danil
  */
-public class MainView extends javax.swing.JFrame {
+public class MainViewClient extends javax.swing.JFrame {
 
     /**
      * Creates new form MainView
      */
-    public MainView() {
-        
+    public MainViewClient() {
         initComponents();
     }
 
@@ -30,445 +29,240 @@ public class MainView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        AuthPanel = new javax.swing.JPanel();
-        LoginPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        UsernameField = new javax.swing.JTextField();
-        UserPasswordField = new javax.swing.JPasswordField();
-        AuthenticationButton = new javax.swing.JButton();
-        LoginLabel = new javax.swing.JLabel();
-        ClientPanel = new javax.swing.JPanel();
-        AppointmentPanel = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        ClientNameField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        DocNumberField = new javax.swing.JTextField();
-        EmailField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        PhoneNumberField = new javax.swing.JTextField();
-        DocumentTypeComboBox = new javax.swing.JComboBox<>();
+        ClientRegisterBtn = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        AppointmentDatePicker = new com.github.lgooddatepicker.components.DatePicker();
-        AppointmentTimePicker = new com.github.lgooddatepicker.components.TimePicker();
-        AuthenticationButton1 = new javax.swing.JButton();
-        WashServiceComboBox = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        LogoLabel = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        ClientLoginBtn = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        ExitButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMinimumSize(new java.awt.Dimension(1440, 1024));
+        setResizable(false);
 
-        AuthPanel.setBackground(new java.awt.Color(255, 255, 255));
-        AuthPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(16, 115, 102), 1, true));
-        AuthPanel.setForeground(new java.awt.Color(51, 102, 255));
-        AuthPanel.setPreferredSize(new java.awt.Dimension(720, 0));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1440, 1080));
 
-        LoginPanel.setBackground(new java.awt.Color(255, 255, 255));
-        LoginPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 102), 1, true));
-        LoginPanel.setForeground(new java.awt.Color(255, 255, 255));
-        LoginPanel.setPreferredSize(new java.awt.Dimension(600, 100));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
+        jLabel2.setText("¡Hola! Bienvenido al ");
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Contraseña");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
+        jLabel1.setText("Sistema de Gestion de Citas para Autolavado");
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Nombre de Usuario");
-
-        UsernameField.setBackground(new java.awt.Color(255, 255, 255));
-        UsernameField.setText("Jhon Doe");
-        UsernameField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                UsernameFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                UsernameFieldFocusLost(evt);
-            }
-        });
-
-        UserPasswordField.setBackground(new java.awt.Color(255, 255, 255));
-        UserPasswordField.setText("jPasswordField1");
-        UserPasswordField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                UserPasswordFieldFocusGained(evt);
-            }
-        });
-
-        AuthenticationButton.setBackground(new java.awt.Color(0, 153, 51));
-        AuthenticationButton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        AuthenticationButton.setForeground(new java.awt.Color(255, 255, 255));
-        AuthenticationButton.setText("Entrar");
-
-        javax.swing.GroupLayout LoginPanelLayout = new javax.swing.GroupLayout(LoginPanel);
-        LoginPanel.setLayout(LoginPanelLayout);
-        LoginPanelLayout.setHorizontalGroup(
-            LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LoginPanelLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addGroup(LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2)
-                    .addComponent(UsernameField, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addComponent(UserPasswordField)
-                    .addComponent(AuthenticationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(76, Short.MAX_VALUE))
-        );
-        LoginPanelLayout.setVerticalGroup(
-            LoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LoginPanelLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(UsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(UserPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
-                .addComponent(AuthenticationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
-        );
-
-        LoginLabel.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
-        LoginLabel.setForeground(new java.awt.Color(0, 51, 102));
-        LoginLabel.setText("Iniciar Sesión");
-
-        javax.swing.GroupLayout AuthPanelLayout = new javax.swing.GroupLayout(AuthPanel);
-        AuthPanel.setLayout(AuthPanelLayout);
-        AuthPanelLayout.setHorizontalGroup(
-            AuthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AuthPanelLayout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
-                .addGroup(AuthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AuthPanelLayout.createSequentialGroup()
-                        .addComponent(LoginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AuthPanelLayout.createSequentialGroup()
-                        .addComponent(LoginLabel)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
                         .addGap(223, 223, 223))))
         );
-        AuthPanelLayout.setVerticalGroup(
-            AuthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AuthPanelLayout.createSequentialGroup()
-                .addContainerGap(81, Short.MAX_VALUE)
-                .addComponent(LoginLabel)
-                .addGap(18, 18, 18)
-                .addComponent(LoginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(558, 558, 558))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1))
         );
 
-        getContentPane().add(AuthPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 1080));
-
-        ClientPanel.setBackground(new java.awt.Color(255, 255, 255));
-        ClientPanel.setForeground(new java.awt.Color(26, 146, 196));
-
-        AppointmentPanel.setBackground(new java.awt.Color(255, 255, 255));
-        AppointmentPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 102), 1, true));
-        AppointmentPanel.setForeground(new java.awt.Color(0, 43, 73));
-        AppointmentPanel.setPreferredSize(new java.awt.Dimension(600, 100));
-
-        jLabel3.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Nombre completo");
-
-        ClientNameField.setBackground(new java.awt.Color(255, 255, 255));
-        ClientNameField.setText("Jhon Doe");
-        ClientNameField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                ClientNameFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                ClientNameFieldFocusLost(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Número de Documento");
+        jLabel4.setText("No Tengo cuenta");
 
-        DocNumberField.setBackground(new java.awt.Color(255, 255, 255));
-        DocNumberField.setText("123456789");
-        DocNumberField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                DocNumberFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                DocNumberFieldFocusLost(evt);
-            }
-        });
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
+        jLabel5.setText("¿No Estás Registrado?");
 
-        EmailField.setBackground(new java.awt.Color(255, 255, 255));
-        EmailField.setText("jhon@doe.com");
-        EmailField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                EmailFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                EmailFieldFocusLost(evt);
+        ClientRegisterBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\danil\\OneDrive\\Documents\\NetBeansProjects\\EasyWashProject\\src\\main\\java\\com\\tecno_comfenalco\\easywashproject\\public\\register_client_btn.png")); // NOI18N
+        ClientRegisterBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ClientRegisterBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClientRegisterBtnMouseClicked(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Dirección de correo");
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
+        jLabel7.setText("¿Estás Registrado?");
 
-        jLabel6.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Número de teléfono");
-
-        PhoneNumberField.setBackground(new java.awt.Color(255, 255, 255));
-        PhoneNumberField.setText("123456789");
-        PhoneNumberField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                PhoneNumberFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                PhoneNumberFieldFocusLost(evt);
+        ClientLoginBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\danil\\OneDrive\\Documents\\NetBeansProjects\\EasyWashProject\\public\\client_icon_btn.png")); // NOI18N
+        ClientLoginBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ClientLoginBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClientLoginBtnMouseClicked(evt);
             }
         });
 
-        DocumentTypeComboBox.setBackground(new java.awt.Color(255, 255, 255));
-        DocumentTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 204, 51));
+        jLabel9.setText("Tengo cuenta");
 
-        jLabel7.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Tipo de Documento");
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel10.setText("O");
 
-        AuthenticationButton1.setBackground(new java.awt.Color(0, 153, 51));
-        AuthenticationButton1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        AuthenticationButton1.setForeground(new java.awt.Color(255, 255, 255));
-        AuthenticationButton1.setText("Agendar cita");
+        jPanel3.setBackground(new java.awt.Color(153, 204, 0));
+        jPanel3.setForeground(new java.awt.Color(153, 153, 153));
+        jPanel3.setPreferredSize(new java.awt.Dimension(2, 166));
 
-        WashServiceComboBox.setBackground(new java.awt.Color(255, 255, 255));
-        WashServiceComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel10.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Tipo de Servicio");
-
-        jLabel11.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setText("Fecha");
-
-        jLabel12.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Hora");
-
-        javax.swing.GroupLayout AppointmentPanelLayout = new javax.swing.GroupLayout(AppointmentPanel);
-        AppointmentPanel.setLayout(AppointmentPanelLayout);
-        AppointmentPanelLayout.setHorizontalGroup(
-            AppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AppointmentPanelLayout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addGroup(AppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel10)
-                    .addComponent(AuthenticationButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(PhoneNumberField, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-                    .addComponent(jLabel5)
-                    .addComponent(EmailField, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-                    .addComponent(jLabel4)
-                    .addComponent(DocNumberField, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-                    .addComponent(jLabel3)
-                    .addComponent(ClientNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-                    .addComponent(DocumentTypeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(WashServiceComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AppointmentPanelLayout.createSequentialGroup()
-                        .addGroup(AppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AppointmentDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(AppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(AppointmentTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(71, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
         );
-        AppointmentPanelLayout.setVerticalGroup(
-            AppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AppointmentPanelLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ClientNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DocumentTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DocNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PhoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(WashServiceComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addGroup(AppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(AppointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AppointmentDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AppointmentTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addComponent(AuthenticationButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 166, Short.MAX_VALUE)
         );
 
-        LogoLabel.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
-        LogoLabel.setForeground(new java.awt.Color(0, 51, 102));
-        LogoLabel.setText("EasyWash!");
+        jPanel4.setBackground(new java.awt.Color(153, 204, 0));
+        jPanel4.setPreferredSize(new java.awt.Dimension(2, 154));
 
-        jLabel8.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Rellena el formulario con tu información de personal y de contacto.");
-
-        jLabel9.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Agenda la fecha y hora para tu cita y listo!");
-
-        javax.swing.GroupLayout ClientPanelLayout = new javax.swing.GroupLayout(ClientPanel);
-        ClientPanel.setLayout(ClientPanelLayout);
-        ClientPanelLayout.setHorizontalGroup(
-            ClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ClientPanelLayout.createSequentialGroup()
-                .addGap(306, 306, 306)
-                .addGroup(ClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LogoLabel)
-                    .addComponent(AppointmentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(ClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)))
-                .addContainerGap(288, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
         );
-        ClientPanelLayout.setVerticalGroup(
-            ClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ClientPanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(LogoLabel)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(AppointmentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 885, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 154, Short.MAX_VALUE)
         );
 
-        getContentPane().add(ClientPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(726, 0, -1, -1));
+        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\danil\\OneDrive\\Documents\\NetBeansProjects\\EasyWashProject\\public\\VectorPA.png")); // NOI18N
+
+        ExitButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\danil\\OneDrive\\Documents\\NetBeansProjects\\EasyWashProject\\public\\exit_btn.png")); // NOI18N
+        ExitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ExitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExitButtonMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(181, 181, 181)
+                        .addComponent(ExitButton)
+                        .addGap(24, 24, 24))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(47, 47, 47)
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(94, 94, 94)
+                                        .addComponent(jLabel5))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(169, 169, 169)
+                                        .addComponent(jLabel4))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(196, 196, 196)
+                                .addComponent(ClientRegisterBtn)))
+                        .addGap(186, 186, 186))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel11)
+                .addGap(0, 49, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(286, 286, 286)
+                    .addComponent(ClientLoginBtn)
+                    .addContainerGap(978, Short.MAX_VALUE)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(ExitButton)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(ClientRegisterBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(116, 116, 116)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(108, 108, 108)
+                                .addComponent(jLabel7)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel9))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addComponent(jLabel11))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(383, 383, 383)
+                    .addComponent(ClientLoginBtn)
+                    .addContainerGap(472, Short.MAX_VALUE)))
+        );
+
+        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void UsernameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernameFieldFocusGained
-        String username = UsernameField.getText();
-        
-        if(username.equals("Jhon Doe") || username.equals("Debes ingresar un nombre de usuario!")) {
-            UsernameField.setText("");
-        }
-    }//GEN-LAST:event_UsernameFieldFocusGained
+    private void ExitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitButtonMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_ExitButtonMouseClicked
 
-    private void UserPasswordFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserPasswordFieldFocusGained
-        UserPasswordField.setText("");
-    }//GEN-LAST:event_UserPasswordFieldFocusGained
-
-    private void UsernameFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernameFieldFocusLost
-        String username = UsernameField.getText();
+    private void ClientLoginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClientLoginBtnMouseClicked
+        this.setVisible(false);
         
-        if(username.isBlank() || username.isEmpty() || username.length() == 0) {
-            UsernameField.setBackground(Color.red);
-            UsernameField.setForeground(Color.white);
-            UsernameField.setText("Debes ingresar un nombre de usuario!");
-        }
-    }//GEN-LAST:event_UsernameFieldFocusLost
+        LoginClientView vistaLoginCliente = new LoginClientView();
+        vistaLoginCliente.setVisible(true);
+    }//GEN-LAST:event_ClientLoginBtnMouseClicked
 
-    private void ClientNameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ClientNameFieldFocusGained
-        String clientName = ClientNameField.getText();
+    private void ClientRegisterBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClientRegisterBtnMouseClicked
+        this.setVisible(false);
         
-        if(clientName.equals("Jhon Doe") || clientName.equals("Debes ingresar tu nombre!")) {
-            ClientNameField.setText("");
-        }
-    }//GEN-LAST:event_ClientNameFieldFocusGained
-
-    private void ClientNameFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ClientNameFieldFocusLost
-        String clientName = ClientNameField.getText();
-        
-        if(clientName.isBlank() || clientName.isEmpty() || clientName.length() == 0) {
-            ClientNameField.setBackground(Color.red);
-            ClientNameField.setForeground(Color.white);
-            ClientNameField.setText("Debes ingresar su nombre completo!");
-        }
-    }//GEN-LAST:event_ClientNameFieldFocusLost
-
-    private void DocNumberFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DocNumberFieldFocusGained
-        String clientDocNumber = DocNumberField.getText();
-        
-        if(clientDocNumber.equals("123456789") || clientDocNumber.equals("Debes ingresar un número de documento!")) {
-            DocNumberField.setText("");
-        }
-    }//GEN-LAST:event_DocNumberFieldFocusGained
-
-    private void DocNumberFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DocNumberFieldFocusLost
-        String clientDocNomber = DocNumberField.getText();
-        
-        if(clientDocNomber.isBlank() || clientDocNomber.isEmpty() || clientDocNomber.length() == 0) {
-            DocNumberField.setBackground(Color.red);
-            DocNumberField.setForeground(Color.white);
-            DocNumberField.setText("Debes ingresar un número de documento!");
-        }
-    }//GEN-LAST:event_DocNumberFieldFocusLost
-
-    private void EmailFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmailFieldFocusGained
-        String clientEmail = EmailField.getText();
-        
-        if(clientEmail.equals("jhon@doe.com") || clientEmail.equals("Debes ingresar un correo!")) {
-            EmailField.setText("");
-        }
-    }//GEN-LAST:event_EmailFieldFocusGained
-
-    private void EmailFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EmailFieldFocusLost
-        String clientEmail = EmailField.getText();
-        
-        if(clientEmail.isBlank() || clientEmail.isEmpty() || clientEmail.length() == 0) {
-            EmailField.setBackground(Color.red);
-            EmailField.setForeground(Color.white);
-            EmailField.setText("Debes ingresar una dirección de correo!");
-        }
-    }//GEN-LAST:event_EmailFieldFocusLost
-
-    private void PhoneNumberFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PhoneNumberFieldFocusGained
-        String clientPhoneNumber = PhoneNumberField.getText();
-        
-        if(clientPhoneNumber.equals("123456789") || clientPhoneNumber.equals("Debes ingresar un número de teléfono!")) {
-            PhoneNumberField.setText("");
-        }
-    }//GEN-LAST:event_PhoneNumberFieldFocusGained
-
-    private void PhoneNumberFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PhoneNumberFieldFocusLost
-        String clientPhoneNumber = PhoneNumberField.getText();
-        
-        if(clientPhoneNumber.isBlank() || clientPhoneNumber.isEmpty() || clientPhoneNumber.length() == 0) {
-            PhoneNumberField.setBackground(Color.red);
-            PhoneNumberField.setForeground(Color.white);
-            PhoneNumberField.setText("Debes ingresar un número de teléfono!");
-        }
-    }//GEN-LAST:event_PhoneNumberFieldFocusLost
+        RegisterClientView vistaRegistrarCliente = new RegisterClientView();
+        vistaRegistrarCliente.setVisible(true);
+    }//GEN-LAST:event_ClientRegisterBtnMouseClicked
     
     /**
      * @param args the command line arguments
@@ -487,54 +281,42 @@ public class MainView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainViewClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainViewClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainViewClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainViewClient.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainView().setVisible(true);
+                new MainViewClient().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.github.lgooddatepicker.components.DatePicker AppointmentDatePicker;
-    private javax.swing.JPanel AppointmentPanel;
-    private com.github.lgooddatepicker.components.TimePicker AppointmentTimePicker;
-    private javax.swing.JPanel AuthPanel;
-    private javax.swing.JButton AuthenticationButton;
-    private javax.swing.JButton AuthenticationButton1;
-    private javax.swing.JTextField ClientNameField;
-    private javax.swing.JPanel ClientPanel;
-    private javax.swing.JTextField DocNumberField;
-    private javax.swing.JComboBox<String> DocumentTypeComboBox;
-    private javax.swing.JTextField EmailField;
-    private javax.swing.JLabel LoginLabel;
-    private javax.swing.JPanel LoginPanel;
-    private javax.swing.JLabel LogoLabel;
-    private javax.swing.JTextField PhoneNumberField;
-    private javax.swing.JPasswordField UserPasswordField;
-    private javax.swing.JTextField UsernameField;
-    private javax.swing.JComboBox<String> WashServiceComboBox;
+    private javax.swing.JLabel ClientLoginBtn;
+    private javax.swing.JLabel ClientRegisterBtn;
+    private javax.swing.JLabel ExitButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,10 +4,16 @@
  */
 package com.tecno_comfenalco.easywashproject.repository;
 
+import java.util.List;
+
 /**
  *
  * @author danil
  */
-public interface RepositoryInterface {
-    
+public interface Repository<T,K> {
+    public T create(K k);
+    public T read(K k);
+    public List<T> readAll();
+    public void delete(K k);
+    public T update(K k);
 }
