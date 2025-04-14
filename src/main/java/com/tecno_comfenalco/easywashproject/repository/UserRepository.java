@@ -14,7 +14,7 @@ import java.util.List;
 public interface UserRepository extends Repository<User, User>{
 
     @Override
-    public User update(User k);
+    public User update(User k, User j);
 
     @Override
     public void delete(User k);

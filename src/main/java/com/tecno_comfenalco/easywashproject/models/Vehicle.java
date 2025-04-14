@@ -4,6 +4,8 @@
  */
 package com.tecno_comfenalco.easywashproject.models;
 
+import com.tecno_comfenalco.easywashproject.enums.EnumVehicleType;
+
 /**
  *
  * @author danil
@@ -13,9 +15,9 @@ public class Vehicle {
     private VehicleBrand brand;
     private String plate;
     private String color;
-    private VehicleType type;
+    private EnumVehicleType type;
 
-    public Vehicle(String model, VehicleBrand brand, String plate, String color, VehicleType type) {
+    public Vehicle(String model, VehicleBrand brand, String plate, String color, EnumVehicleType type) {
         this.model = model;
         this.brand = brand;
         this.plate = plate;
@@ -55,12 +57,17 @@ public class Vehicle {
         this.color = color;
     }
 
-    public VehicleType getType() {
+    public EnumVehicleType getType() {
         return type;
     }
 
-    public void setType(VehicleType type) {
+    public void setType(EnumVehicleType type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" + "model=" + model + ", brand=" + brand + ", plate=" + plate + ", color=" + color + ", type=" + type + '}';
     }
     
     

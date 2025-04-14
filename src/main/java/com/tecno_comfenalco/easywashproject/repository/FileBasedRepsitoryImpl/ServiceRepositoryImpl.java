@@ -53,13 +53,13 @@ public class ServiceRepositoryImpl implements ServiceRepository {
     }
 
     @Override
-    public Service update(Service s) {
+    public Service update(Service s, Service j) {
         List<Service> list = jsonRepository.load();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getName().equalsIgnoreCase(s.getName())) {
-                list.set(i, s);
+                list.set(i, j);
                 jsonRepository.save(list);
-                return s;
+                return j;
             }
         }
         return null;

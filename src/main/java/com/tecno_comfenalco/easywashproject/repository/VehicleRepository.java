@@ -14,7 +14,7 @@ import java.util.List;
 public interface VehicleRepository extends Repository<Vehicle, Vehicle>{
 
     @Override
-    public Vehicle update(Vehicle k);
+    public Vehicle update(Vehicle k, Vehicle j);
 
     @Override
     public void delete(Vehicle k);

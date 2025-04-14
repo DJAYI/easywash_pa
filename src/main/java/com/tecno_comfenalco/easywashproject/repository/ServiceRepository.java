@@ -12,7 +12,7 @@ import java.util.List;
 public interface ServiceRepository extends Repository<Service, Service>{
 
     @Override
-    public Service update(Service k);
+    public Service update(Service k, Service j);
 
     @Override
     public void delete(Service k);

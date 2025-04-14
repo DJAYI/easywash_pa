@@ -13,7 +13,7 @@ import java.util.List;
 public interface AppointmentRepository extends Repository<Appointment, Appointment>{
 
     @Override
-    public Appointment update(Appointment k);
+    public Appointment update(Appointment k, Appointment j);
 
     @Override
     public void delete(Appointment k);

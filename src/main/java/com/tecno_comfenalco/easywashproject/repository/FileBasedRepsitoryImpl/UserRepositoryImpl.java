@@ -15,7 +15,7 @@ import java.util.List;
 public class UserRepositoryImpl implements UserRepository{
 
     @Override
-    public User update(User k) {
+    public User update(User k, User j) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

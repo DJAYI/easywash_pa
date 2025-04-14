@@ -22,7 +22,7 @@ public class AppointmentRepositoryImpl implements AppointmentRepository{
     File appointmentsFile = new File("appointments.txt");
     
     @Override
-    public Appointment update(Appointment k) {
+    public Appointment update(Appointment k, Appointment j) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

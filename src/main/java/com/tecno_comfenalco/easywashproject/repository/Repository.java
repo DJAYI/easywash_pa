@@ -15,5 +15,5 @@ public interface Repository<T,K> {
     public T read(K k);
     public List<T> readAll();
     public void delete(K k);
-    public T update(K k);
+    public T update(K k, K j);
 }

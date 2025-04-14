@@ -13,7 +13,7 @@ import java.util.List;
 public interface ClientRepository extends Repository<Client, Client>{
 
     @Override
-    public Client update(Client k);
+    public Client update(Client k, Client j);
 
     @Override
     public void delete(Client k);
