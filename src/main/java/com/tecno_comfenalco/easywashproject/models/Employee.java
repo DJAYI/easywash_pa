@@ -4,6 +4,7 @@
  */
 package com.tecno_comfenalco.easywashproject.models;
 
+import com.tecno_comfenalco.easywashproject.enums.EnumDocType;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -13,16 +14,18 @@ import java.util.ArrayList;
  * @author danil
  */
 public class Employee extends Person {
+
     private double salary;
     private LocalTime scheduleStart;
     private LocalTime scheduleEnd;
     private transient ArrayList<Appointment> appointments;
-    
-    public Employee(double salary, LocalTime scheduleStart, LocalTime scheduleEnd, ArrayList<Appointment> appointments) {
+
+    public Employee(double salary, LocalTime scheduleStart, LocalTime scheduleEnd, ArrayList<Appointment> appointments, String fullname, EnumDocType documentType, String documentNumber, String phoneNumber, String mailAddress) {
         this.salary = salary;
         this.scheduleStart = scheduleStart;
         this.scheduleEnd = scheduleEnd;
         this.appointments = appointments;
+        super(fullname, documentType, documentNumber, phoneNumber, mailAddress);
     }
 
     public double getSalary() {
@@ -60,16 +63,16 @@ public class Employee extends Person {
     private boolean isAvailable(LocalTime startTime, LocalTime duration, LocalDate date) {
         LocalTime endTime = startTime.plusMinutes(duration.getMinute());
         for (Appointment appointment : appointments) {
-            if(appointment.getDate().equals(date)){
+            if (appointment.getDate().equals(date)) {
                 LocalTime appointmentStartTime = appointment.getTime();
                 LocalTime appointmentEndTime = appointmentStartTime.plusMinutes(appointment.getService().getDuration().getMinute());
-                
-                if(startTime.isBefore(appointmentEndTime) && endTime.isAfter(appointmentStartTime)){
+
+                if (startTime.isBefore(appointmentEndTime) && endTime.isAfter(appointmentStartTime)) {
                     return false;
                 }
             }
         }
-        
+
         return true;
     }
 }

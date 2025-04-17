@@ -27,6 +27,7 @@ buildNumber.properties
 out/
 
 # NetBeans specific files
+nbactions.xml
 nbproject/private/
 build/
 nbbuild/

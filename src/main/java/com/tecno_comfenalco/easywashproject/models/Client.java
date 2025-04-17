@@ -4,15 +4,19 @@
  */
 package com.tecno_comfenalco.easywashproject.models;
 
+import com.tecno_comfenalco.easywashproject.enums.EnumDocType;
+
 /**
  *
  * @author danil
  */
 public class Client extends Person {
+
     private Vehicle vehicle;
 
-    public Client(Vehicle vehicle) {
+    public Client(Vehicle vehicle, String fullname, EnumDocType documentType, String documentNumber, String phoneNumber, String emailAddress) {
         this.vehicle = vehicle;
+        super(fullname, documentType, documentNumber, phoneNumber, emailAddress);
     }
 
     public Vehicle getVehicle() {
@@ -22,5 +26,5 @@ public class Client extends Person {
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
-    
+
 }

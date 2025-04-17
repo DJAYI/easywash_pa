@@ -10,4 +10,6 @@ import java.lang.reflect.Type;
  *
  * @author danil
  */
-public record TypeAdapterConfig<T>(Type type, Object adapter) {}
+public record TypeAdapterConfig<T>(Type type, Object adapter) {
+
+}

@@ -7,20 +7,22 @@ package com.tecno_comfenalco.easywashproject.models;
 import com.tecno_comfenalco.easywashproject.enums.EnumAppointmentStatus;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 /**
  *
  * @author danil
  */
 public class Appointment {
-    private Service service;
+
+    private List<Service> services;
     private Client client;
     private Employee employee;
     private EnumAppointmentStatus status;
     private LocalDate date;
     private LocalTime time;
 
-    public Appointment(Service service, Client client, Employee employee, EnumAppointmentStatus status, LocalDate date, LocalTime time) {
+    public Appointment(List<Service> services, Client client, Employee employee, EnumAppointmentStatus status, LocalDate date, LocalTime time) {
         this.service = service;
         this.client = client;
         this.employee = employee;
@@ -28,7 +30,7 @@ public class Appointment {
         this.date = date;
         this.time = time;
     }
-    
+
     public Service getService() {
         return service;
     }
@@ -76,6 +78,5 @@ public class Appointment {
     public void setTime(LocalTime time) {
         this.time = time;
     }
-    
-    
+
 }

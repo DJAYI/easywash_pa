@@ -9,6 +9,7 @@ package com.tecno_comfenalco.easywashproject.models;
  * @author danil
  */
 public class VehicleType {
+
     private String name;
     private String description;
 
@@ -32,6 +33,5 @@ public class VehicleType {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    
+
 }

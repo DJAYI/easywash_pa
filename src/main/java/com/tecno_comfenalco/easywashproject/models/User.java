@@ -4,17 +4,23 @@
  */
 package com.tecno_comfenalco.easywashproject.models;
 
+import com.tecno_comfenalco.easywashproject.enums.EnumDocType;
+
 /**
  *
  * @author danil
  */
 public class User extends Person {
+
     private String username;
     private String password;
 
-    public User(String username, String password) {
+    public User(String username, String password, String fullname, EnumDocType documentType, String documentNumber, String phoneNumber, String emailAddress) {
         this.username = username;
         this.password = password;
+
+        super(fullname, documentType, documentNumber, phoneNumber, emailAddress);
+
     }
 
     public String getUsername() {
@@ -32,6 +38,5 @@ public class User extends Person {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
+
 }
