@@ -20,23 +20,33 @@ public class Appointment {
     private Employee employee;
     private EnumAppointmentStatus status;
     private LocalDate date;
-    private LocalTime time;
+    private LocalTime startTime;
 
-    public Appointment(List<Service> services, Client client, Employee employee, EnumAppointmentStatus status, LocalDate date, LocalTime time) {
-        this.service = service;
+    public Appointment(List<Service> services, Client client, Employee employee, EnumAppointmentStatus status, LocalDate date, LocalTime startTime) {
+        this.services = services;
         this.client = client;
         this.employee = employee;
         this.status = status;
         this.date = date;
-        this.time = time;
+        this.startTime = startTime;
     }
 
-    public Service getService() {
-        return service;
+    public LocalTime getDurationAppointment() {
+        LocalTime duration = null;
+
+        services.forEach((service) -> {
+            duration.plusMinutes(service.getDuration().getMinute());
+        });
+
+        return duration;
     }
 
-    public void setService(Service service) {
-        this.service = service;
+    public List<Service> getService() {
+        return services;
+    }
+
+    public void setService(List<Service> service) {
+        this.services = service;
     }
 
     public Client getClient() {
@@ -71,12 +81,12 @@ public class Appointment {
         this.date = date;
     }
 
-    public LocalTime getTime() {
-        return time;
+    public LocalTime getStartTime() {
+        return startTime;
     }
 
-    public void setTime(LocalTime time) {
-        this.time = time;
+    public void setStartTime(LocalTime time) {
+        this.startTime = time;
     }
 
 }

@@ -23,7 +23,6 @@ com\tecno_comfenalco\easywashproject\controllers\ServiceController.class
 com\tecno_comfenalco\easywashproject\views\Dashboard\Admin\panels\HistoryAppointmentList$1.class
 com\tecno_comfenalco\easywashproject\views\Dashboard\Admin\DashboardAdminView$6.class
 com\tecno_comfenalco\easywashproject\views\MainViewClient$2.class
-com\tecno_comfenalco\easywashproject\models\VehicleType.class
 com\tecno_comfenalco\easywashproject\views\Dashboard\Admin\panels\ServicesListPanel$1.class
 com\tecno_comfenalco\easywashproject\views\Dashboard\Admin\views\Services\CreateServiceView.class
 com\tecno_comfenalco\easywashproject\views\Dashboard\Admin\DashboardAdminView$2.class
@@ -51,6 +50,7 @@ com\tecno_comfenalco\easywashproject\views\Authentication\LoginUserView$2.class
 com\tecno_comfenalco\easywashproject\views\MainViewClient$1.class
 com\tecno_comfenalco\easywashproject\views\MainViewWindow.class
 com\tecno_comfenalco\easywashproject\views\Dashboard\Admin\DashboardAdminView.class
+com\tecno_comfenalco\easywashproject\repository\FileBasedRepsitoryImpl\AppointmentRepositoryImpl$1.class
 com\tecno_comfenalco\easywashproject\views\Authentication\RegisterClientView.class
 com\tecno_comfenalco\easywashproject\repository\UserRepository.class
 com\tecno_comfenalco\easywashproject\views\Dashboard\Admin\panels\HistoryAppointmentList$2.class
@@ -63,9 +63,11 @@ com\tecno_comfenalco\easywashproject\views\Dashboard\Admin\panels\AppointmentLis
 com\tecno_comfenalco\easywashproject\repository\VehicleRepository.class
 com\tecno_comfenalco\easywashproject\views\Dashboard\Admin\views\Employee\EditEmployeeView.class
 com\tecno_comfenalco\easywashproject\views\Authentication\LoginUserView.class
+com\tecno_comfenalco\easywashproject\repository\FileBasedRepsitoryImpl\EmployeeRepositoryImpl$1.class
 com\tecno_comfenalco\easywashproject\models\Client.class
 com\tecno_comfenalco\easywashproject\services\EmailNotificationService.class
 com\tecno_comfenalco\easywashproject\services\AuthenticationService.class
+com\tecno_comfenalco\easywashproject\repository\FileBasedRepsitoryImpl\UserRepositoryImpl$1.class
 com\tecno_comfenalco\easywashproject\views\Authentication\LoginClientView$3.class
 com\tecno_comfenalco\easywashproject\controllers\AppointmentController.class
 com\tecno_comfenalco\easywashproject\views\Dashboard\Client\panels\AppointmentListPanel.class

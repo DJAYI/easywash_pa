@@ -16,10 +16,10 @@ public class User extends Person {
     private String password;
 
     public User(String username, String password, String fullname, EnumDocType documentType, String documentNumber, String phoneNumber, String emailAddress) {
+        super(fullname, documentType, documentNumber, phoneNumber, emailAddress);
+
         this.username = username;
         this.password = password;
-
-        super(fullname, documentType, documentNumber, phoneNumber, emailAddress);
 
     }
 

@@ -15,8 +15,9 @@ public class Client extends Person {
     private Vehicle vehicle;
 
     public Client(Vehicle vehicle, String fullname, EnumDocType documentType, String documentNumber, String phoneNumber, String emailAddress) {
-        this.vehicle = vehicle;
         super(fullname, documentType, documentNumber, phoneNumber, emailAddress);
+
+        this.vehicle = vehicle;
     }
 
     public Vehicle getVehicle() {

@@ -3,6 +3,8 @@
  */
 package com.tecno_comfenalco.easywashproject;
 
+import com.tecno_comfenalco.easywashproject.services.EmailNotificationService;
+
 /**
  *
  * @author danil
@@ -10,6 +12,7 @@ package com.tecno_comfenalco.easywashproject;
 public class Main {
 
     public static void main(String[] args) {
-
+        EmailNotificationService emailNotificationService = new EmailNotificationService();
+        emailNotificationService.sendEmail("danilo.arenasyi@gmail.com", "prueba", "Saludos desde java");
     }
 }
