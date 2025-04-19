@@ -66,7 +66,7 @@ public class Employee extends Person {
         for (Appointment appointment : appointments) {
             if (appointment.getDate().equals(date)) {
                 LocalTime appointmentStartTime = appointment.getStartTime();
-                LocalTime appointmentEndTime = appointmentStartTime.plusMinutes(appointment.getDurationAppointment().getMinute());
+                LocalTime appointmentEndTime = appointmentStartTime.plus(appointment.getDurationAppointment());
 
                 if (startTime.isBefore(appointmentEndTime) && endTime.isAfter(appointmentStartTime)) {
                     return false;

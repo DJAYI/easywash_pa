@@ -4,19 +4,20 @@
  */
 package com.tecno_comfenalco.easywashproject.models;
 
-import java.time.LocalTime;
+import java.time.Duration;
 
 /**
  *
  * @author danil
  */
 public class Service {
+
     private String name;
     private double price;
     private String description;
-    private LocalTime duration;
+    private Duration duration;
 
-    public Service(String name, double price, String description, LocalTime duration) {
+    public Service(String name, double price, String description, Duration duration) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -47,11 +48,11 @@ public class Service {
         this.description = description;
     }
 
-    public LocalTime getDuration() {
+    public Duration getDuration() {
         return duration;
     }
 
-    public void setDuration(LocalTime duration) {
+    public void setDuration(Duration duration) {
         this.duration = duration;
     }
 
@@ -59,6 +60,5 @@ public class Service {
     public String toString() {
         return "Service{" + "name=" + name + ", price=" + price + ", description=" + description + ", duration=" + duration + '}';
     }
-    
-    
+
 }

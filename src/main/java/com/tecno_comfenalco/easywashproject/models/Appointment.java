@@ -5,6 +5,7 @@
 package com.tecno_comfenalco.easywashproject.models;
 
 import com.tecno_comfenalco.easywashproject.enums.EnumAppointmentStatus;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -31,14 +32,10 @@ public class Appointment {
         this.startTime = startTime;
     }
 
-    public LocalTime getDurationAppointment() {
-        LocalTime duration = null;
-
-        services.forEach((service) -> {
-            duration.plusMinutes(service.getDuration().getMinute());
-        });
-
-        return duration;
+    public Duration getDurationAppointment() {
+        return services.stream()
+                .map(Service::getDuration)
+                .reduce(Duration.ZERO, Duration::plus);
     }
 
     public List<Service> getService() {
