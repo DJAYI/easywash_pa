@@ -4,39 +4,92 @@
  */
 package com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl;
 
+import com.google.gson.reflect.TypeToken;
 import com.tecno_comfenalco.easywashproject.models.Client;
 import com.tecno_comfenalco.easywashproject.repository.ClientRepository;
+import java.lang.reflect.Type;
 import java.util.List;
 
 /**
  *
  * @author danil
  */
-public class ClientRepositoryImpl implements ClientRepository{
+public class ClientRepositoryImpl implements ClientRepository {
+
+    private final JsonFileRepository<Client> jsonFileRepository;
+
+    public ClientRepositoryImpl(JsonFileRepository<Client> JsonFileRepository) {
+        Type listType = new TypeToken<List<Client>>() {
+        }.getType();
+
+        this.jsonFileRepository = new JsonFileRepository<Client>("clients.json", listType, List.of());
+    }
 
     @Override
     public Client update(Client k, Client j) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            List<Client> clients = jsonFileRepository.load();
+
+            for (int i = 0; i < clients.size(); i++) {
+                if (k.getDocumentNumber().equals(clients.get(i).getDocumentNumber())) {
+                    clients.set(i, j);
+                    return j;
+                }
+            }
+
+            return null;
+
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error al realizar la modificación del cliente");
+            return null;
+        }
     }
 
     @Override
     public void delete(Client k) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            List<Client> clients = jsonFileRepository.load();
+            clients.remove(k);
+            jsonFileRepository.save(clients);
+
+        } catch (Exception e) {
+            System.out.println("Ha ocurrido un error al intentar eliminar al cliente");
+        }
     }
 
     @Override
     public List<Client> readAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            return jsonFileRepository.load();
+        } catch (Exception e) {
+            System.out.println("No se ha podido recuperar la información de los clientes");
+            return null;
+        }
     }
 
     @Override
     public Client read(Client k) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            return jsonFileRepository.load().stream().filter((t) -> t.getDocumentNumber().equals(k.getDocumentNumber())).findFirst().orElse(null);
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido recuperar al cliente solicitado");
+            return null;
+        }
     }
 
     @Override
     public Client create(Client k) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            List<Client> clients = jsonFileRepository.load();
+            clients.add(k);
+            jsonFileRepository.save(clients);
+            return k;
+        } catch (Exception e) {
+            System.out.println("No se ha podido insertar un nuevo cliente");
+            return null;
+        }
+
     }
-    
+
 }

@@ -9,5 +9,7 @@ package com.tecno_comfenalco.easywashproject.enums;
  * @author danil
  */
 public enum EnumAppointmentStatus {
-    
+    PENDIENTE,
+    REALIZADO,
+    COTIZADO
 }

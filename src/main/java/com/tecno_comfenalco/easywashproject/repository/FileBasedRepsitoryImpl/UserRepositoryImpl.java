@@ -29,47 +29,77 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User update(User k, User j) {
-        List<User> userList = readAll();
+        try {
+            List<User> userList = readAll();
 
-        for (int i = 0; i < userList.size(); i++) {
-            if (k.getUsername().equals(userList.get(i).getUsername())) {
-                userList.set(i, j);
-                this.jsonFileRepository.save(userList);
-                return j;
+            for (int i = 0; i < userList.size(); i++) {
+                if (k.getUsername().equals(userList.get(i).getUsername())) {
+                    userList.set(i, j);
+                    this.jsonFileRepository.save(userList);
+                    return j;
+                }
             }
+            return null;
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido modificar la información del usuario solicitado");
+            return null;
         }
-        return null;
+
     }
 
     @Override
     public void delete(User k) {
-        List<User> userList = readAll();
-        userList.remove(k);
-        jsonFileRepository.save(userList);
+        try {
+            List<User> userList = readAll();
+            userList.remove(k);
+            jsonFileRepository.save(userList);
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido eliminar al usuario solicitado");
+        }
     }
 
     @Override
     public List<User> readAll() {
-        return this.jsonFileRepository.load();
+        try {
+            return this.jsonFileRepository.load();
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido recuperar la información de los usuarios");
+            return null;
+        }
     }
 
     @Override
     public User read(User k) {
-        return this.jsonFileRepository.load()
-                .stream()
-                .filter(user -> user.getUsername().equalsIgnoreCase(k.getUsername()))
-                .findFirst()
-                .orElse(null);
+        try {
+            return this.jsonFileRepository.load()
+                    .stream()
+                    .filter(user -> user.getUsername().equalsIgnoreCase(k.getUsername()))
+                    .findFirst()
+                    .orElse(null);
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido recuperar la información del usuario solicitado");
+            return null;
+        }
     }
 
     @Override
     public User create(User k) {
-        List<User> userList = this.jsonFileRepository.load();
-        Set<User> userSet = new HashSet<>(userList);
-        userList.add(k);
-        this.jsonFileRepository.save(userSet.stream().collect(Collectors.toList()));
+        try {
+            List<User> userList = this.jsonFileRepository.load();
+            Set<User> userSet = new HashSet<>(userList);
+            userList.add(k);
+            this.jsonFileRepository.save(userSet.stream().collect(Collectors.toList()));
 
-        return k;
+            return k;
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido insertar al usuario al sistema");
+            return null;
+        }
     }
 
 }

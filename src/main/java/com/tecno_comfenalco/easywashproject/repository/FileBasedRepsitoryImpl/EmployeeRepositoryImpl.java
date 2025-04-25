@@ -40,45 +40,74 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Override
     public Employee create(Employee k) {
-        List<Employee> employeeList = jsonFileRepository.load();
-        employeeList.add(k);
-        return k;
+        try {
+            List<Employee> employeeList = jsonFileRepository.load();
+            employeeList.add(k);
+            return k;
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido insertar al empleado al sistema");
+            return null;
+        }
     }
 
     @Override
     public Employee read(Employee k) {
-        return jsonFileRepository.load()
-                .stream()
-                .filter((t) -> t.getDocumentNumber().equals(k.getDocumentNumber()))
-                .findFirst()
-                .orElse(null);
+        try {
+            return jsonFileRepository.load()
+                    .stream()
+                    .filter((t) -> t.getDocumentNumber().equals(k.getDocumentNumber()))
+                    .findFirst()
+                    .orElse(null);
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido recuperar la información del empleado solicitado");
+            return null;
+        }
     }
 
     @Override
     public List<Employee> readAll() {
-        return jsonFileRepository.load();
+        try {
+            return jsonFileRepository.load();
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido la información de la los empleados");
+            return null;
+        }
     }
 
     @Override
     public void delete(Employee k) {
-        List<Employee> employeeList = jsonFileRepository.load();
-        employeeList.remove(k);
-        jsonFileRepository.save(employeeList);
+        try {
+            List<Employee> employeeList = jsonFileRepository.load();
+            employeeList.remove(k);
+            jsonFileRepository.save(employeeList);
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido eliminar al empleado solicitado");
+        }
     }
 
     @Override
     public Employee update(Employee k, Employee j) {
-        List<Employee> employeeList = jsonFileRepository.load();
+        try {
+            List<Employee> employeeList = jsonFileRepository.load();
 
-        for (int i = 0; i < employeeList.size(); i++) {
-            if (employeeList.get(i).equals(k.getDocumentNumber())) {
-                employeeList.set(i, j);
-                jsonFileRepository.save(employeeList);
-                return j;
+            for (int i = 0; i < employeeList.size(); i++) {
+                if (employeeList.get(i).equals(k.getDocumentNumber())) {
+                    employeeList.set(i, j);
+                    jsonFileRepository.save(employeeList);
+                    return j;
+                }
             }
-        }
 
-        return null;
+            return null;
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido modificar la información del empleado solicitado");
+            return null;
+        }
     }
 
 }

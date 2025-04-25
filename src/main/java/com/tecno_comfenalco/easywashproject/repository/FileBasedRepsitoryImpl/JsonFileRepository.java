@@ -21,6 +21,7 @@ import java.util.List;
  * @author danil
  */
 public class JsonFileRepository<T> {
+
     private final Gson gson;
     private final String filePath;
     private final Type typeOfT;
@@ -57,5 +58,4 @@ public class JsonFileRepository<T> {
         }
     }
 
-    
 }

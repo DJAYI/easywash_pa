@@ -45,35 +45,73 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
 
     @Override
     public Appointment update(Appointment k, Appointment j) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            List<Appointment> appointments = jsonFileRepository.load();
+
+            for (int i = 0; i < appointments.size(); i++) {
+                if (appointments.get(i).equals(k)) {
+                    appointments.set(i, j);
+                    return j;
+                }
+            }
+
+            return null;
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido modificar la cita");
+            return null;
+        }
+
     }
 
     @Override
     public void delete(Appointment k) {
-        List<Appointment> appointments = jsonFileRepository.load();
-        appointments.remove(k);
-        jsonFileRepository.save(appointments);
+        try {
+            List<Appointment> appointments = jsonFileRepository.load();
+            appointments.remove(k);
+            jsonFileRepository.save(appointments);
+        } catch (Exception e) {
+            System.out.println("No se ha podido eliminar la cita");
+        }
     }
 
     @Override
     public List<Appointment> readAll() {
-        return jsonFileRepository.load();
+        try {
+            return jsonFileRepository.load();
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido recuperar la información de las citas");
+            return null;
+        }
     }
 
     @Override
     public Appointment read(Appointment k) {
-        return jsonFileRepository.load().stream()
-                .filter((t) -> t.getDate().equals(k.getDate()))
-                .findFirst()
-                .orElse(null);
+        try {
+            return jsonFileRepository.load().stream()
+                    .filter((t) -> t.getDate().equals(k.getDate()))
+                    .findFirst()
+                    .orElse(null);
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido encontrar la cita");
+            return null;
+        }
     }
 
     @Override
     public Appointment create(Appointment k) {
-        List<Appointment> appointments = jsonFileRepository.load();
-        appointments.add(k);
-        jsonFileRepository.save(appointments);
-        return k;
+        try {
+            List<Appointment> appointments = jsonFileRepository.load();
+            appointments.add(k);
+            jsonFileRepository.save(appointments);
+            return k;
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido crear la cita");
+            return null;
+        }
     }
 
 }

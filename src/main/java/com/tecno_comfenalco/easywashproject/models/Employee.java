@@ -61,7 +61,7 @@ public class Employee extends Person {
         this.appointments = appointments;
     }
 
-    private boolean isEmployeeAvailable(LocalTime startTime, LocalTime duration, LocalDate date) {
+    public boolean isEmployeeAvailable(LocalTime startTime, LocalTime duration, LocalDate date) {
         LocalTime endTime = startTime.plusMinutes(duration.getMinute());
         for (Appointment appointment : appointments) {
             if (appointment.getDate().equals(date)) {
