@@ -4,10 +4,11 @@
  */
 package com.tecno_comfenalco.easywashproject.models;
 
-import com.tecno_comfenalco.easywashproject.enums.EnumDocType;
+import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
+import java.util.List;
+
+import com.tecno_comfenalco.easywashproject.enums.EnumDocType;
 
 /**
  *
@@ -16,11 +17,12 @@ import java.util.ArrayList;
 public class Employee extends Person {
 
     private double salary;
-    private LocalTime scheduleStart;
-    private LocalTime scheduleEnd;
-    private transient ArrayList<Appointment> appointments;
+    private Duration scheduleStart;
+    private Duration scheduleEnd;
+    private transient List<Appointment> appointments;
 
-    public Employee(double salary, LocalTime scheduleStart, LocalTime scheduleEnd, ArrayList<Appointment> appointments, String fullname, EnumDocType documentType, String documentNumber, String phoneNumber, String mailAddress) {
+    public Employee(double salary, Duration scheduleStart, Duration scheduleEnd, List<Appointment> appointments,
+            String fullname, EnumDocType documentType, String documentNumber, String phoneNumber, String mailAddress) {
         super(fullname, documentType, documentNumber, phoneNumber, mailAddress);
         this.salary = salary;
         this.scheduleStart = scheduleStart;
@@ -37,38 +39,38 @@ public class Employee extends Person {
         this.salary = salary;
     }
 
-    public LocalTime getScheduleStart() {
+    public Duration getScheduleStart() {
         return scheduleStart;
     }
 
-    public void setScheduleStart(LocalTime scheduleStart) {
+    public void setScheduleStart(Duration scheduleStart) {
         this.scheduleStart = scheduleStart;
     }
 
-    public LocalTime getScheduleEnd() {
+    public Duration getScheduleEnd() {
         return scheduleEnd;
     }
 
-    public void setScheduleEnd(LocalTime scheduleEnd) {
+    public void setScheduleEnd(Duration scheduleEnd) {
         this.scheduleEnd = scheduleEnd;
     }
 
-    public ArrayList<Appointment> getAppointments() {
+    public List<Appointment> getAppointments() {
         return appointments;
     }
 
-    public void setAppointments(ArrayList<Appointment> appointments) {
+    public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
     }
 
-    public boolean isEmployeeAvailable(LocalTime startTime, LocalTime duration, LocalDate date) {
-        LocalTime endTime = startTime.plusMinutes(duration.getMinute());
+    public boolean isEmployeeAvailable(Duration startTime, Duration duration, LocalDate date) {
+        Duration endTime = startTime.plusMinutes(duration.toMinutes());
         for (Appointment appointment : appointments) {
             if (appointment.getDate().equals(date)) {
-                LocalTime appointmentStartTime = appointment.getStartTime();
-                LocalTime appointmentEndTime = appointmentStartTime.plus(appointment.getDurationAppointment());
+                Duration appointmentStartTime = appointment.getStartTime();
+                Duration appointmentEndTime = appointmentStartTime.plus(appointment.getDurationAppointment());
 
-                if (startTime.isBefore(appointmentEndTime) && endTime.isAfter(appointmentStartTime)) {
+                if (startTime.compareTo(appointmentEndTime) < 0 && endTime.compareTo(appointmentStartTime) > 0) {
                     return false;
                 }
             }

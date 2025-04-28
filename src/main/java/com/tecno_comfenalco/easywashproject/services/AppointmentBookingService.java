@@ -1,13 +1,38 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.tecno_comfenalco.easywashproject.services;
 
-/**
- *
- * @author danil
- */
+import java.time.Duration;
+import java.time.LocalDate;
+import java.util.List;
+
+import com.tecno_comfenalco.easywashproject.enums.EnumAppointmentStatus;
+import com.tecno_comfenalco.easywashproject.models.Appointment;
+import com.tecno_comfenalco.easywashproject.models.Client;
+import com.tecno_comfenalco.easywashproject.models.Employee;
+import com.tecno_comfenalco.easywashproject.models.Service;
+
 public class AppointmentBookingService {
-    
+    private List<Employee> employees;
+
+    public AppointmentBookingService(List<Employee> employees) {
+        this.employees = employees;
+    }
+
+    public void createAppointment(LocalDate date, Duration startTime, List<Service> services, Client client) {
+        Appointment appointment = new Appointment(services, null, null, null, date, startTime);
+        Employee assignedEmployee = SchedulerService.assignEmployee(employees, date, startTime, appointment);
+
+        if (assignedEmployee != null) {
+
+            appointment.setClient(client);
+            appointment.setEmployee(assignedEmployee);
+            appointment.setStatus(EnumAppointmentStatus.PENDIENTE);
+
+            assignedEmployee.getAppointments().add(appointment);
+
+            System.out.println("Cita asignada a " + assignedEmployee.getFullname() + " a las "
+                    + startTime.toMinutes() / 60 + ":" + startTime.toMinutes() % 60);
+        } else {
+            System.out.println("No hay empleados disponibles para este horario.");
+        }
+    }
 }

@@ -4,11 +4,11 @@
  */
 package com.tecno_comfenalco.easywashproject.models;
 
-import com.tecno_comfenalco.easywashproject.enums.EnumAppointmentStatus;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
+
+import com.tecno_comfenalco.easywashproject.enums.EnumAppointmentStatus;
 
 /**
  *
@@ -21,9 +21,10 @@ public class Appointment {
     private Employee employee;
     private EnumAppointmentStatus status;
     private LocalDate date;
-    private LocalTime startTime;
+    private Duration startTime;
 
-    public Appointment(List<Service> services, Client client, Employee employee, EnumAppointmentStatus status, LocalDate date, LocalTime startTime) {
+    public Appointment(List<Service> services, Client client, Employee employee, EnumAppointmentStatus status,
+            LocalDate date, Duration startTime) {
         this.services = services;
         this.client = client;
         this.employee = employee;
@@ -78,11 +79,11 @@ public class Appointment {
         this.date = date;
     }
 
-    public LocalTime getStartTime() {
+    public Duration getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalTime time) {
+    public void setStartTime(Duration time) {
         this.startTime = time;
     }
 
