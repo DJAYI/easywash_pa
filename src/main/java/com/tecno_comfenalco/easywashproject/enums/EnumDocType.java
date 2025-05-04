@@ -9,5 +9,9 @@ package com.tecno_comfenalco.easywashproject.enums;
  * @author danil
  */
 public enum EnumDocType {
-    
+    CC,
+    TI,
+    CE,
+    PP,
+    PPT
 }

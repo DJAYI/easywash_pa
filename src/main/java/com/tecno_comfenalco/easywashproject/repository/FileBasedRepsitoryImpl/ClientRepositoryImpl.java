@@ -18,7 +18,7 @@ public class ClientRepositoryImpl implements ClientRepository {
 
     private final JsonFileRepository<Client> jsonFileRepository;
 
-    public ClientRepositoryImpl(JsonFileRepository<Client> JsonFileRepository) {
+    public ClientRepositoryImpl() {
         Type listType = new TypeToken<List<Client>>() {
         }.getType();
 
