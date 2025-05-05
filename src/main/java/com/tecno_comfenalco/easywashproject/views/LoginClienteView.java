@@ -64,7 +64,7 @@ public class LoginClienteView extends javax.swing.JFrame {
 
         bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/build/classes/com/images/imagen2.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/imagen2.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 270, 460));
 
