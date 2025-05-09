@@ -153,20 +153,11 @@ public class RegisterClientView extends javax.swing.JFrame {
 
         NombreSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         NombreSave.setText("Ingrese nombre completo");
-        NombreSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreSaveActionPerformed(evt);
-            }
-        });
         bg.add(NombreSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 240, 40));
 
         jComboBox1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Item 1", "Item 2", "Item 3", "Item 4"}));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
+       
         bg.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 230, 40));
 
         TercerParametro.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
@@ -179,20 +170,12 @@ public class RegisterClientView extends javax.swing.JFrame {
 
         DocumentoSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         DocumentoSave.setText("Ingrese su numero de documento");
-        DocumentoSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DocumentoSaveActionPerformed(evt);
-            }
-        });
+        
         bg.add(DocumentoSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 240, 40));
 
         NumberPhoneSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         NumberPhoneSave.setText("Ingrese su numero de telefono");
-        NumberPhoneSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumberPhoneSaveActionPerformed(evt);
-            }
-        });
+        
         bg.add(NumberPhoneSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 230, 40));
 
         QuintoParametro.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
@@ -201,11 +184,7 @@ public class RegisterClientView extends javax.swing.JFrame {
 
         CorreoSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         CorreoSave.setText("Ingrese su correo");
-        CorreoSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CorreoSaveActionPerformed(evt);
-            }
-        });
+        
         bg.add(CorreoSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 240, 40));
 
         btnRegistrar.setBackground(new java.awt.Color(153, 153, 153));
@@ -239,25 +218,7 @@ public class RegisterClientView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void DocumentoSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DocumentoSaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DocumentoSaveActionPerformed
-
-    private void NumberPhoneSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumberPhoneSaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NumberPhoneSaveActionPerformed
-
-    private void CorreoSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorreoSaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CorreoSaveActionPerformed
-
-    private void NombreSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreSaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreSaveActionPerformed
+    
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         //Metodo para registrar nuevo cliente 

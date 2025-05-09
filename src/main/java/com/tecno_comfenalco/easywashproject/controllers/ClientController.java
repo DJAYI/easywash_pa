@@ -28,7 +28,7 @@ public class ClientController {
         
         try {
             //Convertir String a EnumDocType
-            EnumDocType docType = EnumDocType.fromString(tipoDoc.toUpperCase());
+            EnumDocType docType = EnumDocType.fromDescripcion(tipoDoc.toUpperCase());
             
             //Crear nuevo cliente 
             Client newClient = new Client(null, nombre, docType, documento, telefono, correo);
