@@ -16,28 +16,35 @@ public enum EnumDocType {
     CE("Cedula Extranjeria"),
     PP("Pasaporte"),
     PPT("Permiso Provisional de Permanencia");
-    
+
     private final String descripcion;
-    
+
     EnumDocType(String descripcion) {
         this.descripcion = descripcion;
     }
-    
+
     public String getDescripcion() {
         return descripcion;
     }
-    
-    public static EnumDocType fromString(String valor) {
-        try {
-            return EnumDocType.valueOf(valor.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Tipo de documento no valido: " + valor + ". Valores aceptados: " + Arrays.toString(EnumDocType.values()));
-    }     
- }      
+
+    // Metodo para obtener un valor de Enum apartir de una Descripción
+    public static EnumDocType fromDescripcion(String descripcion) {
+        // Retorna el documento que tenga 
+        // coincidencia con la descripción que recibe como argumento
+        return Arrays.stream(values())
+                .filter(e -> e.getDescripcion().equalsIgnoreCase(descripcion))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Descripción no válida: " + descripcion));
+    }
 
     public static String[] getDescripciones() {
         return Arrays.stream(values())
-                     .map(EnumDocType::getDescripcion)
-                     .toArray(String[]::new);
+                .map(EnumDocType::getDescripcion)
+                .toArray(String[]::new);
+    }
+
+    @Override
+    public String toString() {
+        return descripcion;
     }
 }

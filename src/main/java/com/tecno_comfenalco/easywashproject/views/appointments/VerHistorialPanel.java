@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.tecno_comfenalco.easywashproject.views;
+package com.tecno_comfenalco.easywashproject.views.appointments;
 
 /**
  *
  * @author jacob
  */
-public class VerHistorialAdministradorPanel extends javax.swing.JPanel {
+public class VerHistorialPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form VerHistorialAdministradorPanel
+     * Creates new form VerHistorialPanel
      */
-    public VerHistorialAdministradorPanel() {
+    public VerHistorialPanel() {
         initComponents();
     }
 
@@ -33,14 +33,13 @@ public class VerHistorialAdministradorPanel extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jLabel1.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
         jLabel1.setText("Ver Historial");
-        bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -66,9 +65,30 @@ public class VerHistorialAdministradorPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 570, 320));
+        javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
+        bg.setLayout(bgLayout);
+        bgLayout.setHorizontalGroup(
+            bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(255, 255, 255))
+            .addGroup(bgLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        bgLayout.setVerticalGroup(
+            bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
 
-        add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 400));
+        add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 410));
     }// </editor-fold>//GEN-END:initComponents
 
 

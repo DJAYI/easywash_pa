@@ -2,9 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.tecno_comfenalco.easywashproject.views;
+package com.tecno_comfenalco.easywashproject.views.clients;
 
+import com.tecno_comfenalco.easywashproject.views.appointments.AgendarCitaPanel;
 import com.tecno_comfenalco.easywashproject.controllers.NavigationManager;
+import com.tecno_comfenalco.easywashproject.views.appointments.VerCitasPanel;
+import com.tecno_comfenalco.easywashproject.views.appointments.VerHistorialPanel;
+import com.tecno_comfenalco.easywashproject.views.vehicles.VerMisVehiculos;
 import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
 
