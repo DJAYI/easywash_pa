@@ -4,7 +4,9 @@
  */
 package com.tecno_comfenalco.easywashproject.views;
 
+import com.tecno_comfenalco.easywashproject.controllers.NavigationManager;
 import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,6 +29,7 @@ public class DashBoardClientView extends javax.swing.JFrame {
         Content.revalidate();
         Content.repaint();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -154,9 +157,19 @@ public class DashBoardClientView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
-        // TODO add your handling code here:
+        int confirmacion = JOptionPane.showConfirmDialog(
+        this,
+        "¿Estas seguro que desea salir?",
+        "Confirmar salida",
+        JOptionPane.YES_NO_OPTION
+        );
+        
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            this.dispose();
+            NavigationManager.showMainView();
+        }
     }//GEN-LAST:event_SalirActionPerformed
-
+    
     private void VerHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerHistorialActionPerformed
         
         
@@ -252,4 +265,8 @@ public class DashBoardClientView extends javax.swing.JFrame {
     private javax.swing.JButton VerVehiculo;
     private javax.swing.JPanel bg;
     // End of variables declaration//GEN-END:variables
+
+    public void close() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

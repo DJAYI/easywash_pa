@@ -4,18 +4,41 @@
  */
 package com.tecno_comfenalco.easywashproject.views;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jacob
  */
 public class LoginClienteView extends javax.swing.JFrame {
+    
+    
 
-    /**
-     * Creates new form LoginClienteView
-     */
+    
     public LoginClienteView() {
         initComponents();
+        setLocationRelativeTo(null); //Centra la ventana
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //No cerrar toda la app
+        
     }
+    
+    public void setLoginListener(java.awt.event.ActionListener listener){
+        btnIngresar.addActionListener(listener);
+    }
+    
+    public String getEmail() {
+        return txtEmail.getText().trim();//Trim elimina espacios en blanco.
+    }
+    
+    public String getDocumento() {
+        return txtDocumento.getText().trim();
+    }
+    
+    public void showError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,14 +52,12 @@ public class LoginClienteView extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        txtDocumento = new javax.swing.JTextField();
+        btnIngresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,49 +85,36 @@ public class LoginClienteView extends javax.swing.JFrame {
 
         bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/imagen2.jpg"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 270, 460));
-
         jLabel3.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
         jLabel3.setText("Inicio Sesion del Cliente");
-        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, -1, -1));
+        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         jLabel4.setText("Correo Electronico");
-        bg.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
+        bg.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jTextField1.setText("Ingrese su correo electronico");
-        bg.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 230, 50));
+        txtEmail.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtEmail.setText("Ingrese su correo electronico");
+        bg.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 230, 50));
 
         jLabel5.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         jLabel5.setText("Numero de documento");
-        bg.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 190, -1));
+        bg.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 190, -1));
 
-        jTextField2.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jTextField2.setText("Ingrese su documento");
-        bg.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 230, 50));
+        txtDocumento.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtDocumento.setText("Ingrese su documento");
+        bg.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 230, 50));
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
-
-        jLabel6.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Ingresar");
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
-
-        bg.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 120, 40));
+        btnIngresar.setBackground(new java.awt.Color(153, 153, 153));
+        btnIngresar.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        btnIngresar.setText("Ingresar");
+        btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
+        bg.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 393, 130, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,11 +124,15 @@ public class LoginClienteView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,15 +172,21 @@ public class LoginClienteView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JButton btnIngresar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtDocumento;
+    private javax.swing.JTextField txtEmail;
     // End of variables declaration//GEN-END:variables
+
+    public void ShowError(String por_favor_complete_todos_los_campos) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void close() {
+        this.dispose(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

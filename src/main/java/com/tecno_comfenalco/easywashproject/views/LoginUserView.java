@@ -29,14 +29,12 @@ public class LoginUserView extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        fotocar = new javax.swing.JLabel();
         texTitulo = new javax.swing.JLabel();
         textitulonombre = new javax.swing.JLabel();
         IngresarUsuario = new javax.swing.JTextField();
         TextContraseña = new javax.swing.JLabel();
         IngresarContraseña = new javax.swing.JPasswordField();
-        TextConfirmar = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,48 +63,30 @@ public class LoginUserView extends javax.swing.JFrame {
 
         bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
 
-        fotocar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/build/classes/com/images/imagen2.jpg"))); // NOI18N
-        fotocar.setText("jLabel2");
-        bg.add(fotocar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 270, 460));
-
         texTitulo.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
         texTitulo.setText("Inicio de Sesion del Usuario");
-        bg.add(texTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, -1));
+        bg.add(texTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, -1, -1));
 
         textitulonombre.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         textitulonombre.setText("Nombre de Usuario");
-        bg.add(textitulonombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
+        bg.add(textitulonombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, -1, -1));
 
         IngresarUsuario.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         IngresarUsuario.setText("Ingrese su nombre de usuario");
-        bg.add(IngresarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 240, 50));
+        bg.add(IngresarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 240, 50));
 
         TextContraseña.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         TextContraseña.setText("Contraseña");
-        bg.add(TextContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
+        bg.add(TextContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, -1, -1));
 
         IngresarContraseña.setText("jPasswordField1");
-        bg.add(IngresarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 240, 50));
+        bg.add(IngresarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 240, 50));
 
-        TextConfirmar.setBackground(new java.awt.Color(153, 153, 153));
-
-        jLabel6.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Ingresar");
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout TextConfirmarLayout = new javax.swing.GroupLayout(TextConfirmar);
-        TextConfirmar.setLayout(TextConfirmarLayout);
-        TextConfirmarLayout.setHorizontalGroup(
-            TextConfirmarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-        );
-        TextConfirmarLayout.setVerticalGroup(
-            TextConfirmarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-        );
-
-        bg.add(TextConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 120, 40));
+        jButton1.setBackground(new java.awt.Color(153, 153, 153));
+        jButton1.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        jButton1.setText("Registrarse");
+        jButton1.setActionCommand("");
+        bg.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, 200, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,7 +96,7 @@ public class LoginUserView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
 
         pack();
@@ -161,12 +141,10 @@ public class LoginUserView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField IngresarContraseña;
     private javax.swing.JTextField IngresarUsuario;
-    private javax.swing.JPanel TextConfirmar;
     private javax.swing.JLabel TextContraseña;
     private javax.swing.JPanel bg;
-    private javax.swing.JLabel fotocar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel texTitulo;
     private javax.swing.JLabel textitulonombre;

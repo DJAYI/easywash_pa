@@ -91,5 +91,39 @@ public class ClientRepositoryImpl implements ClientRepository {
         }
 
     }
-
+    
+    @Override
+    public Client findByEmailAndDocument(String email, String document){
+        try{
+            //Cargar todos los clientes desde el archivo json
+            List<Client> clients = jsonFileRepository.load();
+            return clients.stream()
+                    .filter(client -> client.getMailAddress().equalsIgnoreCase(email)
+                    && client.getDocumentNumber().equals(document))
+                    .findFirst()
+                    .orElse(null);
+        } catch (Exception e) {
+            System.err.println("Error al buscar cliente por email y documento: " + e.getMessage());
+            return null;
+        }    
+    }  
+    
+    @Override
+    public Client findByEmail(String email) {
+        try{
+            List<Client> clients = jsonFileRepository.load();
+            return clients.stream()
+                    .filter(client -> client.getMailAddress().equalsIgnoreCase(email))
+                    .findFirst()
+                    .orElse(null);
+        } catch (Exception e) {
+            System.err.println("Error al buscar cliente por email: " + e.getMessage());
+            return null;
+        }
+    }
 }
+            
+        
+    
+
+

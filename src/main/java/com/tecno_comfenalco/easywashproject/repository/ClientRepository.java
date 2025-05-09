@@ -11,6 +11,10 @@ import java.util.List;
  * @author danil
  */
 public interface ClientRepository extends Repository<Client, Client>{
+    
+    Client findByEmail(String email);
+    
+    Client findByEmailAndDocument(String email, String document);
 
     @Override
     public Client update(Client k, Client j);

@@ -4,18 +4,48 @@
  */
 package com.tecno_comfenalco.easywashproject.views;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jacob
  */
 public class MainClientView extends javax.swing.JFrame {
-
-    /**
-     * Creates new form MainClientView
-     */
+    
     public MainClientView() {
         initComponents();
+        setLocationRelativeTo(null);//Centrar la ventana
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Cerrar aplicacion al salir
+        setSize(800,500);
+        
+        if (btnTengoCuenta == null || btnNoTengoCuenta == null) {
+            JOptionPane.showMessageDialog(this, "Error: Botones no inicializados","Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
+    
+    //Metodos para controlar los listener
+    public void setLoginListener(java.awt.event.ActionListener listener) {
+        if (btnTengoCuenta == null) {
+            throw new IllegalStateException("btnTengoCuenta no ha sido inicializado");
+        }
+        btnTengoCuenta.addActionListener(listener);
+    }
+    public void setRegisterListener(java.awt.event.ActionListener listener){
+        if (btnNoTengoCuenta == null) {
+            throw new IllegalStateException("btnNoTengoCuenta no ha sido inicializado");
+        }
+        btnNoTengoCuenta.addActionListener(listener);
+    }
+    public void close() {
+        this.dispose();
+    }
+    public void showError(String message) {
+        JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,8 +61,8 @@ public class MainClientView extends javax.swing.JFrame {
         TextTitulo = new javax.swing.JLabel();
         TextRegistrado = new javax.swing.JLabel();
         TextNoregistrado = new javax.swing.JLabel();
-        BotonAfirmacion = new javax.swing.JButton();
-        BotonNegacion = new javax.swing.JButton();
+        btnTengoCuenta = new javax.swing.JButton();
+        btnNoTengoCuenta = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         TextMedio = new javax.swing.JLabel();
@@ -76,17 +106,17 @@ public class MainClientView extends javax.swing.JFrame {
         TextNoregistrado.setText("¿No Estas Registrado?");
         getContentPane().add(TextNoregistrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 190, -1, -1));
 
-        BotonAfirmacion.setBackground(new java.awt.Color(102, 255, 51));
-        BotonAfirmacion.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        BotonAfirmacion.setText("Tengo Cuenta");
-        BotonAfirmacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(BotonAfirmacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 299, 156, 46));
+        btnTengoCuenta.setBackground(new java.awt.Color(102, 255, 51));
+        btnTengoCuenta.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        btnTengoCuenta.setText("Tengo Cuenta");
+        btnTengoCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(btnTengoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 299, 156, 46));
 
-        BotonNegacion.setBackground(new java.awt.Color(255, 204, 0));
-        BotonNegacion.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        BotonNegacion.setText("No Tengo Cuenta");
-        BotonNegacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(BotonNegacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 299, -1, 46));
+        btnNoTengoCuenta.setBackground(new java.awt.Color(255, 204, 0));
+        btnNoTengoCuenta.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        btnNoTengoCuenta.setText("No Tengo Cuenta");
+        btnNoTengoCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(btnNoTengoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 299, -1, 46));
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
@@ -142,12 +172,12 @@ public class MainClientView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonAfirmacion;
-    private javax.swing.JButton BotonNegacion;
     private javax.swing.JLabel TextMedio;
     private javax.swing.JLabel TextNoregistrado;
     private javax.swing.JLabel TextRegistrado;
     private javax.swing.JLabel TextTitulo;
+    private javax.swing.JButton btnNoTengoCuenta;
+    private javax.swing.JButton btnTengoCuenta;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator3;

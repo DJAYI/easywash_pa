@@ -6,8 +6,9 @@ package com.tecno_comfenalco.easywashproject.views;
 
 import com.tecno_comfenalco.easywashproject.enums.EnumDocType;
 import com.tecno_comfenalco.easywashproject.models.Client;
-import com.tecno_comfenalco.easywashproject.repository.ClientRepository;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ClientRepositoryImpl;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,7 +22,68 @@ public class RegisterClientView extends javax.swing.JFrame {
      */
     public RegisterClientView() {
         initComponents();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //No cierra toda la app
+        loadDocumentTypes();
     }
+    
+   
+    public String getNombre() {
+        return NombreSave.getText().trim();
+    }
+    
+    public String getTipoDocumento() {
+        return jComboBox1.getSelectedItem().toString();
+    }
+    
+    public String getDocumento() {
+        return DocumentoSave.getText().trim();
+    }
+    
+    public String getTelefono() {
+        return NumberPhoneSave.getText().trim();
+    }
+    
+    public String getCorreo() {
+        return CorreoSave.getText().trim();
+    }
+    
+    public void setRegisterListener(ActionListener listener) {
+        btnRegistrar.addActionListener(listener);
+    }
+    
+    public void setCancelListener(ActionListener listener) {
+        btnCancelar.addActionListener(listener);
+    }
+    
+    public void showError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public void showSuccess(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Exito", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+     private void loadDocumentTypes() {
+        jComboBox1.removeAllItems();
+        for (String desc : EnumDocType.getDescripciones()){
+            jComboBox1.addItem(desc);
+        }
+    }
+    
+    
+    private void limpiarCampos() {
+        NombreSave.setText("");
+        jComboBox1.setSelectedIndex(0);
+        DocumentoSave.setText("");
+        NumberPhoneSave.setText("");
+        CorreoSave.setText("");   
+    }
+    public void close(){
+        this.dispose();
+    }
+            
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,8 +108,8 @@ public class RegisterClientView extends javax.swing.JFrame {
         NumberPhoneSave = new javax.swing.JTextField();
         QuintoParametro = new javax.swing.JLabel();
         CorreoSave = new javax.swing.JTextField();
-        Confirmacion = new javax.swing.JPanel();
-        Confirmacion1 = new javax.swing.JLabel();
+        btnRegistrar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,6 +152,11 @@ public class RegisterClientView extends javax.swing.JFrame {
 
         NombreSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         NombreSave.setText("Ingrese nombre completo");
+        NombreSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreSaveActionPerformed(evt);
+            }
+        });
         bg.add(NombreSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 240, 40));
 
         jComboBox1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
@@ -140,34 +207,22 @@ public class RegisterClientView extends javax.swing.JFrame {
         });
         bg.add(CorreoSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 240, 40));
 
-        Confirmacion.setBackground(new java.awt.Color(153, 153, 153));
-
-        Confirmacion1.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
-        Confirmacion1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Confirmacion1.setText("Registrar Cliente");
-        Confirmacion1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Confirmacion1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Confirmacion1MouseClicked(evt);
+        btnRegistrar.setBackground(new java.awt.Color(153, 153, 153));
+        btnRegistrar.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
             }
         });
+        bg.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 373, 170, 50));
 
-        javax.swing.GroupLayout ConfirmacionLayout = new javax.swing.GroupLayout(Confirmacion);
-        Confirmacion.setLayout(ConfirmacionLayout);
-        ConfirmacionLayout.setHorizontalGroup(
-            ConfirmacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ConfirmacionLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Confirmacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        ConfirmacionLayout.setVerticalGroup(
-            ConfirmacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ConfirmacionLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Confirmacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        bg.add(Confirmacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 150, 40));
+        btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
+        btnCancelar.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bg.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 433, 170, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -199,7 +254,11 @@ public class RegisterClientView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CorreoSaveActionPerformed
 
-    private void Confirmacion1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Confirmacion1MouseClicked
+    private void NombreSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreSaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreSaveActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         //Metodo para registrar nuevo cliente 
         try {
             String nombreCompleto = NombreSave.getText();
@@ -212,35 +271,35 @@ public class RegisterClientView extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Por favor complete todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            Client client = new Client(null, nombreCompleto, EnumDocType.CC, numeroDocumento, numeroTelefono, correo);
+            
+            EnumDocType docType;
+            try {
+                docType = EnumDocType.valueOf(tipoDocumento);
+            }catch (IllegalArgumentException e){
+            JOptionPane.showMessageDialog(this, "Tipo de documento no valido", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+            Client client = new Client (null, nombreCompleto, docType, numeroDocumento, numeroTelefono, correo);
             
             try {
                 ClientRepositoryImpl clientRepositoryImpl = new ClientRepositoryImpl();
                 clientRepositoryImpl.create(client);
-                            JOptionPane.showMessageDialog(this, "Cliente registrado exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
-
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error al registrar cliente", "Error", JOptionPane.ERROR_MESSAGE);
+                               JOptionPane.showMessageDialog(this, "Cliente registrado exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                               limpiarCampos();
+                               System.out.println("Cliente registrado: " + client);
+            
+            }catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al registrar el cliente" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
             
-            
-            limpiarCampos();
-            
-            System.out.println("Cliente registrado: " + client);
-        } catch (Exception e) {
-            System.err.println("Error al registrar al cliente: " + e.getMessage());
-            JOptionPane.showMessageDialog(this,"Error al registrar al cliente", "Error", JOptionPane.ERROR_MESSAGE);
+        }catch (Exception e) {
+           System.out.println("Error al registrar al cliente: " + e.getMessage());
+           JOptionPane.showMessageDialog(this, "Error al registrar al cliente", "Error", JOptionPane.ERROR_MESSAGE);
+       }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+    
         
-        }
-    }//GEN-LAST:event_Confirmacion1MouseClicked
-    private void limpiarCampos() {
-        NombreSave.setText("");
-        jComboBox1.setSelectedIndex(0);
-        DocumentoSave.setText("");
-        NumberPhoneSave.setText("");
-        CorreoSave.setText("");
-        
-    }
+    
     
     /**
      * @param args the command line arguments
@@ -280,8 +339,6 @@ public class RegisterClientView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BarraSuperior;
-    private javax.swing.JPanel Confirmacion;
-    private javax.swing.JLabel Confirmacion1;
     private javax.swing.JTextField CorreoSave;
     private javax.swing.JLabel CuartoParametro;
     private javax.swing.JTextField DocumentoSave;
@@ -293,6 +350,8 @@ public class RegisterClientView extends javax.swing.JFrame {
     private javax.swing.JLabel TercerParametro;
     private javax.swing.JLabel Titulo;
     private javax.swing.JPanel bg;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
