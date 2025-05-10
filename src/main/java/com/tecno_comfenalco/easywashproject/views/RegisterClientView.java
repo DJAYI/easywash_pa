@@ -4,8 +4,10 @@
  */
 package com.tecno_comfenalco.easywashproject.views;
 
+import com.tecno_comfenalco.easywashproject.controllers.NavigationManager;
 import com.tecno_comfenalco.easywashproject.enums.EnumDocType;
 import com.tecno_comfenalco.easywashproject.models.Client;
+import com.tecno_comfenalco.easywashproject.repository.ClientRepository;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ClientRepositoryImpl;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -66,8 +68,8 @@ public class RegisterClientView extends javax.swing.JFrame {
     
      private void loadDocumentTypes() {
         jComboBox1.removeAllItems();
-        for (String desc : EnumDocType.getDescripciones()){
-            jComboBox1.addItem(desc);
+        for (EnumDocType type : EnumDocType.values()){
+            jComboBox1.addItem(type.getDescripcion());
         }
     }
     
@@ -82,7 +84,7 @@ public class RegisterClientView extends javax.swing.JFrame {
     public void close(){
         this.dispose();
     }
-            
+    
     
 
     /**
@@ -260,6 +262,10 @@ public class RegisterClientView extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         //Metodo para registrar nuevo cliente 
+        if (NombreSave.getText().trim().isEmpty() || DocumentoSave.getText().trim().isEmpty() || NumberPhoneSave.getText().trim().isEmpty() || CorreoSave.getText().trim().isEmpty() || jComboBox1.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(this, "Por favor complete todos los campos antes de continuar.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         try {
             String nombreCompleto = NombreSave.getText();
             String tipoDocumento = (String) jComboBox1.getSelectedItem();
@@ -267,35 +273,19 @@ public class RegisterClientView extends javax.swing.JFrame {
             String numeroTelefono = NumberPhoneSave.getText();
             String correo = CorreoSave.getText();
             
-            if (nombreCompleto.isEmpty() || numeroDocumento.isEmpty() || numeroTelefono.isEmpty() || correo.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Por favor complete todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+            EnumDocType docType = EnumDocType.fromDescripcion(tipoDocumento);
             
-            EnumDocType docType;
-            try {
-                docType = EnumDocType.valueOf(tipoDocumento);
-            }catch (IllegalArgumentException e){
-            JOptionPane.showMessageDialog(this, "Tipo de documento no valido", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
             Client client = new Client (null, nombreCompleto, docType, numeroDocumento, numeroTelefono, correo);
             
-            try {
-                ClientRepositoryImpl clientRepositoryImpl = new ClientRepositoryImpl();
-                clientRepositoryImpl.create(client);
-                               JOptionPane.showMessageDialog(this, "Cliente registrado exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
-                               limpiarCampos();
-                               System.out.println("Cliente registrado: " + client);
+            ClientRepositoryImpl clientRepository = new ClientRepositoryImpl();
+            Client createdClient = clientRepository.create(client);
             
-            }catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error al registrar el cliente" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
             
-        }catch (Exception e) {
-           System.out.println("Error al registrar al cliente: " + e.getMessage());
-           JOptionPane.showMessageDialog(this, "Error al registrar al cliente", "Error", JOptionPane.ERROR_MESSAGE);
-       }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al registrar al cliente: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }   
+        
     }//GEN-LAST:event_btnRegistrarActionPerformed
     
         
@@ -336,7 +326,7 @@ public class RegisterClientView extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BarraSuperior;
     private javax.swing.JTextField CorreoSave;

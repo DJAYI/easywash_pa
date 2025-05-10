@@ -27,12 +27,13 @@ public enum EnumDocType {
         return descripcion;
     }
     
-    public static EnumDocType fromString(String valor) {
-        try {
-            return EnumDocType.valueOf(valor.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Tipo de documento no valido: " + valor + ". Valores aceptados: " + Arrays.toString(EnumDocType.values()));
-    }     
+    public static EnumDocType fromDescripcion(String descripcion) {
+        for (EnumDocType type : values()) {
+            if(type.getDescripcion().equalsIgnoreCase(descripcion)) {
+               return type;
+            }
+        }  
+        throw new IllegalArgumentException("Tipo de documento no valido: " + descripcion + ". Valores aceptados: " + Arrays.toString(values()));
  }      
 
     public static String[] getDescripciones() {

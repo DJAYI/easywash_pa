@@ -23,12 +23,13 @@ public class ClientController {
     public boolean registerClient(String nombre, String tipoDoc, String documento, String telefono, String correo) {
         //Validacion basica de campos obligatorios
         if (nombre == null || nombre.isEmpty() || documento == null || documento.isEmpty()){ 
+            System.err.println("Todos los campos son obligatorios.");
             return false;
         }
         
         try {
             //Convertir String a EnumDocType
-            EnumDocType docType = EnumDocType.fromString(tipoDoc.toUpperCase());
+            EnumDocType docType = EnumDocType.fromDescripcion(tipoDoc.toUpperCase());
             
             //Crear nuevo cliente 
             Client newClient = new Client(null, nombre, docType, documento, telefono, correo);
