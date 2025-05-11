@@ -4,13 +4,14 @@
  */
 package com.tecno_comfenalco.easywashproject.controllers;
 
-import com.tecno_comfenalco.easywashproject.views.DashBoardClientView;
-import com.tecno_comfenalco.easywashproject.views.LoginClienteView;
-import com.tecno_comfenalco.easywashproject.views.LoginUserView;
-import com.tecno_comfenalco.easywashproject.views.MainClientView;
-import com.tecno_comfenalco.easywashproject.views.RegisterClientView;
+import com.tecno_comfenalco.easywashproject.views.clients.DashBoardClientView;
+
 import javax.swing.JFrame;
 
+import com.tecno_comfenalco.easywashproject.views.auth.LoginClienteView;
+import com.tecno_comfenalco.easywashproject.views.auth.LoginUserView;
+import com.tecno_comfenalco.easywashproject.views.clients.MainClientView;
+import com.tecno_comfenalco.easywashproject.views.clients.RegisterClientView;
 
 /**
  *

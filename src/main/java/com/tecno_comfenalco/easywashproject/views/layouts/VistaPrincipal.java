@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.tecno_comfenalco.easywashproject.views;
+package com.tecno_comfenalco.easywashproject.views.layouts;
+
+import com.tecno_comfenalco.easywashproject.views.auth.LoginUserView;
+import com.tecno_comfenalco.easywashproject.views.auth.LoginClienteView;
 
 import com.tecno_comfenalco.easywashproject.controllers.NavigationManager;
 import javax.swing.JFrame;

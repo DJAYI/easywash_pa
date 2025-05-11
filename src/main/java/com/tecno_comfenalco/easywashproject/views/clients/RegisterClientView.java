@@ -2,14 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.tecno_comfenalco.easywashproject.views;
+package com.tecno_comfenalco.easywashproject.views.clients;
 
-import com.tecno_comfenalco.easywashproject.controllers.NavigationManager;
 import com.tecno_comfenalco.easywashproject.enums.EnumDocType;
 import com.tecno_comfenalco.easywashproject.models.Client;
-import com.tecno_comfenalco.easywashproject.repository.ClientRepository;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ClientRepositoryImpl;
 import java.awt.event.ActionListener;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -28,64 +27,64 @@ public class RegisterClientView extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //No cierra toda la app
         loadDocumentTypes();
     }
-    
-   
+
     public String getNombre() {
         return NombreSave.getText().trim();
     }
-    
+
     public String getTipoDocumento() {
         return jComboBox1.getSelectedItem().toString();
     }
-    
+
     public String getDocumento() {
         return DocumentoSave.getText().trim();
     }
-    
+
     public String getTelefono() {
         return NumberPhoneSave.getText().trim();
     }
-    
+
     public String getCorreo() {
         return CorreoSave.getText().trim();
     }
-    
+
     public void setRegisterListener(ActionListener listener) {
         btnRegistrar.addActionListener(listener);
     }
-    
+
     public void setCancelListener(ActionListener listener) {
         btnCancelar.addActionListener(listener);
     }
-    
+
     public void showError(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
-    
+
     public void showSuccess(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, "Exito", JOptionPane.INFORMATION_MESSAGE);
     }
+
     
-     private void loadDocumentTypes() {
-        jComboBox1.removeAllItems();
-        for (EnumDocType type : EnumDocType.values()){
-            jComboBox1.addItem(type.getDescripcion());
-        }
+    /*
+        CAMBIO EN LA FORMA DE RELLENAR LAS OPCIONES DEL COMBO BOX, 
+        UTILIZANDO EL MODELO DE COMBO BOX BASADO EN LAS DECRIPCIONES DEL ENUM
+    */
+    
+    private void loadDocumentTypes() {
+        jComboBox1.setModel(new DefaultComboBoxModel<>(EnumDocType.getDescripciones()));
     }
-    
-    
+
     private void limpiarCampos() {
         NombreSave.setText("");
         jComboBox1.setSelectedIndex(0);
         DocumentoSave.setText("");
         NumberPhoneSave.setText("");
-        CorreoSave.setText("");   
+        CorreoSave.setText("");
     }
-    public void close(){
+
+    public void close() {
         this.dispose();
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -132,14 +131,14 @@ public class RegisterClientView extends javax.swing.JFrame {
         javax.swing.GroupLayout BarraSuperiorLayout = new javax.swing.GroupLayout(BarraSuperior);
         BarraSuperior.setLayout(BarraSuperiorLayout);
         BarraSuperiorLayout.setHorizontalGroup(
-            BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraSuperiorLayout.createSequentialGroup()
-                .addGap(0, 759, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraSuperiorLayout.createSequentialGroup()
+                                .addGap(0, 759, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         BarraSuperiorLayout.setVerticalGroup(
-            BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
         bg.add(BarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
@@ -154,20 +153,11 @@ public class RegisterClientView extends javax.swing.JFrame {
 
         NombreSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         NombreSave.setText("Ingrese nombre completo");
-        NombreSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreSaveActionPerformed(evt);
-            }
-        });
         bg.add(NombreSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 240, 40));
 
         jComboBox1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Item 1", "Item 2", "Item 3", "Item 4"}));
+       
         bg.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 230, 40));
 
         TercerParametro.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
@@ -180,20 +170,12 @@ public class RegisterClientView extends javax.swing.JFrame {
 
         DocumentoSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         DocumentoSave.setText("Ingrese su numero de documento");
-        DocumentoSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DocumentoSaveActionPerformed(evt);
-            }
-        });
+        
         bg.add(DocumentoSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 240, 40));
 
         NumberPhoneSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         NumberPhoneSave.setText("Ingrese su numero de telefono");
-        NumberPhoneSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NumberPhoneSaveActionPerformed(evt);
-            }
-        });
+        
         bg.add(NumberPhoneSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 230, 40));
 
         QuintoParametro.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
@@ -202,11 +184,7 @@ public class RegisterClientView extends javax.swing.JFrame {
 
         CorreoSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         CorreoSave.setText("Ingrese su correo");
-        CorreoSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CorreoSaveActionPerformed(evt);
-            }
-        });
+        
         bg.add(CorreoSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 240, 40));
 
         btnRegistrar.setBackground(new java.awt.Color(153, 153, 153));
@@ -229,68 +207,72 @@ public class RegisterClientView extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void DocumentoSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DocumentoSaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DocumentoSaveActionPerformed
-
-    private void NumberPhoneSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumberPhoneSaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NumberPhoneSaveActionPerformed
-
-    private void CorreoSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorreoSaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CorreoSaveActionPerformed
-
-    private void NombreSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreSaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreSaveActionPerformed
+    
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         //Metodo para registrar nuevo cliente 
-        if (NombreSave.getText().trim().isEmpty() || DocumentoSave.getText().trim().isEmpty() || NumberPhoneSave.getText().trim().isEmpty() || CorreoSave.getText().trim().isEmpty() || jComboBox1.getSelectedItem() == null){
-            JOptionPane.showMessageDialog(this, "Por favor complete todos los campos antes de continuar.", "Error", JOptionPane.ERROR_MESSAGE);
+        
+        // 1. Obtengo la información de los campos ✅
+        String nombreCompleto = NombreSave.getText();
+        String tipoDocumento = (String) jComboBox1.getSelectedItem();
+        String numeroDocumento = DocumentoSave.getText();
+        String numeroTelefono = NumberPhoneSave.getText();
+        String correo = CorreoSave.getText();
+
+        // 1.1 Valido que los campos no estén vacíos ✅
+        if (nombreCompleto.isEmpty() || numeroDocumento.isEmpty() || numeroTelefono.isEmpty() || correo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor complete todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+
+        // 1.2 Valido que el correo electronico sea valido ("xyz@xyz.com") con el uso de regex
+        if (!correo.matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            JOptionPane.showMessageDialog(this, "Correo electrónico no válido", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // 2. Guardar la información del usuario
         try {
-            String nombreCompleto = NombreSave.getText();
-            String tipoDocumento = (String) jComboBox1.getSelectedItem();
-            String numeroDocumento = DocumentoSave.getText();
-            String numeroTelefono = NumberPhoneSave.getText();
-            String correo = CorreoSave.getText();
             
+            // 2.1 Transformar el valor seleccionado del combo box a un Enum
             EnumDocType docType = EnumDocType.fromDescripcion(tipoDocumento);
             
-            Client client = new Client (null, nombreCompleto, docType, numeroDocumento, numeroTelefono, correo);
+            // 2.2 Instanciar un nuevo usuario pasandole en 
+            // los parámetros del constructor los valores recuperados de los campos
+            Client client = new Client(null, nombreCompleto, docType, numeroDocumento, numeroTelefono, correo);
             
-            ClientRepositoryImpl clientRepository = new ClientRepositoryImpl();
-            Client createdClient = clientRepository.create(client);
+            // 2.3 Instanciar un nuevo objeto de tipo ClientRepository 
+            ClientRepositoryImpl clientRepositoryImpl = new ClientRepositoryImpl();
             
+            // 2.4 Uso el metodo para guardar el cliente en JSON
+            clientRepositoryImpl.create(client);
+
+            // 2.5 Muestro un mensaje de exito
+            JOptionPane.showMessageDialog(this, "Cliente registrado exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
             
+            // 2.6 Limpio los campos
+            limpiarCampos();
+        } catch (IllegalArgumentException e) {
+            // 2.7 Exepcion para cuando el tipo de documento no sea valido
+            JOptionPane.showMessageDialog(this, "Tipo de documento no valido", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al registrar al cliente: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-        }   
-        
+            
+            //2.8 Exepción para cuando haya un error al registrar un cliente
+            JOptionPane.showMessageDialog(this, "Error al registrar el cliente" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
-    
-        
-    
-    
+
     /**
      * @param args the command line arguments
      */
