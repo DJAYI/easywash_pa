@@ -17,6 +17,8 @@ public class Main {
 
     public static void main(String[] args) {
         // XD Inicia la navegacion
-        NavigationManager.showMainView();
+        VistaPrincipal vistaPrincipal = new VistaPrincipal();
+        vistaPrincipal.setVisible(true);
+        
     }        
 }

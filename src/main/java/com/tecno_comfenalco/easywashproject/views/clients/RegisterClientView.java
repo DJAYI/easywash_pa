@@ -308,7 +308,7 @@ public class RegisterClientView extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BarraSuperior;
     private javax.swing.JTextField CorreoSave;

@@ -5,7 +5,11 @@
 package com.tecno_comfenalco.easywashproject.views.layouts;
 
 import com.tecno_comfenalco.easywashproject.views.auth.LoginUserView;
+import com.tecno_comfenalco.easywashproject.views.clients.MainClientView;
 import com.tecno_comfenalco.easywashproject.views.auth.LoginClienteView;
+
+import com.tecno_comfenalco.easywashproject.controllers.NavigationManager;
+import javax.swing.JFrame;
 
 /**
  *
@@ -18,6 +22,22 @@ public class VistaPrincipal extends javax.swing.JFrame {
      */
     public VistaPrincipal() {
         initComponents();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setupListeners();
+        setSize(800,500);
+    }
+    
+    private void setupListeners() {
+        BotonAdministrador.addActionListener(e -> {
+            this.dispose();
+            NavigationManager.showLoginUserView();
+        });
+        
+        BotonCliente.addActionListener(e -> {
+            this.dispose();
+            NavigationManager.showMainView();
+        }); 
     }
 
     /**
@@ -69,8 +89,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, -1));
 
         TextTitulo.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
-        TextTitulo.setText("¡Hola! Bienvenido al Sistema de Gestion de Citas para Autolavado");
-        getContentPane().add(TextTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
+        TextTitulo.setText("¡Hola! Bienvenido al Sistema de Gestion de Citas  EasyWash");
+        getContentPane().add(TextTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 660, 60));
 
         TextPregunta.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
         TextPregunta.setText("¿Quien eres?");
@@ -124,17 +144,19 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonAdministradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonAdministradorMouseClicked
-        LoginUserView loginUserView = new LoginUserView();
-        loginUserView.setVisible(true);
-        
+        this.dispose();
+        LoginUserView adminLogin = new LoginUserView();
+        adminLogin.setVisible(true);
     }//GEN-LAST:event_BotonAdministradorMouseClicked
 
     private void BotonClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonClienteMouseClicked
-        LoginClienteView loginClienteView = new LoginClienteView();
-        loginClienteView.setVisible(true);
+        this.dispose();
+        MainClientView clientView = new MainClientView();
+        clientView.setVisible(true);
         
     }//GEN-LAST:event_BotonClienteMouseClicked
-
+    
+    
     /**
      * @param args the command line arguments
      */

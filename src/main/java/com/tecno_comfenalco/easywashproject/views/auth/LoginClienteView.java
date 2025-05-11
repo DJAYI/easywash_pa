@@ -39,6 +39,7 @@ public class LoginClienteView extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
     
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,6 +59,8 @@ public class LoginClienteView extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtDocumento = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,23 +90,23 @@ public class LoginClienteView extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
         jLabel3.setText("Inicio Sesion del Cliente");
-        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, -1, -1));
+        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         jLabel4.setText("Correo Electronico");
-        bg.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, -1, -1));
+        bg.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, -1, -1));
 
         txtEmail.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtEmail.setText("Ingrese su correo electronico");
-        bg.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 230, 50));
+        bg.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 230, 50));
 
         jLabel5.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         jLabel5.setText("Numero de documento");
-        bg.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 190, -1));
+        bg.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 190, -1));
 
         txtDocumento.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtDocumento.setText("Ingrese su documento");
-        bg.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 230, 50));
+        bg.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 230, 50));
 
         btnIngresar.setBackground(new java.awt.Color(153, 153, 153));
         btnIngresar.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
@@ -114,17 +117,23 @@ public class LoginClienteView extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
-        bg.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 393, 130, 50));
+        bg.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 130, 50));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/EasyWash_transparente_v2.png"))); // NOI18N
+        bg.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 440, 340));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/imagen2.jpg"))); // NOI18N
+        bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 410, 460));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -174,9 +183,11 @@ public class LoginClienteView extends javax.swing.JFrame {
     private javax.swing.JPanel bg;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtDocumento;
     private javax.swing.JTextField txtEmail;

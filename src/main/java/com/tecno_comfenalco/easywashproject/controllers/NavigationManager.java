@@ -5,7 +5,11 @@
 package com.tecno_comfenalco.easywashproject.controllers;
 
 import com.tecno_comfenalco.easywashproject.views.clients.DashBoardClientView;
+
+import javax.swing.JFrame;
+
 import com.tecno_comfenalco.easywashproject.views.auth.LoginClienteView;
+import com.tecno_comfenalco.easywashproject.views.auth.LoginUserView;
 import com.tecno_comfenalco.easywashproject.views.clients.MainClientView;
 import com.tecno_comfenalco.easywashproject.views.clients.RegisterClientView;
 
@@ -15,10 +19,13 @@ import com.tecno_comfenalco.easywashproject.views.clients.RegisterClientView;
  */
 public class NavigationManager {
     //Instancias de las vistas
+    private static JFrame currentVisibleView;
     private static MainClientView mainView;
     private static LoginClienteView loginView;
     private static RegisterClientView registerView;
     private static DashBoardClientView dashboardView;
+    private static LoginUserView loginUserView;
+    
     
     //Controladores relacionados
     private static AuthController authController;
@@ -30,13 +37,18 @@ public class NavigationManager {
         clientController = new ClientController();
     }
     
+    //Muestra MainClientView
+  
+    
     //Muestra la vista principal 
     public static void showMainView() {
         if (mainView == null) {
             mainView = new MainClientView();
             configureMainView();
         }
+        hideCurrentView();
         mainView.setVisible(true);
+        currentVisibleView = mainView;
     }
     
     //Muestra el formulario de login
@@ -45,7 +57,21 @@ public class NavigationManager {
             loginView = new LoginClienteView();
             configureLoginView();
         }
+        hideCurrentView();
         loginView.setVisible(true);
+        currentVisibleView = loginView;
+    }
+    
+    public static void showLoginUserView() {
+        if (loginUserView == null) {
+            loginUserView = new LoginUserView();
+        }
+        if (currentVisibleView != null){
+            currentVisibleView.setVisible(false);
+        }
+        
+        loginUserView.setVisible(true);
+        currentVisibleView = loginUserView;
     }
     
     //Muestra el formulario de registro
@@ -54,7 +80,9 @@ public class NavigationManager {
             registerView = new RegisterClientView();
             configureRegisterView();
         }
+        hideCurrentView();
         registerView.setVisible(true);
+        currentVisibleView = registerView;
     }
     
     //Muestra el dashboard del cliente
@@ -127,7 +155,9 @@ public class NavigationManager {
             if (success) {
                 registerView.showSuccess("¡Registro Exitoso!");
                 registerView.close();
-                showDashboardView();
+                showLoginView();
+            }else {
+                registerView.showError("No se pudo registrar el cliente");
             }
         });
         
@@ -148,4 +178,12 @@ public class NavigationManager {
     private static void configureDashboardView() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    private static void hideCurrentView() {
+        if (currentVisibleView != null) {
+            currentVisibleView.setVisible(false);
+        }
+    }
+        
 }
+
