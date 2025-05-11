@@ -11,7 +11,7 @@ package com.tecno_comfenalco.easywashproject.views.appointments;
 public class VerHistorialAdministradorPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form VerHistorialAdministradorPanel
+     * Creates new form VerHistorialAdministradorPanel1
      */
     public VerHistorialAdministradorPanel() {
         initComponents();
@@ -58,17 +58,19 @@ public class VerHistorialAdministradorPanel extends javax.swing.JPanel {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Tipo de Servicio", "Precio", "Trabajador", "Fecha", "Hora"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 570, 320));
+        bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 57, 600, 320));
 
-        add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 400));
+        add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 400));
     }// </editor-fold>//GEN-END:initComponents
 
 
