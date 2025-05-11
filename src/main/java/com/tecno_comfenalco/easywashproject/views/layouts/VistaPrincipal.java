@@ -5,6 +5,7 @@
 package com.tecno_comfenalco.easywashproject.views.layouts;
 
 import com.tecno_comfenalco.easywashproject.views.auth.LoginUserView;
+import com.tecno_comfenalco.easywashproject.views.clients.MainClientView;
 import com.tecno_comfenalco.easywashproject.views.auth.LoginClienteView;
 
 import com.tecno_comfenalco.easywashproject.controllers.NavigationManager;
