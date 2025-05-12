@@ -27,7 +27,7 @@ public class RegisterClientView extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //No cierra toda la app
         loadDocumentTypes();
     }
-    
+
     public String getNombre() {
         return NombreSave.getText().trim();
     }
@@ -63,7 +63,7 @@ public class RegisterClientView extends javax.swing.JFrame {
     public void showSuccess(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, "Exito", JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     private void loadDocumentTypes() {
         jComboBox1.setModel(new DefaultComboBoxModel<>(EnumDocType.getDescripciones()));
     }
@@ -74,6 +74,7 @@ public class RegisterClientView extends javax.swing.JFrame {
         DocumentoSave.setText("");
         NumberPhoneSave.setText("");
         DocumentoSave.setText("");
+        correoSave.setText("");
     }
 
     public void close() {
@@ -101,6 +102,7 @@ public class RegisterClientView extends javax.swing.JFrame {
         NumberPhoneSave = new javax.swing.JTextField();
         NombreSave = new javax.swing.JTextField();
         DocumentoSave = new javax.swing.JTextField();
+        correoSave = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         btnCancelar = new javax.swing.JButton();
@@ -121,14 +123,14 @@ public class RegisterClientView extends javax.swing.JFrame {
         javax.swing.GroupLayout BarraSuperiorLayout = new javax.swing.GroupLayout(BarraSuperior);
         BarraSuperior.setLayout(BarraSuperiorLayout);
         BarraSuperiorLayout.setHorizontalGroup(
-            BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraSuperiorLayout.createSequentialGroup()
-                .addGap(0, 749, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraSuperiorLayout.createSequentialGroup()
+                                .addGap(0, 749, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         BarraSuperiorLayout.setVerticalGroup(
-            BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
         bg.add(BarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
@@ -169,12 +171,12 @@ public class RegisterClientView extends javax.swing.JFrame {
         DocumentoSave.setText("Ingrese su numero de documento");
         bg.add(DocumentoSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 220, 40));
 
-        jTextField4.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jTextField4.setText("Ingrese su correo");
-        bg.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 220, 40));
+        correoSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        correoSave.setText("Ingrese su dirección de correo");
+        bg.add(correoSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 220, 40));
 
         jComboBox1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula de Ciudadanía", "Tarjeta de Identidad", "Cedula Extranjeria", "Pasaporte", "Permiso Provisional de permanencia" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Cedula de Ciudadanía", "Tarjeta de Identidad", "Cedula Extranjeria", "Pasaporte", "Permiso Provisional de permanencia"}));
         bg.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 220, 40));
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
@@ -205,14 +207,14 @@ public class RegisterClientView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        //Metodo para registrar nuevo cliente 
-        
+        //Metodo para registrar nuevo cliente
+
         // 1. Obtengo la información de los campos ✅
         String nombreCompleto = NombreSave.getText();
         String tipoDocumento = (String) jComboBox1.getSelectedItem();
         String numeroDocumento = DocumentoSave.getText();
         String numeroTelefono = NumberPhoneSave.getText();
-        String correo = DocumentoSave.getText();
+        String correo = correoSave.getText();
 
         // 1.1 Valido que los campos no estén vacíos ✅
         if (nombreCompleto.isEmpty() || numeroDocumento.isEmpty() || numeroTelefono.isEmpty() || correo.isEmpty()) {
@@ -228,30 +230,30 @@ public class RegisterClientView extends javax.swing.JFrame {
 
         // 2. Guardar la información del usuario
         try {
-            
+
             // 2.1 Transformar el valor seleccionado del combo box a un Enum
             EnumDocType docType = EnumDocType.fromDescripcion(tipoDocumento);
-            
-            // 2.2 Instanciar un nuevo usuario pasandole en 
+
+            // 2.2 Instanciar un nuevo usuario pasandole en
             // los parámetros del constructor los valores recuperados de los campos
             Client client = new Client(null, nombreCompleto, docType, numeroDocumento, numeroTelefono, correo);
-            
-            // 2.3 Instanciar un nuevo objeto de tipo ClientRepository 
+
+            // 2.3 Instanciar un nuevo objeto de tipo ClientRepository
             ClientRepositoryImpl clientRepositoryImpl = new ClientRepositoryImpl();
-            
+
             // 2.4 Uso el metodo para guardar el cliente en JSON
             clientRepositoryImpl.create(client);
 
             // 2.5 Muestro un mensaje de exito
             JOptionPane.showMessageDialog(this, "Cliente registrado exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
-            
+
             // 2.6 Limpio los campos
             limpiarCampos();
         } catch (IllegalArgumentException e) {
             // 2.7 Exepcion para cuando el tipo de documento no sea valido
             JOptionPane.showMessageDialog(this, "Tipo de documento no valido", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            
+
             //2.8 Exepción para cuando haya un error al registrar un cliente
             JOptionPane.showMessageDialog(this, "Error al registrar el cliente" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -268,7 +270,7 @@ public class RegisterClientView extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -296,11 +298,12 @@ public class RegisterClientView extends javax.swing.JFrame {
             }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BarraSuperior;
     private javax.swing.JLabel CuartoParametro;
     private javax.swing.JTextField DocumentoSave;
+    private javax.swing.JTextField correoSave;
     private javax.swing.JTextField NombreSave;
     private javax.swing.JTextField NumberPhoneSave;
     private javax.swing.JLabel PrimerParametro;

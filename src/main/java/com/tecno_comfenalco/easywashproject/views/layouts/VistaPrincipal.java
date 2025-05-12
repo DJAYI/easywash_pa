@@ -5,8 +5,6 @@
 package com.tecno_comfenalco.easywashproject.views.layouts;
 
 import com.tecno_comfenalco.easywashproject.controllers.NavigationManager;
-import com.tecno_comfenalco.easywashproject.views.auth.LoginUserView;
-import com.tecno_comfenalco.easywashproject.views.clients.MainClientView;
 import javax.swing.JFrame;
 
 /**
@@ -23,19 +21,19 @@ public class VistaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setupListeners();
-        setSize(800,500);
+        setSize(800, 500);
     }
-    
+
     private void setupListeners() {
         BotonAdministrador.addActionListener(e -> {
             this.dispose();
             NavigationManager.showLoginUserView();
         });
-        
+
         BotonCliente.addActionListener(e -> {
             this.dispose();
             NavigationManager.showMainView();
-        }); 
+        });
     }
 
     /**
@@ -69,12 +67,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 800, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 40, Short.MAX_VALUE)
         );
 
         bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
@@ -113,16 +111,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
         TextTitulo2.setText("de Gestion de Citas EasyWash");
         bg.add(TextTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/IconCliente (1).png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/IconCliente (1).png"))); // NOI18N
         bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 190, 220));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/IconEmpresario (1).png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/IconEmpresario (1).png"))); // NOI18N
         bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 190, 220));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/EasyWash_transparente_v2.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/EasyWash_transparente_v2.png"))); // NOI18N
         bg.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 450, 330));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/EasyWash4 (1).jpg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/EasyWash4 (1).jpg"))); // NOI18N
         bg.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 36, 400, 470));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -131,12 +129,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonClienteActionPerformed
-        
-        
+
     }//GEN-LAST:event_BotonClienteActionPerformed
 
     private void BotonAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAdministradorActionPerformed
-        
+
     }//GEN-LAST:event_BotonAdministradorActionPerformed
 
     /**
@@ -146,7 +143,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -174,16 +171,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAdministrador;

@@ -20,13 +20,13 @@ public class MainClientView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);//Centrar la ventana
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Cerrar aplicacion al salir
-        setSize(800,500);
-        
+        setSize(800, 500);
+
         if (btnTengoCuenta == null || btnNoTengoCuenta == null) {
-            JOptionPane.showMessageDialog(this, "Error: Botones no inicializados","Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error: Botones no inicializados", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     //Metodos para controlar los listener
     public void setLoginListener(java.awt.event.ActionListener listener) {
         if (btnTengoCuenta == null) {
@@ -34,20 +34,21 @@ public class MainClientView extends javax.swing.JFrame {
         }
         btnTengoCuenta.addActionListener(listener);
     }
-    public void setRegisterListener(java.awt.event.ActionListener listener){
+
+    public void setRegisterListener(java.awt.event.ActionListener listener) {
         if (btnNoTengoCuenta == null) {
             throw new IllegalStateException("btnNoTengoCuenta no ha sido inicializado");
         }
         btnNoTengoCuenta.addActionListener(listener);
     }
+
     public void close() {
         this.dispose();
     }
+
     public void showError(String message) {
         JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,14 +87,14 @@ public class MainClientView extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 750, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 750, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
@@ -127,16 +128,16 @@ public class MainClientView extends javax.swing.JFrame {
         jLabel2.setText("de Gestion de Citas EasyWash");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/IconAgregarUsuario (1).png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/IconAgregarUsuario (1).png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 200, 220));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/IconRegister (1).png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/IconRegister (1).png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 206, 190, 200));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/EasyWash2 (1).png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/EasyWash_transparente_v2.png"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 430, 280));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/EasyWash5 (1).jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/EasyWash5 (1).jpg"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 36, 380, 470));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -155,7 +156,7 @@ public class MainClientView extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -183,15 +184,7 @@ public class MainClientView extends javax.swing.JFrame {
             }
         });
     }
-    
-    
-    
-    
-    
-    
 
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TextRegistrado;
     private javax.swing.JLabel TextTitulo;

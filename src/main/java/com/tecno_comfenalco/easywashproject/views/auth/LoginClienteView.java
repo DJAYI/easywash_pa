@@ -21,19 +21,19 @@ public class LoginClienteView extends javax.swing.JFrame {
         setLocationRelativeTo(null); //Centra la ventana
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //No cerrar toda la app
     }
-    
-    public void setLoginListener(java.awt.event.ActionListener listener){
+
+    public void setLoginListener(java.awt.event.ActionListener listener) {
         btnIngresar.addActionListener(listener);
     }
-    
+
     public String getEmail() {
         return txtEmail.getText().trim();//Trim elimina espacios en blanco.
     }
-    
+
     public String getDocumento() {
         return txtDocumento.getText().trim();
     }
-    
+
     public void showError(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
@@ -74,14 +74,14 @@ public class LoginClienteView extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 763, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 763, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
         bg.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
@@ -111,10 +111,10 @@ public class LoginClienteView extends javax.swing.JFrame {
         btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bg.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 160, 50));
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/EasyWash_transparente_v2.png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/EasyWash_transparente_v2.png"))); // NOI18N
         bg.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 450, 300));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/imagen2.jpg"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/imagen2.jpg"))); // NOI18N
         bg.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 36, 410, 470));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -125,8 +125,7 @@ public class LoginClienteView extends javax.swing.JFrame {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIngresarActionPerformed
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -134,7 +133,7 @@ public class LoginClienteView extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -162,10 +161,7 @@ public class LoginClienteView extends javax.swing.JFrame {
             }
         });
     }
-    
-    
-    
-    
+
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -173,13 +169,11 @@ public class LoginClienteView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    
-    
-    
+
     public void ShowError(String por_favor_complete_todos_los_campos) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     public void close() {
         this.dispose(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
