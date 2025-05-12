@@ -12,7 +12,10 @@ import javax.swing.JOptionPane;
  * @author jacob
  */
 public class MainClientView extends javax.swing.JFrame {
-    
+
+    /**
+     * Creates new form MainClientView1
+     */
     public MainClientView() {
         initComponents();
         setLocationRelativeTo(null);//Centrar la ventana
@@ -45,7 +48,6 @@ public class MainClientView extends javax.swing.JFrame {
     }
 
     
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,83 +59,94 @@ public class MainClientView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         TextTitulo = new javax.swing.JLabel();
         TextRegistrado = new javax.swing.JLabel();
-        TextNoregistrado = new javax.swing.JLabel();
         btnTengoCuenta = new javax.swing.JButton();
         btnNoTengoCuenta = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
-        TextMedio = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("X");
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel6.setPreferredSize(new java.awt.Dimension(40, 40));
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 760, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jLabel1.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("X");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 750, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
 
-        TextTitulo.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
-        TextTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        TextTitulo.setText("¡Hola! Bienvenido al Sistema de Gestion de Citas para Autolavado");
-        getContentPane().add(TextTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 93, -1, -1));
+        TextTitulo.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
+        TextTitulo.setText("¡Hola! Bienvenido al Sistema ");
+        jPanel1.add(TextTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
-        TextRegistrado.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        TextRegistrado.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
         TextRegistrado.setText("¿Estas Registrado?");
-        getContentPane().add(TextRegistrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 190, -1, -1));
+        jPanel1.add(TextRegistrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, -1));
 
-        TextNoregistrado.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        TextNoregistrado.setText("¿No Estas Registrado?");
-        getContentPane().add(TextNoregistrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 190, -1, -1));
-
-        btnTengoCuenta.setBackground(new java.awt.Color(102, 255, 51));
-        btnTengoCuenta.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        btnTengoCuenta.setBackground(new java.awt.Color(51, 255, 51));
+        btnTengoCuenta.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         btnTengoCuenta.setText("Tengo Cuenta");
         btnTengoCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(btnTengoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 299, 156, 46));
+        btnTengoCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTengoCuentaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnTengoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 140, 50));
 
-        btnNoTengoCuenta.setBackground(new java.awt.Color(255, 204, 0));
-        btnNoTengoCuenta.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        btnNoTengoCuenta.setBackground(new java.awt.Color(255, 204, 102));
+        btnNoTengoCuenta.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         btnNoTengoCuenta.setText("No Tengo Cuenta");
         btnNoTengoCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(btnNoTengoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 299, -1, 46));
+        jPanel1.add(btnNoTengoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 140, 50));
 
-        jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 220, -1, 50));
+        jLabel2.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
+        jLabel2.setText("de Gestion de Citas EasyWash");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
-        jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 220, -1, 50));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/IconAgregarUsuario (1).png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 200, 220));
 
-        TextMedio.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        TextMedio.setText("O");
-        getContentPane().add(TextMedio, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 308, -1, -1));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/IconRegister (1).png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 206, 190, 200));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/EasyWash2 (1).png"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 430, 280));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/EasyWash5 (1).jpg"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 36, 380, 470));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnTengoCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTengoCuentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTengoCuentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,17 +183,27 @@ public class MainClientView extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    
+    
+    
+    
 
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel TextMedio;
-    private javax.swing.JLabel TextNoregistrado;
     private javax.swing.JLabel TextRegistrado;
     private javax.swing.JLabel TextTitulo;
     private javax.swing.JButton btnNoTengoCuenta;
     private javax.swing.JButton btnTengoCuenta;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

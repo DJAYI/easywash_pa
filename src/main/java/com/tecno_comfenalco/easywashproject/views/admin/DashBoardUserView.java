@@ -4,11 +4,15 @@
  */
 package com.tecno_comfenalco.easywashproject.views.admin;
 
+import com.tecno_comfenalco.easywashproject.controllers.NavigationManager;
 import com.tecno_comfenalco.easywashproject.views.appointments.VerCitasAdministradorPanel;
 import com.tecno_comfenalco.easywashproject.views.appointments.VerHistorialAdministradorPanel;
-import com.tecno_comfenalco.easywashproject.views.services.VerServiciosAdministradorPanel;
+import com.tecno_comfenalco.easywashproject.views.appointments.VerHistorialPanel;
 import com.tecno_comfenalco.easywashproject.views.employees.VerTrabajadoresAdministradorPanel;
+import com.tecno_comfenalco.easywashproject.views.services.VerServiciosAdministradorPanel;
 import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
+import javax.swing.text.AbstractDocument.Content;
 
 /**
  *
@@ -17,7 +21,7 @@ import java.awt.BorderLayout;
 public class DashBoardUserView extends javax.swing.JFrame {
 
     /**
-     * Creates new form DashBoardUserView
+     * Creates new form DashBoardUserView1
      */
     public DashBoardUserView() {
         initComponents();
@@ -42,7 +46,7 @@ public class DashBoardUserView extends javax.swing.JFrame {
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         TextTitulo = new javax.swing.JLabel();
         VerCitas = new javax.swing.JButton();
         VerHistorial = new javax.swing.JButton();
@@ -56,24 +60,24 @@ public class DashBoardUserView extends javax.swing.JFrame {
 
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 800, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 40, Short.MAX_VALUE)
         );
 
-        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
+        bg.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
 
         TextTitulo.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
-        TextTitulo.setText("¡Bienvenido al sistema, usuario!");
-        bg.add(TextTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, -1, -1));
+        TextTitulo.setText("¡Bienvenido al Sistema, usuario!");
+        bg.add(TextTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, -1));
 
         VerCitas.setBackground(new java.awt.Color(153, 204, 255));
         VerCitas.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
@@ -84,9 +88,9 @@ public class DashBoardUserView extends javax.swing.JFrame {
                 VerCitasActionPerformed(evt);
             }
         });
-        bg.add(VerCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 110, 120, 40));
+        bg.add(VerCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 100, 120, 40));
 
-        VerHistorial.setBackground(new java.awt.Color(255, 255, 153));
+        VerHistorial.setBackground(new java.awt.Color(255, 255, 204));
         VerHistorial.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         VerHistorial.setText("Ver Historial");
         VerHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -108,7 +112,7 @@ public class DashBoardUserView extends javax.swing.JFrame {
         });
         bg.add(VerServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 240, 120, 40));
 
-        VerTrabajadores.setBackground(new java.awt.Color(0, 102, 102));
+        VerTrabajadores.setBackground(new java.awt.Color(204, 204, 204));
         VerTrabajadores.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         VerTrabajadores.setText("Ver Trabajadores");
         VerTrabajadores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -123,26 +127,31 @@ public class DashBoardUserView extends javax.swing.JFrame {
         Salir.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         Salir.setText("Salir");
         Salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirActionPerformed(evt);
+            }
+        });
         bg.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, 120, 40));
 
         javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
         Content.setLayout(ContentLayout);
         ContentLayout.setHorizontalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 630, Short.MAX_VALUE)
+            .addGap(0, 640, Short.MAX_VALUE)
         );
         ContentLayout.setVerticalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
 
-        bg.add(Content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 630, 400));
+        bg.add(Content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 640, 400));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void VerServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerServiciosActionPerformed
         VerServiciosAdministradorPanel p6 = new VerServiciosAdministradorPanel();
         p6.setSize(630, 400);
@@ -166,12 +175,13 @@ public class DashBoardUserView extends javax.swing.JFrame {
     }//GEN-LAST:event_VerCitasActionPerformed
 
     private void VerHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerHistorialActionPerformed
-        VerHistorialAdministradorPanel p5 = new VerHistorialAdministradorPanel();
-        p5.setSize(630, 400);
-        p5.setLocation(0, 0);
-        
+
+        VerHistorialPanel p2 = new VerHistorialPanel();
+        p2.setSize(630, 400);
+        p2.setLocation(0, 0);
+
         Content.removeAll();
-        Content.add(p5, BorderLayout.CENTER);
+        Content.add(p2, BorderLayout.CENTER);
         Content.revalidate();
         Content.repaint();
     }//GEN-LAST:event_VerHistorialActionPerformed
@@ -187,10 +197,24 @@ public class DashBoardUserView extends javax.swing.JFrame {
         Content.repaint();
     }//GEN-LAST:event_VerTrabajadoresActionPerformed
 
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        int confirmacion = JOptionPane.showConfirmDialog(
+            this,
+            "¿Estas seguro que desea salir?",
+            "Confirmar salida",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            this.dispose();
+            NavigationManager.showMainView();
+        }
+    }//GEN-LAST:event_SalirActionPerformed
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) throws IllegalAccessException {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -207,10 +231,12 @@ public class DashBoardUserView extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DashBoardUserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(DashBoardUserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(DashBoardUserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(DashBoardUserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -221,6 +247,15 @@ public class DashBoardUserView extends javax.swing.JFrame {
         });
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Content;
     private javax.swing.JButton Salir;
@@ -230,6 +265,6 @@ public class DashBoardUserView extends javax.swing.JFrame {
     private javax.swing.JButton VerServicios;
     private javax.swing.JButton VerTrabajadores;
     private javax.swing.JPanel bg;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

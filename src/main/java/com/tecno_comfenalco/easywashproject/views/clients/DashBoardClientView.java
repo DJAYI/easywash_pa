@@ -4,8 +4,8 @@
  */
 package com.tecno_comfenalco.easywashproject.views.clients;
 
-import com.tecno_comfenalco.easywashproject.views.appointments.AgendarCitaPanel;
 import com.tecno_comfenalco.easywashproject.controllers.NavigationManager;
+import com.tecno_comfenalco.easywashproject.views.appointments.AgendarCitaPanel;
 import com.tecno_comfenalco.easywashproject.views.appointments.VerCitasPanel;
 import com.tecno_comfenalco.easywashproject.views.appointments.VerHistorialPanel;
 import com.tecno_comfenalco.easywashproject.views.vehicles.VerMisVehiculos;
@@ -19,13 +19,13 @@ import javax.swing.JOptionPane;
 public class DashBoardClientView extends javax.swing.JFrame {
 
     /**
-     * Creates new form DashBoardClientView
+     * Creates new form DashBoardClientView1
      */
     public DashBoardClientView() {
         initComponents();
         
         VerCitasPanel p1 = new VerCitasPanel();
-        p1.setSize(650, 410);
+        p1.setSize(640, 400);
         p1.setLocation(0, 0);
         
         Content.removeAll();
@@ -33,7 +33,6 @@ public class DashBoardClientView extends javax.swing.JFrame {
         Content.revalidate();
         Content.repaint();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,19 +44,23 @@ public class DashBoardClientView extends javax.swing.JFrame {
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
+        Titulo = new javax.swing.JLabel();
         VerCitas = new javax.swing.JButton();
         VerHistorial = new javax.swing.JButton();
         AgendarCita = new javax.swing.JButton();
         VerVehiculo = new javax.swing.JButton();
         Salir = new javax.swing.JButton();
-        BarraSupererior = new javax.swing.JPanel();
-        Titulo = new javax.swing.JLabel();
         Content = new javax.swing.JPanel();
+        BarraSuperior = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bg.setBackground(new java.awt.Color(255, 255, 255));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Titulo.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
+        Titulo.setText("¡Bienvenido al Sistema, cliente!");
+        bg.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, -1));
 
         VerCitas.setBackground(new java.awt.Color(153, 204, 255));
         VerCitas.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
@@ -68,9 +71,9 @@ public class DashBoardClientView extends javax.swing.JFrame {
                 VerCitasActionPerformed(evt);
             }
         });
-        bg.add(VerCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 90, 110, 40));
+        bg.add(VerCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 100, 110, 40));
 
-        VerHistorial.setBackground(new java.awt.Color(255, 255, 153));
+        VerHistorial.setBackground(new java.awt.Color(255, 255, 204));
         VerHistorial.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         VerHistorial.setText("Ver Historial");
         VerHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -79,7 +82,7 @@ public class DashBoardClientView extends javax.swing.JFrame {
                 VerHistorialActionPerformed(evt);
             }
         });
-        bg.add(VerHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 154, 110, 40));
+        bg.add(VerHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 170, 110, 40));
 
         AgendarCita.setBackground(new java.awt.Color(102, 255, 102));
         AgendarCita.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
@@ -90,7 +93,7 @@ public class DashBoardClientView extends javax.swing.JFrame {
                 AgendarCitaActionPerformed(evt);
             }
         });
-        bg.add(AgendarCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 110, 40));
+        bg.add(AgendarCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 240, 110, 40));
 
         VerVehiculo.setBackground(new java.awt.Color(204, 204, 204));
         VerVehiculo.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
@@ -101,7 +104,7 @@ public class DashBoardClientView extends javax.swing.JFrame {
                 VerVehiculoActionPerformed(evt);
             }
         });
-        bg.add(VerVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 284, 110, 40));
+        bg.add(VerVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 310, 110, 40));
 
         Salir.setBackground(new java.awt.Color(255, 0, 51));
         Salir.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
@@ -112,54 +115,91 @@ public class DashBoardClientView extends javax.swing.JFrame {
                 SalirActionPerformed(evt);
             }
         });
-        bg.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 354, 110, 40));
-
-        BarraSupererior.setBackground(new java.awt.Color(153, 153, 153));
-
-        javax.swing.GroupLayout BarraSupereriorLayout = new javax.swing.GroupLayout(BarraSupererior);
-        BarraSupererior.setLayout(BarraSupereriorLayout);
-        BarraSupereriorLayout.setHorizontalGroup(
-            BarraSupereriorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-        BarraSupereriorLayout.setVerticalGroup(
-            BarraSupereriorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-        );
-
-        bg.add(BarraSupererior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
-
-        Titulo.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
-        Titulo.setText("¡Bienvenido al sistema, cliente!");
-        bg.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, -1, -1));
+        bg.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, 110, 40));
 
         javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
         Content.setLayout(ContentLayout);
         ContentLayout.setHorizontalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGap(0, 640, Short.MAX_VALUE)
         );
         ContentLayout.setVerticalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
-        bg.add(Content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 650, 410));
+        bg.add(Content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 640, 400));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        BarraSuperior.setBackground(new java.awt.Color(153, 153, 153));
+
+        javax.swing.GroupLayout BarraSuperiorLayout = new javax.swing.GroupLayout(BarraSuperior);
+        BarraSuperior.setLayout(BarraSuperiorLayout);
+        BarraSuperiorLayout.setHorizontalGroup(
+            BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        BarraSuperiorLayout.setVerticalGroup(
+            BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
         );
+
+        bg.add(BarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
+
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    private void VerHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerHistorialActionPerformed
+        
+        VerHistorialPanel p2 = new VerHistorialPanel();
+        p2.setSize(640, 400);
+        p2.setLocation(0, 0);
+        
+        Content.removeAll();
+        Content.add(p2, BorderLayout.CENTER);
+        Content.revalidate();
+        Content.repaint();
+    }//GEN-LAST:event_VerHistorialActionPerformed
+    
+    private void VerCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerCitasActionPerformed
+       
+        
+        VerCitasPanel p1 = new VerCitasPanel();
+        p1.setSize(640,400);
+        p1.setLocation(0, 0);
+        
+        Content.removeAll();
+        Content.add(p1, BorderLayout.CENTER);
+        Content.revalidate();
+        Content.repaint();
+    }//GEN-LAST:event_VerCitasActionPerformed
+    
+    private void AgendarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgendarCitaActionPerformed
+        AgendarCitaPanel p3 = new AgendarCitaPanel();
+        p3.setSize(640, 400);
+        p3.setLocation(0, 0);
+        
+        Content.removeAll();
+        Content.add(p3, BorderLayout.CENTER);
+        Content.revalidate();
+        Content.repaint();
+    }//GEN-LAST:event_AgendarCitaActionPerformed
+    
+    private void VerVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerVehiculoActionPerformed
+        VerMisVehiculos p3 = new VerMisVehiculos();
+        p3.setSize(640, 400);
+        p3.setLocation(0, 0);
+        
+        Content.removeAll();
+        Content.add(p3, BorderLayout.CENTER);
+        Content.revalidate();
+        Content.repaint();
+    }//GEN-LAST:event_VerVehiculoActionPerformed
+    
+    
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         int confirmacion = JOptionPane.showConfirmDialog(
         this,
@@ -173,54 +213,6 @@ public class DashBoardClientView extends javax.swing.JFrame {
             NavigationManager.showMainView();
         }
     }//GEN-LAST:event_SalirActionPerformed
-    
-    private void VerHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerHistorialActionPerformed
-        
-        
-        VerHistorialPanel p2 = new VerHistorialPanel();
-        p2.setSize(650, 410);
-        p2.setLocation(0, 0);
-        
-        Content.removeAll();
-        Content.add(p2, BorderLayout.CENTER);
-        Content.revalidate();
-        Content.repaint();
-    }//GEN-LAST:event_VerHistorialActionPerformed
-
-    private void VerCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerCitasActionPerformed
-       
-        
-        VerCitasPanel p1 = new VerCitasPanel();
-        p1.setSize(650, 410);
-        p1.setLocation(0, 0);
-        
-        Content.removeAll();
-        Content.add(p1, BorderLayout.CENTER);
-        Content.revalidate();
-        Content.repaint();
-    }//GEN-LAST:event_VerCitasActionPerformed
-
-    private void AgendarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgendarCitaActionPerformed
-        AgendarCitaPanel p3 = new AgendarCitaPanel();
-        p3.setSize(650, 410);
-        p3.setLocation(0, 0);
-        
-        Content.removeAll();
-        Content.add(p3, BorderLayout.CENTER);
-        Content.revalidate();
-        Content.repaint();
-    }//GEN-LAST:event_AgendarCitaActionPerformed
-
-    private void VerVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerVehiculoActionPerformed
-        VerMisVehiculos p3 = new VerMisVehiculos();
-        p3.setSize(650, 410);
-        p3.setLocation(0, 0);
-        
-        Content.removeAll();
-        Content.add(p3, BorderLayout.CENTER);
-        Content.revalidate();
-        Content.repaint();
-    }//GEN-LAST:event_VerVehiculoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,7 +252,7 @@ public class DashBoardClientView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgendarCita;
-    private javax.swing.JPanel BarraSupererior;
+    private javax.swing.JPanel BarraSuperior;
     private javax.swing.JPanel Content;
     private javax.swing.JButton Salir;
     private javax.swing.JLabel Titulo;
@@ -269,8 +261,11 @@ public class DashBoardClientView extends javax.swing.JFrame {
     private javax.swing.JButton VerVehiculo;
     private javax.swing.JPanel bg;
     // End of variables declaration//GEN-END:variables
-
+    
     public void close() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 }
+
+

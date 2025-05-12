@@ -4,11 +4,9 @@
  */
 package com.tecno_comfenalco.easywashproject.views.layouts;
 
+import com.tecno_comfenalco.easywashproject.controllers.NavigationManager;
 import com.tecno_comfenalco.easywashproject.views.auth.LoginUserView;
 import com.tecno_comfenalco.easywashproject.views.clients.MainClientView;
-import com.tecno_comfenalco.easywashproject.views.auth.LoginClienteView;
-
-import com.tecno_comfenalco.easywashproject.controllers.NavigationManager;
 import javax.swing.JFrame;
 
 /**
@@ -18,7 +16,7 @@ import javax.swing.JFrame;
 public class VistaPrincipal extends javax.swing.JFrame {
 
     /**
-     * Creates new form VistaPrincipal
+     * Creates new form VistaPrincipal1
      */
     public VistaPrincipal() {
         initComponents();
@@ -49,114 +47,98 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bg = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         TextTitulo = new javax.swing.JLabel();
         TextPregunta = new javax.swing.JLabel();
-        TextAdministrador = new javax.swing.JLabel();
-        TextCliente = new javax.swing.JLabel();
-        BotonAdministrador = new javax.swing.JButton();
         BotonCliente = new javax.swing.JButton();
-        TextMitad = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
+        BotonAdministrador = new javax.swing.JButton();
+        TextTitulo2 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("X");
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel6.setPreferredSize(new java.awt.Dimension(40, 40));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(884, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 40, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, -1));
+        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
 
-        TextTitulo.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
-        TextTitulo.setText("¡Hola! Bienvenido al Sistema de Gestion de Citas  EasyWash");
-        getContentPane().add(TextTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 660, 60));
+        TextTitulo.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
+        TextTitulo.setText("¡Hola! Bienvenido al Sistema ");
+        bg.add(TextTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 330, 50));
 
         TextPregunta.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
         TextPregunta.setText("¿Quien eres?");
-        getContentPane().add(TextPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, -1, -1));
+        bg.add(TextPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
 
-        TextAdministrador.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        TextAdministrador.setText("¿Un Administrador?");
-        getContentPane().add(TextAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, -1));
-
-        TextCliente.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        TextCliente.setText("¿Un Cliente?");
-        getContentPane().add(TextCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 210, -1, -1));
-
-        BotonAdministrador.setBackground(new java.awt.Color(255, 204, 0));
-        BotonAdministrador.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        BotonAdministrador.setText("Soy un Administrador");
-        BotonAdministrador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BotonAdministrador.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BotonAdministradorMouseClicked(evt);
-            }
-        });
-        getContentPane().add(BotonAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, 46));
-
-        BotonCliente.setBackground(new java.awt.Color(102, 255, 51));
+        BotonCliente.setBackground(new java.awt.Color(51, 255, 51));
         BotonCliente.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        BotonCliente.setText("Soy un Cliente");
+        BotonCliente.setText("¿Un cliente?");
         BotonCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BotonCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BotonClienteMouseClicked(evt);
+        BotonCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonClienteActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 156, 46));
+        bg.add(BotonCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 420, 160, 50));
 
-        TextMitad.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        TextMitad.setText("O");
-        getContentPane().add(TextMitad, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, -1, -1));
+        BotonAdministrador.setBackground(new java.awt.Color(255, 204, 102));
+        BotonAdministrador.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
+        BotonAdministrador.setText("¿Un Administrador?");
+        BotonAdministrador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonAdministrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAdministradorActionPerformed(evt);
+            }
+        });
+        bg.add(BotonAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 160, 50));
 
-        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, -1, 50));
+        TextTitulo2.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
+        TextTitulo2.setText("de Gestion de Citas EasyWash");
+        bg.add(TextTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
-        jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, -1, 50));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/IconCliente (1).png"))); // NOI18N
+        bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 190, 220));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/IconEmpresario (1).png"))); // NOI18N
+        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 190, 220));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/EasyWash_transparente_v2.png"))); // NOI18N
+        bg.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 450, 330));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/EasyWash4 (1).jpg"))); // NOI18N
+        bg.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 36, 400, 470));
+
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BotonAdministradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonAdministradorMouseClicked
-        this.dispose();
-        LoginUserView adminLogin = new LoginUserView();
-        adminLogin.setVisible(true);
-    }//GEN-LAST:event_BotonAdministradorMouseClicked
-
-    private void BotonClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonClienteMouseClicked
-        this.dispose();
-        MainClientView clientView = new MainClientView();
-        clientView.setVisible(true);
+    private void BotonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonClienteActionPerformed
         
-    }//GEN-LAST:event_BotonClienteMouseClicked
-    
-    
+        
+    }//GEN-LAST:event_BotonClienteActionPerformed
+
+    private void BotonAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAdministradorActionPerformed
+        
+    }//GEN-LAST:event_BotonAdministradorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -192,18 +174,28 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAdministrador;
     private javax.swing.JButton BotonCliente;
-    private javax.swing.JLabel TextAdministrador;
-    private javax.swing.JLabel TextCliente;
-    private javax.swing.JLabel TextMitad;
     private javax.swing.JLabel TextPregunta;
     private javax.swing.JLabel TextTitulo;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel TextTitulo2;
+    private javax.swing.JPanel bg;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     // End of variables declaration//GEN-END:variables
 }

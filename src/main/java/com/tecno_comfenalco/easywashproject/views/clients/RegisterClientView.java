@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 public class RegisterClientView extends javax.swing.JFrame {
 
     /**
-     * Creates new form RegisterClientView
+     * Creates new form RegisterClientView1
      */
     public RegisterClientView() {
         initComponents();
@@ -27,7 +27,7 @@ public class RegisterClientView extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //No cierra toda la app
         loadDocumentTypes();
     }
-
+    
     public String getNombre() {
         return NombreSave.getText().trim();
     }
@@ -45,7 +45,7 @@ public class RegisterClientView extends javax.swing.JFrame {
     }
 
     public String getCorreo() {
-        return CorreoSave.getText().trim();
+        return DocumentoSave.getText().trim();
     }
 
     public void setRegisterListener(ActionListener listener) {
@@ -63,12 +63,6 @@ public class RegisterClientView extends javax.swing.JFrame {
     public void showSuccess(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, "Exito", JOptionPane.INFORMATION_MESSAGE);
     }
-
-    
-    /*
-        CAMBIO EN LA FORMA DE RELLENAR LAS OPCIONES DEL COMBO BOX, 
-        UTILIZANDO EL MODELO DE COMBO BOX BASADO EN LAS DECRIPCIONES DEL ENUM
-    */
     
     private void loadDocumentTypes() {
         jComboBox1.setModel(new DefaultComboBoxModel<>(EnumDocType.getDescripciones()));
@@ -79,7 +73,7 @@ public class RegisterClientView extends javax.swing.JFrame {
         jComboBox1.setSelectedIndex(0);
         DocumentoSave.setText("");
         NumberPhoneSave.setText("");
-        CorreoSave.setText("");
+        DocumentoSave.setText("");
     }
 
     public void close() {
@@ -96,96 +90,103 @@ public class RegisterClientView extends javax.swing.JFrame {
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
-        Titulo = new javax.swing.JLabel();
         BarraSuperior = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        Titulo = new javax.swing.JLabel();
         PrimerParametro = new javax.swing.JLabel();
-        SegundoParametro = new javax.swing.JLabel();
-        NombreSave = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         TercerParametro = new javax.swing.JLabel();
-        CuartoParametro = new javax.swing.JLabel();
-        DocumentoSave = new javax.swing.JTextField();
-        NumberPhoneSave = new javax.swing.JTextField();
         QuintoParametro = new javax.swing.JLabel();
-        CorreoSave = new javax.swing.JTextField();
-        btnRegistrar = new javax.swing.JButton();
+        SegundoParametro = new javax.swing.JLabel();
+        CuartoParametro = new javax.swing.JLabel();
+        NumberPhoneSave = new javax.swing.JTextField();
+        NombreSave = new javax.swing.JTextField();
+        DocumentoSave = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
         btnCancelar = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Titulo.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
-        Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Titulo.setText("Registro de Nuevo Cliente");
-        bg.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, -1, -1));
-
         BarraSuperior.setBackground(new java.awt.Color(153, 153, 153));
 
-        jLabel2.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("X");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("X");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout BarraSuperiorLayout = new javax.swing.GroupLayout(BarraSuperior);
         BarraSuperior.setLayout(BarraSuperiorLayout);
         BarraSuperiorLayout.setHorizontalGroup(
-                BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraSuperiorLayout.createSequentialGroup()
-                                .addGap(0, 759, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+            BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraSuperiorLayout.createSequentialGroup()
+                .addGap(0, 749, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         BarraSuperiorLayout.setVerticalGroup(
-                BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
         bg.add(BarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
 
+        Titulo.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
+        Titulo.setText("Registro de Nuevo Cliente");
+        bg.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, -1, -1));
+
         PrimerParametro.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         PrimerParametro.setText("Nombre Completo");
-        bg.add(PrimerParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
+        bg.add(PrimerParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, -1));
+
+        TercerParametro.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
+        TercerParametro.setText("Numero de Documento");
+        bg.add(TercerParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, -1));
+
+        QuintoParametro.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
+        QuintoParametro.setText("Correo");
+        bg.add(QuintoParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, -1, -1));
 
         SegundoParametro.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         SegundoParametro.setText("Tipo de Documento");
         bg.add(SegundoParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, -1, -1));
 
-        NombreSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        NombreSave.setText("Ingrese nombre completo");
-        bg.add(NombreSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 240, 40));
-
-        jComboBox1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Item 1", "Item 2", "Item 3", "Item 4"}));
-       
-        bg.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 230, 40));
-
-        TercerParametro.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
-        TercerParametro.setText("Numero de Documento");
-        bg.add(TercerParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
-
         CuartoParametro.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         CuartoParametro.setText("Numero de Telefono");
         bg.add(CuartoParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, -1, -1));
 
-        DocumentoSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        DocumentoSave.setText("Ingrese su numero de documento");
-        
-        bg.add(DocumentoSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 240, 40));
-
         NumberPhoneSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         NumberPhoneSave.setText("Ingrese su numero de telefono");
-        
-        bg.add(NumberPhoneSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 230, 40));
+        bg.add(NumberPhoneSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 220, 40));
 
-        QuintoParametro.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
-        QuintoParametro.setText("Correo");
-        bg.add(QuintoParametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, -1, -1));
+        NombreSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        NombreSave.setText("Ingrese nombre completo");
+        bg.add(NombreSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 220, 40));
 
-        CorreoSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        CorreoSave.setText("Ingrese su correo");
-        
-        bg.add(CorreoSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 240, 40));
+        DocumentoSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        DocumentoSave.setText("Ingrese su numero de documento");
+        bg.add(DocumentoSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 220, 40));
+
+        jTextField4.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jTextField4.setText("Ingrese su correo");
+        bg.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 220, 40));
+
+        jComboBox1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula de Ciudadanía", "Tarjeta de Identidad", "Cedula Extranjeria", "Pasaporte", "Permiso Provisional de permanencia" }));
+        bg.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 220, 40));
+
+        btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
+        btnCancelar.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        bg.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 140, 40));
 
         btnRegistrar.setBackground(new java.awt.Color(153, 153, 153));
         btnRegistrar.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
@@ -196,29 +197,12 @@ public class RegisterClientView extends javax.swing.JFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        bg.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 373, 170, 50));
+        bg.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, 140, 40));
 
-        btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
-        btnCancelar.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
-        btnCancelar.setText("Cancelar");
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bg.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 433, 170, 50));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-        );
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         //Metodo para registrar nuevo cliente 
@@ -228,7 +212,7 @@ public class RegisterClientView extends javax.swing.JFrame {
         String tipoDocumento = (String) jComboBox1.getSelectedItem();
         String numeroDocumento = DocumentoSave.getText();
         String numeroTelefono = NumberPhoneSave.getText();
-        String correo = CorreoSave.getText();
+        String correo = DocumentoSave.getText();
 
         // 1.1 Valido que los campos no estén vacíos ✅
         if (nombreCompleto.isEmpty() || numeroDocumento.isEmpty() || numeroTelefono.isEmpty() || correo.isEmpty()) {
@@ -273,6 +257,10 @@ public class RegisterClientView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -311,7 +299,6 @@ public class RegisterClientView extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BarraSuperior;
-    private javax.swing.JTextField CorreoSave;
     private javax.swing.JLabel CuartoParametro;
     private javax.swing.JTextField DocumentoSave;
     private javax.swing.JTextField NombreSave;
@@ -325,6 +312,7 @@ public class RegisterClientView extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

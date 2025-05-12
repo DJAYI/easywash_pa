@@ -11,7 +11,7 @@ package com.tecno_comfenalco.easywashproject.views.employees;
 public class CreateNewEmployeedAdministrador extends javax.swing.JFrame {
 
     /**
-     * Creates new form CreateNewEmployeedAdministrador
+     * Creates new form CreateNewEmployeedAdministrador1
      */
     public CreateNewEmployeedAdministrador() {
         initComponents();
@@ -35,13 +35,12 @@ public class CreateNewEmployeedAdministrador extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -49,12 +48,12 @@ public class CreateNewEmployeedAdministrador extends javax.swing.JFrame {
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
-        jLabel1.setText("Crear Nuevo Trabajador");
-        bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, -1));
+        jLabel1.setText("Crear un Nuevo Trabajador");
+        bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         jLabel2.setText("Nombre Completo");
-        bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
+        bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         jLabel3.setText("Tipo de Documento");
@@ -62,7 +61,7 @@ public class CreateNewEmployeedAdministrador extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         jLabel4.setText("Numero de Documento");
-        bg.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
+        bg.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         jLabel5.setText("Numero de Telefono");
@@ -70,69 +69,45 @@ public class CreateNewEmployeedAdministrador extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         jLabel6.setText("Correo");
-        bg.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, -1, -1));
+        bg.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         jLabel7.setText("Salario");
-        bg.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, -1, -1));
+        bg.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 290, -1, -1));
 
         jTextField1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jTextField1.setText("Ingrese nombre completo");
-        bg.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 220, 50));
-
-        jComboBox1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        bg.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 230, 50));
+        jTextField1.setText("Ingrese su salario");
+        bg.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, 220, 40));
 
         jTextField2.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jTextField2.setText("Ingrese su numero de documento");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        bg.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 220, 50));
+        jTextField2.setText("Ingrese su nombre completo");
+        bg.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 220, 40));
 
         jTextField3.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jTextField3.setText("Ingrese su numero de telefono");
-        bg.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 230, 50));
+        jTextField3.setText("Ingrese su numero de documento");
+        bg.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 220, 40));
 
         jTextField4.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jTextField4.setText("Ingrese su correo");
-        bg.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 332, 220, 50));
+        bg.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 220, 40));
 
         jTextField5.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jTextField5.setText("Ingrese su salario");
-        bg.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 332, 230, 50));
+        jTextField5.setText("Ingrese su numero de telefono");
+        bg.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 220, 40));
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jComboBox1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula de Ciudadanía", "Tarjeta de Identidad", "Cedula Extranjeria", "Pasaporte", "Permiso Provisional de permanencia" }));
+        bg.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 132, 220, 40));
 
-        jLabel8.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Registrar Trabajador");
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-        );
-
-        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 220, 30));
+        jButton1.setBackground(new java.awt.Color(153, 153, 153));
+        jButton1.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        jButton1.setText("Registrar");
+        bg.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 393, 160, 40));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +135,7 @@ public class CreateNewEmployeedAdministrador extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CreateNewEmployeedAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -171,6 +147,7 @@ public class CreateNewEmployeedAdministrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -179,8 +156,6 @@ public class CreateNewEmployeedAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

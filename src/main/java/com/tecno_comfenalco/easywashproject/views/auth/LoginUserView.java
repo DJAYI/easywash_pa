@@ -11,7 +11,7 @@ package com.tecno_comfenalco.easywashproject.views.auth;
 public class LoginUserView extends javax.swing.JFrame {
 
     /**
-     * Creates new form LoginUserView
+     * Creates new form LoginUserView1
      */
     public LoginUserView() {
         initComponents();
@@ -29,16 +29,17 @@ public class LoginUserView extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        texTitulo = new javax.swing.JLabel();
+        textTitulo = new javax.swing.JLabel();
         textitulonombre = new javax.swing.JLabel();
         IngresarUsuario = new javax.swing.JTextField();
         TextContraseña = new javax.swing.JLabel();
         IngresarContraseña = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -46,66 +47,56 @@ public class LoginUserView extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Roboto Light", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("X");
+        jLabel1.setText("x");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel1.setPreferredSize(new java.awt.Dimension(40, 40));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 777, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 759, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 40));
+        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
 
-        texTitulo.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
-        texTitulo.setText("Inicio de Sesion del Usuario");
-        bg.add(texTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
+        textTitulo.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
+        textTitulo.setText("Inicio de Sesion del Usuario");
+        bg.add(textTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
 
         textitulonombre.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         textitulonombre.setText("Nombre de Usuario");
-        bg.add(textitulonombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, -1));
+        bg.add(textitulonombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
 
         IngresarUsuario.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         IngresarUsuario.setText("Ingrese su nombre de usuario");
-        bg.add(IngresarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 240, 50));
+        bg.add(IngresarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 192, 250, 50));
 
         TextContraseña.setFont(new java.awt.Font("Roboto Black", 0, 18)); // NOI18N
         TextContraseña.setText("Contraseña");
-        bg.add(TextContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
+        bg.add(TextContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, -1, -1));
 
         IngresarContraseña.setText("jPasswordField1");
-        bg.add(IngresarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 240, 50));
+        bg.add(IngresarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 312, 250, 50));
 
         jButton1.setBackground(new java.awt.Color(153, 153, 153));
         jButton1.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
-        jButton1.setText("Registrarse");
-        jButton1.setActionCommand("");
-        bg.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 200, 50));
+        jButton1.setText("Ingresar");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bg.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 383, 180, 50));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/EasyWash2 (1).png"))); // NOI18N
-        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 450, 290));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/EasyWash2 (1).png"))); // NOI18N
+        bg.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 460, 290));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/Imagen lavadero.png"))); // NOI18N
-        bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 420, 460));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tecno_comfenalco/easywashproject/public/Imagen lavadero.png"))); // NOI18N
+        bg.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 36, 420, 470));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -145,6 +136,14 @@ public class LoginUserView extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    
+    
+   
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField IngresarContraseña;
@@ -153,10 +152,10 @@ public class LoginUserView extends javax.swing.JFrame {
     private javax.swing.JPanel bg;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel texTitulo;
+    private javax.swing.JLabel textTitulo;
     private javax.swing.JLabel textitulonombre;
     // End of variables declaration//GEN-END:variables
 }
