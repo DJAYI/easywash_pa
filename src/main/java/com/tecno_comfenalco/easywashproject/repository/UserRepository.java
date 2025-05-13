@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author danil
  */
-public interface UserRepository extends Repository<User, User>{
+public interface UserRepository extends Repository<User, User> {
 
     @Override
     public User update(User k, User j);
@@ -27,5 +27,7 @@ public interface UserRepository extends Repository<User, User>{
 
     @Override
     public User create(User k);
-    
+
+    public User findByCredentials(String username, String password);
+
 }

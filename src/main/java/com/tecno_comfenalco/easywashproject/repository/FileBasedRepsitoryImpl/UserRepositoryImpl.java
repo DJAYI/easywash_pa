@@ -102,4 +102,19 @@ public class UserRepositoryImpl implements UserRepository {
         }
     }
 
+    @Override
+    public User findByCredentials(String username, String password) {
+        try {
+            return this.jsonFileRepository.load()
+                    .stream()
+                    .filter(user -> user.getUsername().equalsIgnoreCase(username) && user.getPassword().equalsIgnoreCase(password))
+                    .findFirst()
+                    .orElse(null);
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido recuperar la información del usuario solicitado");
+            return null;
+        }
+    }
+
 }

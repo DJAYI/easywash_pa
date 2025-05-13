@@ -9,5 +9,5 @@ package com.tecno_comfenalco.easywashproject.services;
  * @author danil
  */
 public class AuthenticationService {
-    
+
 }

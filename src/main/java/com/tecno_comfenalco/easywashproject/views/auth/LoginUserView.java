@@ -4,6 +4,9 @@
  */
 package com.tecno_comfenalco.easywashproject.views.auth;
 
+import com.tecno_comfenalco.easywashproject.controllers.AuthController;
+import java.awt.event.ActionEvent;
+
 /**
  *
  * @author jacob
@@ -34,7 +37,7 @@ public class LoginUserView extends javax.swing.JFrame {
         IngresarUsuario = new javax.swing.JTextField();
         TextContraseña = new javax.swing.JLabel();
         IngresarContraseña = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -84,13 +87,16 @@ public class LoginUserView extends javax.swing.JFrame {
         IngresarContraseña.setText("jPasswordField1");
         bg.add(IngresarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 312, 250, 50));
 
-        jButton1.setBackground(new java.awt.Color(153, 153, 153));
-        jButton1.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
-        jButton1.setText("Ingresar");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bg.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 383, 180, 50));
+        loginButton.setBackground(new java.awt.Color(153, 153, 153));
+        loginButton.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        loginButton.setText("Ingresar");
+        loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/EasyWash2 (1).png"))); // NOI18N
+        loginButton.addActionListener(this::loginButtonActionPerformed);
+
+        bg.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 383, 180, 50));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/EasyWash_transparente_v2.png"))); // NOI18N
         bg.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 460, 290));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/Imagen lavadero.png"))); // NOI18N
@@ -137,12 +143,17 @@ public class LoginUserView extends javax.swing.JFrame {
         });
     }
 
+    private void loginButtonActionPerformed(ActionEvent ev) {
+        AuthController authController = new AuthController();
+        authController.authenticateUser(IngresarUsuario.getText(), String.copyValueOf(IngresarContraseña.getPassword()));
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField IngresarContraseña;
     private javax.swing.JTextField IngresarUsuario;
     private javax.swing.JLabel TextContraseña;
     private javax.swing.JPanel bg;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton loginButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
