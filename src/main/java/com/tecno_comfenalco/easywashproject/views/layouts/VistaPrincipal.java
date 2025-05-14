@@ -21,7 +21,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setupListeners();
-        setSize(800, 500);
     }
 
     private void setupListeners() {

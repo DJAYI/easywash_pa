@@ -4,6 +4,8 @@
  */
 package com.tecno_comfenalco.easywashproject.views.auth;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author jacob
@@ -15,6 +17,8 @@ public class LoginUserView extends javax.swing.JFrame {
      */
     public LoginUserView() {
         initComponents();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
     }
 
     /**

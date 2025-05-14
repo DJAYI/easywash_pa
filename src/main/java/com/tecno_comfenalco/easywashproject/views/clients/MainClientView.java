@@ -20,7 +20,7 @@ public class MainClientView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);//Centrar la ventana
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Cerrar aplicacion al salir
-        setSize(800, 500);
+       
 
         if (btnTengoCuenta == null || btnNoTengoCuenta == null) {
             JOptionPane.showMessageDialog(this, "Error: Botones no inicializados", "Error", JOptionPane.ERROR_MESSAGE);
