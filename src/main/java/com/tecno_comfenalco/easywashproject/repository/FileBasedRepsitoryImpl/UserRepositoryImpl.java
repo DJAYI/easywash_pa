@@ -4,14 +4,12 @@
  */
 package com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl;
 
+import java.lang.reflect.Type;
+import java.util.List;
+
 import com.google.gson.reflect.TypeToken;
 import com.tecno_comfenalco.easywashproject.models.User;
 import com.tecno_comfenalco.easywashproject.repository.UserRepository;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -30,58 +28,67 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User update(User k, User j) {
         try {
-            List<User> userList = readAll();
-
-            for (int i = 0; i < userList.size(); i++) {
-                if (k.getUsername().equals(userList.get(i).getUsername())) {
-                    userList.set(i, j);
-                    this.jsonFileRepository.save(userList);
+            List<User> users = jsonFileRepository.load();
+            for (int i = 0; i < users.size(); i++) {
+                if (users.get(i).equals(k)) {
+                    users.set(i, j);
+                    jsonFileRepository.save(users);
                     return j;
                 }
             }
             return null;
-
         } catch (Exception e) {
-            System.out.println("No se ha podido modificar la información del usuario solicitado");
+            System.out.println("No se ha podido modificar el usuario");
+            System.out.println(e.getMessage());
             return null;
         }
-
     }
 
     @Override
     public void delete(User k) {
         try {
-            List<User> userList = readAll();
-            userList.remove(k);
-            jsonFileRepository.save(userList);
-
+            List<User> users = jsonFileRepository.load();
+            users.remove(k);
+            jsonFileRepository.save(users);
         } catch (Exception e) {
-            System.out.println("No se ha podido eliminar al usuario solicitado");
+            System.out.println("No se ha podido eliminar el usuario");
+            System.out.println(e.getMessage());
         }
     }
 
     @Override
     public List<User> readAll() {
         try {
-            return this.jsonFileRepository.load();
-
+            List<User> users = jsonFileRepository.load();
+            if (users == null) {
+                return java.util.Collections.emptyList();
+            }
+            users.removeIf(u -> !(u instanceof User));
+            return users;
         } catch (Exception e) {
             System.out.println("No se ha podido recuperar la información de los usuarios");
-            return null;
+            System.out.println(e.getMessage());
+            return java.util.Collections.emptyList();
         }
     }
 
     @Override
     public User read(User k) {
         try {
-            return this.jsonFileRepository.load()
-                    .stream()
-                    .filter(user -> user.getUsername().equalsIgnoreCase(k.getUsername()))
-                    .findFirst()
-                    .orElse(null);
-
+            List<User> users = readAll();
+            if (users == null || users.isEmpty()) {
+                return null;
+            }
+            if (k.getUsername() != null) {
+                return users.stream()
+                        .filter(u -> u.getUsername().equals(k.getUsername()))
+                        .findFirst()
+                        .orElse(null);
+            }
+            return null;
         } catch (Exception e) {
-            System.out.println("No se ha podido recuperar la información del usuario solicitado");
+            System.out.println("No se ha podido encontrar el usuario");
+            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -89,41 +96,53 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User create(User k) {
         try {
-            List<User> userList = this.jsonFileRepository.load();
-            Set<User> userSet = new HashSet<>(userList);
-
-            userSet.add(k); // Agregar el nuevo usuario al set (evita duplicados automáticamente)
-
-            this.jsonFileRepository.save(new ArrayList<>(userSet));
-
+            List<User> users = readAll();
+            if (users == null) {
+                users = new java.util.ArrayList<>();
+            }
+            users.add(k);
+            jsonFileRepository.save(users);
             return k;
-
         } catch (Exception e) {
-            System.out.println("No se ha podido insertar al usuario al sistema");
-            return null;
-        }
-
-    }
-
-    @Override
-    public User findByCredentials(String username, String password) {
-        try {
-            return this.jsonFileRepository.load()
-                    .stream()
-                    .filter(user -> user.getUsername().equalsIgnoreCase(username)
-                            && user.getPassword().equalsIgnoreCase(password))
-                    .findFirst()
-                    .orElse(null);
-
-        } catch (Exception e) {
-            System.out.println("No se ha podido recuperar la información del usuario solicitado");
+            System.out.println("No se ha podido crear el usuario");
+            System.out.println(e.getMessage());
             return null;
         }
     }
 
     @Override
     public User findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            List<User> users = readAll();
+            if (users == null || users.isEmpty()) {
+                return null;
+            }
+            return users.stream()
+                    .filter(u -> u.getUsername().equals(id))
+                    .findFirst()
+                    .orElse(null);
+        } catch (Exception e) {
+            System.out.println("No se ha podido encontrar el usuario por id");
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
+    @Override
+    public User findByCredentials(String username, String password) {
+        try {
+            List<User> users = readAll();
+            if (users == null || users.isEmpty()) {
+                return null;
+            }
+            return users.stream()
+                    .filter(u -> u.getUsername().equals(username) && u.getPassword().equals(password))
+                    .findFirst()
+                    .orElse(null);
+        } catch (Exception e) {
+            System.out.println("No se ha podido encontrar el usuario por credenciales");
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }

@@ -5,6 +5,7 @@ package com.tecno_comfenalco.easywashproject;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import com.tecno_comfenalco.easywashproject.enums.EnumAppointmentStatus;
@@ -80,7 +81,7 @@ public class Main {
                                         employee,
                                         EnumAppointmentStatus.PENDIENTE,
                                         LocalDate.now(),
-                                        Duration.ofHours(10));
+                                        LocalTime.of(10, 0));
                         appointmentRepo.create(appointment);
                 }
 

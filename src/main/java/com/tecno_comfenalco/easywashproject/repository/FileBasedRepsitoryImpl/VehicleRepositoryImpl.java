@@ -17,20 +17,20 @@ import java.util.List;
  */
 public class VehicleRepositoryImpl implements VehicleRepository {
 
-    private final JsonFileRepository<Vehicle> jsonRepository;
+    private final JsonFileRepository<Vehicle> jsonFileRepository;
 
     public VehicleRepositoryImpl() {
         Type listType = new TypeToken<List<Vehicle>>() {
         }.getType();
-        this.jsonRepository = new JsonFileRepository<>("vehicles.json", listType, List.of());
+        this.jsonFileRepository = new JsonFileRepository<Vehicle>("vehicles.json", listType, List.of());
     }
 
     @Override
     public Vehicle createAndAssignToOwner(Vehicle vehicle, Long clientId) {
         try {
-            List<Vehicle> list = jsonRepository.load();
+            List<Vehicle> list = jsonFileRepository.load();
             list.add(vehicle);
-            jsonRepository.save(list);
+            jsonFileRepository.save(list);
 
             ClientRepositoryImpl clientRepositoryImpl = new ClientRepositoryImpl();
 
@@ -52,89 +52,101 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     @Override
     public List<Vehicle> readAll() {
         try {
-            return jsonRepository.load();
-
+            List<Vehicle> vehicles = jsonFileRepository.load();
+            if (vehicles == null) {
+                return java.util.Collections.emptyList();
+            }
+            vehicles.removeIf(v -> !(v instanceof Vehicle));
+            return vehicles;
         } catch (Exception e) {
-            System.out.println("No seha podido recuperar la información de los vehiculos en el sistema");
+            System.out.println("No se ha podido recuperar la información de los vehículos");
+            System.out.println(e.getMessage());
+            return java.util.Collections.emptyList();
+        }
+    }
+
+    @Override
+    public Vehicle read(Vehicle k) {
+        try {
+            List<Vehicle> vehicles = readAll();
+            if (vehicles == null || vehicles.isEmpty()) {
+                return null;
+            }
+            if (k.getId() != null) {
+                return vehicles.stream()
+                        .filter(v -> v.getId().equals(k.getId()))
+                        .findFirst()
+                        .orElse(null);
+            }
+            return null;
+        } catch (Exception e) {
+            System.out.println("No se ha podido encontrar el vehículo");
+            System.out.println(e.getMessage());
             return null;
         }
     }
 
     @Override
-    public Vehicle read(Vehicle key) {
+    public Vehicle update(Vehicle k, Vehicle j) {
         try {
-            return jsonRepository.load().stream()
-                    .filter(v -> v.getPlate().equalsIgnoreCase(key.getPlate()))
-                    .findFirst()
-                    .orElse(null);
-
-        } catch (Exception e) {
-            System.out.println("No se ha podido recuperar la información del vehículo solicitado");
-            return null;
-        }
-    }
-
-    @Override
-    public Vehicle update(Vehicle vehicle, Vehicle j) {
-        try {
-            List<Vehicle> list = jsonRepository.load();
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getPlate().equalsIgnoreCase(vehicle.getPlate())) {
-                    list.set(i, j);
-                    jsonRepository.save(list);
-                    System.out.println("Vehiculo actualizado");
-                    System.out.println(j);
+            List<Vehicle> vehicles = jsonFileRepository.load();
+            for (int i = 0; i < vehicles.size(); i++) {
+                if (vehicles.get(i).equals(k)) {
+                    vehicles.set(i, j);
+                    jsonFileRepository.save(vehicles);
                     return j;
                 }
             }
-            System.out.println("Vehiculo no actualizado");
             return null;
-
         } catch (Exception e) {
-            System.out.println("No se ha podido modificaar la información del vehiculo solicitado");
+            System.out.println("No se ha podido modificar el vehículo");
+            System.out.println(e.getMessage());
             return null;
         }
     }
 
     @Override
-    public void delete(Vehicle vehicle) {
+    public void delete(Vehicle k) {
         try {
-            List<Vehicle> list = jsonRepository.load();
-            list.removeIf(existing -> existing.getPlate().equalsIgnoreCase(vehicle.getPlate()));
-            jsonRepository.save(list);
-
-            System.out.println("Vehiculo con placa " + vehicle.getPlate() + " Fue eliminado");
-
+            List<Vehicle> vehicles = jsonFileRepository.load();
+            vehicles.remove(k);
+            jsonFileRepository.save(vehicles);
         } catch (Exception e) {
-            System.out.println("No se ha podido eliminar el vehiculo del sistema");
-
+            System.out.println("No se ha podido eliminar el vehículo");
+            System.out.println(e.getMessage());
         }
     }
 
     @Override
     public Vehicle findById(Long id) {
         try {
-            return jsonRepository.load().stream()
+            List<Vehicle> vehicles = readAll();
+            if (vehicles == null || vehicles.isEmpty()) {
+                return null;
+            }
+            return vehicles.stream()
                     .filter(v -> v.getId().equals(id))
                     .findFirst()
                     .orElse(null);
         } catch (Exception e) {
             System.out.println("No se ha podido encontrar el vehículo por id");
+            System.out.println(e.getMessage());
             return null;
         }
     }
 
     @Override
-    public Vehicle create(Vehicle vehicle) {
+    public Vehicle create(Vehicle k) {
         try {
-            List<Vehicle> list = jsonRepository.load();
-            list.add(vehicle);
-            jsonRepository.save(list);
-
-            return vehicle;
-
+            List<Vehicle> vehicles = readAll();
+            if (vehicles == null) {
+                vehicles = new java.util.ArrayList<>();
+            }
+            vehicles.add(k);
+            jsonFileRepository.save(vehicles);
+            return k;
         } catch (Exception e) {
-            System.out.println("No se ha podido insertar el vehiculo al sistema");
+            System.out.println("No se ha podido crear el vehículo");
             System.out.println(e.getMessage());
             return null;
         }

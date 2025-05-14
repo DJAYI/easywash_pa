@@ -28,10 +28,10 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
     private final JsonFileRepository<Appointment> jsonFileRepository;
 
     public AppointmentRepositoryImpl() {
-        Type listType = new TypeToken<List<Employee>>() {
+        Type listType = new TypeToken<List<Appointment>>() {
         }.getType();
 
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
         // Custom TypeAdapter for Duration
@@ -109,10 +109,16 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
     @Override
     public List<Appointment> readAll() {
         try {
-            return jsonFileRepository.load();
-
+            List<Appointment> appointments = jsonFileRepository.load();
+            // Validar que todos los elementos sean instancias de Appointment
+            if (appointments == null) {
+                return java.util.Collections.emptyList();
+            }
+            appointments.removeIf(a -> !(a instanceof Appointment));
+            return appointments;
         } catch (Exception e) {
             System.out.println("No se ha podido recuperar la información de las citas");
+            System.out.println(e.getMessage());
             return java.util.Collections.emptyList();
         }
     }
@@ -120,13 +126,27 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
     @Override
     public Appointment read(Appointment k) {
         try {
-            return jsonFileRepository.load().stream()
-                    .filter((t) -> t.getDate().equals(k.getDate()))
-                    .findFirst()
-                    .orElse(null);
-
+            List<Appointment> appointments = readAll();
+            if (appointments == null || appointments.isEmpty()) {
+                return null;
+            }
+            // Buscar por ID si está disponible, si no por fecha
+            if (k.getId() != null) {
+                return appointments.stream()
+                        .filter(a -> a.getId().equals(k.getId()))
+                        .findFirst()
+                        .orElse(null);
+            }
+            if (k.getDate() != null) {
+                return appointments.stream()
+                        .filter(a -> a.getDate().equals(k.getDate()))
+                        .findFirst()
+                        .orElse(null);
+            }
+            return null;
         } catch (Exception e) {
             System.out.println("No se ha podido encontrar la cita");
+            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -134,13 +154,16 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
     @Override
     public Appointment create(Appointment k) {
         try {
-            List<Appointment> appointments = jsonFileRepository.load();
+            List<Appointment> appointments = readAll();
+            if (appointments == null) {
+                appointments = new java.util.ArrayList<>();
+            }
             appointments.add(k);
             jsonFileRepository.save(appointments);
             return k;
-
         } catch (Exception e) {
             System.out.println("No se ha podido crear la cita");
+            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -148,7 +171,11 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
     @Override
     public Appointment findById(Long id) {
         try {
-            return jsonFileRepository.load().stream()
+            List<Appointment> appointments = readAll();
+            if (appointments == null || appointments.isEmpty()) {
+                return null;
+            }
+            return appointments.stream()
                     .filter(a -> a.getId().equals(id))
                     .findFirst()
                     .orElse(null);

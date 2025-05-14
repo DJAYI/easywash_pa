@@ -6,6 +6,7 @@ package com.tecno_comfenalco.easywashproject.models;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import com.tecno_comfenalco.easywashproject.enums.EnumDocType;
@@ -104,6 +105,10 @@ public class Employee extends Person {
 
     // Getter para la lista de citas
     public List<Appointment> getAppointments() {
+        // Asegura que appointments nunca sea null
+        if (appointments == null) {
+            appointments = new java.util.ArrayList<>();
+        }
         return appointments;
     }
 
@@ -116,24 +121,20 @@ public class Employee extends Person {
      * Verifica si el empleado está disponible para una cita en un horario y fecha
      * dados.
      * 
-     * @param startTime Hora de inicio propuesta
+     * @param startTime Hora de inicio propuesta (LocalTime)
      * @param duration  Duración de la cita
      * @param date      Fecha de la cita
      * @return true si está disponible, false si hay conflicto
      */
-    public boolean isEmployeeAvailable(Duration startTime, Duration duration, LocalDate date) {
-        // Calcula la hora de fin de la cita propuesta
-        Duration endTime = startTime.plusMinutes(duration.toMinutes());
-        // Recorre todas las citas asignadas al empleado
-        for (Appointment appointment : appointments) {
-            // Si la cita es el mismo día
+    public boolean isEmployeeAvailable(LocalTime startTime, Duration duration, LocalDate date) {
+        LocalTime endTime = startTime.plusMinutes(duration.toMinutes());
+        // Usa getAppointments() para asegurar que nunca sea null
+        for (Appointment appointment : getAppointments()) {
             if (appointment.getDate().equals(date)) {
-                // Obtiene el rango horario de la cita existente
-                Duration appointmentStartTime = appointment.getStartTime();
-                Duration appointmentEndTime = appointmentStartTime.plus(appointment.getDurationAppointment());
-
-                // Verifica si hay traslape de horarios
-                if (startTime.compareTo(appointmentEndTime) < 0 && endTime.compareTo(appointmentStartTime) > 0) {
+                LocalTime appointmentStartTime = appointment.getStartTime();
+                LocalTime appointmentEndTime = appointmentStartTime
+                        .plusMinutes(appointment.getDurationAppointment().toMinutes());
+                if (startTime.isBefore(appointmentEndTime) && endTime.isAfter(appointmentStartTime)) {
                     return false; // Hay conflicto
                 }
             }

@@ -4,45 +4,74 @@
  */
 package com.tecno_comfenalco.easywashproject.controllers;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+
 import com.tecno_comfenalco.easywashproject.models.Appointment;
+import com.tecno_comfenalco.easywashproject.models.Client;
+import com.tecno_comfenalco.easywashproject.models.Employee;
+import com.tecno_comfenalco.easywashproject.models.Service;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.AppointmentRepositoryImpl;
-import javax.swing.JOptionPane;
+import com.tecno_comfenalco.easywashproject.services.AppointmentBookingService;
 
 /**
- *
- * @author danil
+ * Controlador para la gestión de citas.
+ * Utiliza AppointmentBookingService para la lógica de negocio y el repositorio
+ * para persistencia.
  */
 public class AppointmentController {
-    public void create(Appointment appointment) {
-        AppointmentRepositoryImpl appointmentRepositoryImpl = new AppointmentRepositoryImpl();
-        
-        try {
-            appointmentRepositoryImpl.create(appointment);
-            JOptionPane.showMessageDialog(null, "Cita exitosamente agendada", "Cita agendada", JOptionPane.OK_OPTION);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al agendar la cita", "Error cita", JOptionPane.ERROR_MESSAGE);
-        }
+    private final AppointmentBookingService bookingService;
+    private final AppointmentRepositoryImpl appointmentRepository;
+
+    /**
+     * Constructor que recibe la lista de empleados y crea los servicios necesarios.
+     * 
+     * @param employees Lista de empleados disponibles para asignación de citas.
+     */
+    public AppointmentController(List<Employee> employees) {
+        this.bookingService = new AppointmentBookingService(employees);
+        this.appointmentRepository = new AppointmentRepositoryImpl();
     }
-    
-    public void remove(Appointment appointment) {
-        AppointmentRepositoryImpl appointmentRepositoryImpl = new AppointmentRepositoryImpl();
-        
-        try {
-            appointmentRepositoryImpl.delete(appointment);
-            JOptionPane.showMessageDialog(null, "Cita exitosamente eliminada", "Cita eliminada", JOptionPane.OK_OPTION);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al eliminar la cita", "Error cita", JOptionPane.ERROR_MESSAGE);
+
+    /**
+     * Agenda una nueva cita y la persiste si es posible.
+     * 
+     * @param date      Fecha de la cita.
+     * @param startTime Hora de inicio de la cita.
+     * @param services  Lista de servicios a realizar.
+     * @param client    Cliente que solicita la cita.
+     * @return La cita creada o null si no fue posible agendarla.
+     */
+    public Appointment bookAppointment(LocalDate date, LocalTime startTime, List<Service> services, Client client) {
+        // Usa el servicio para agendar la cita y asignar un empleado disponible
+        Appointment appointment = bookingService.bookingAppointment(date, startTime, services, client);
+        if (appointment != null) {
+            // Persiste la cita en el repositorio
+            appointmentRepository.create(appointment);
         }
+        return appointment;
     }
-    
-    public void modify(Appointment appointmentToModify, Appointment appointmentModified) {
-        AppointmentRepositoryImpl appointmentRepositoryImpl = new AppointmentRepositoryImpl();
-        
-        try {
-            appointmentRepositoryImpl.update(appointmentToModify, appointmentModified);
-            JOptionPane.showMessageDialog(null, "Cita exitosamente actualizada", "Cita actualizada", JOptionPane.OK_OPTION);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al actualizar la cita", "Error cita", JOptionPane.ERROR_MESSAGE);
-        }
+
+    /**
+     * Obtiene todas las citas registradas.
+     * 
+     * @return Lista de citas.
+     */
+    public List<Appointment> getAllAppointments() {
+        return appointmentRepository.readAll();
     }
+
+    /**
+     * Busca una cita por su ID.
+     * 
+     * @param id Identificador de la cita.
+     * @return La cita encontrada o null si no existe.
+     */
+    public Appointment getAppointmentById(Long id) {
+        return appointmentRepository.findById(id);
+    }
+
+    // Puedes agregar más métodos según las necesidades del sistema (cancelar cita,
+    // actualizar, etc.)
 }

@@ -4,55 +4,51 @@
  */
 package com.tecno_comfenalco.easywashproject.controllers;
 
-import com.tecno_comfenalco.easywashproject.models.Appointment;
+import java.util.List;
+
 import com.tecno_comfenalco.easywashproject.models.Employee;
-import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.AppointmentRepositoryImpl;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.EmployeeRepositoryImpl;
-import javax.swing.JOptionPane;
 
 /**
- *
- * @author danil
+ * Controlador para la gestión de empleados.
+ * Utiliza EmployeeRepositoryImpl para la persistencia.
  */
 public class EmployeeController {
-    public void create(Employee employee) {
-        EmployeeRepositoryImpl employeeRepositoryImpl = new EmployeeRepositoryImpl();
 
-        try {
-            employeeRepositoryImpl.create(employee);
-            JOptionPane.showMessageDialog(null, "Empleado exitosamente creado", "Empleado creado",
-                    JOptionPane.OK_OPTION);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al crear al empleado", "Error empleado",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+    private final EmployeeRepositoryImpl employeeRepository;
+
+    public EmployeeController() {
+        this.employeeRepository = new EmployeeRepositoryImpl();
     }
 
-    public void remove(Long id) {
-        EmployeeRepositoryImpl employeeRepositoryImpl = new EmployeeRepositoryImpl();
-        Employee employee = employeeRepositoryImpl.findById(id);
-
-        try {
-            employeeRepositoryImpl.delete(employee);
-            JOptionPane.showMessageDialog(null, "Empleado exitosamente eliminado", "Empleado eliminada",
-                    JOptionPane.OK_OPTION);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al eliminar al empleado", "Error empleado",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+    /**
+     * Crea un nuevo empleado.
+     * 
+     * @param employee Empleado a crear.
+     * @return Empleado creado o null si falla.
+     */
+    public Employee createEmployee(Employee employee) {
+        return employeeRepository.create(employee);
     }
 
-    public void modify(Long id, Employee employeeModified) {
-        EmployeeRepositoryImpl employeeRepositoryImpl = new EmployeeRepositoryImpl();
-        Employee employee = employeeRepositoryImpl.findById(id);
-
-        try {
-            employeeRepositoryImpl.update(employee, employeeModified);
-            JOptionPane.showMessageDialog(null, "Empleado exitosamente actualizado", "Empleado actualizado",
-                    JOptionPane.OK_OPTION);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al actualizar al empleado", "Error empleado",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+    /**
+     * Busca un empleado por ID.
+     * 
+     * @param id Identificador del empleado.
+     * @return Empleado encontrado o null.
+     */
+    public Employee findById(Long id) {
+        return employeeRepository.findById(id);
     }
+
+    /**
+     * Obtiene todos los empleados.
+     * 
+     * @return Lista de empleados.
+     */
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.readAll();
+    }
+
+    // Otros métodos: eliminar, actualizar, buscar por documento, etc.
 }

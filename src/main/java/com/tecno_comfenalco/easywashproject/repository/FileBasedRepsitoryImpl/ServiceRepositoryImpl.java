@@ -2,11 +2,8 @@ package com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl;
 
 import java.lang.reflect.Type;
 import java.time.Duration;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
@@ -19,117 +16,134 @@ import com.tecno_comfenalco.easywashproject.repository.ServiceRepository;
 
 public class ServiceRepositoryImpl implements ServiceRepository {
 
-    private final JsonFileRepository<Service> jsonRepository;
+    private final JsonFileRepository<Service> jsonFileRepository;
 
     public ServiceRepositoryImpl() {
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        // Lista de adaptadores
-        List<TypeAdapterConfig<?>> adapters = List.of(
-                new TypeAdapterConfig<>(Duration.class,
-                        (JsonDeserializer<Duration>) (JsonElement json, Type typeOfT,
-                                JsonDeserializationContext context) -> {
-                            String timeStr = json.getAsString();
-                            LocalTime lt = LocalTime.parse(timeStr, timeFormatter);
-                            return Duration.ofHours(lt.getHour()).plusMinutes(lt.getMinute())
-                                    .plusSeconds(lt.getSecond());
-                        }),
-                new TypeAdapterConfig<>(Duration.class, (JsonSerializer<Duration>) (Duration src, Type typeOfSrc,
-                        JsonSerializationContext context) -> {
-                    long seconds = src.getSeconds();
-                    long absSeconds = Math.abs(seconds);
-                    String formatted = String.format("%02d:%02d:%02d",
-                            absSeconds / 3600,
-                            (absSeconds % 3600) / 60,
-                            absSeconds % 60);
-                    return new JsonPrimitive(formatted);
-                }));
-
-        // Define el tipo de la lista de servicios
         Type listType = new TypeToken<List<Service>>() {
         }.getType();
-        this.jsonRepository = new JsonFileRepository<>("services.json", listType, adapters);
+
+        // Custom TypeAdapter for Duration
+        JsonSerializer<Duration> durationSerializer = (src, typeOfSrc, context) -> new JsonPrimitive(src.toString());
+        JsonDeserializer<Duration> durationDeserializer = (json, typeOfT, context) -> Duration
+                .parse(json.getAsString());
+
+        List<TypeAdapterConfig<?>> adapters = List.of(
+                new TypeAdapterConfig<>(Duration.class, durationSerializer),
+                new TypeAdapterConfig<>(Duration.class, durationDeserializer));
+
+        this.jsonFileRepository = new JsonFileRepository<Service>("services.json", listType, adapters);
     }
 
     @Override
-    public Service create(Service s) {
+    public Service update(Service k, Service j) {
         try {
-            List<Service> list = jsonRepository.load();
-            list.add(s);
-
-            jsonRepository.save(list);
-            return s;
-
-        } catch (Exception e) {
-            System.out.println("No se ha podido insertar el servicio en el sistema");
+            List<Service> services = jsonFileRepository.load();
+            for (int i = 0; i < services.size(); i++) {
+                if (services.get(i).equals(k)) {
+                    services.set(i, j);
+                    jsonFileRepository.save(services);
+                    return j;
+                }
+            }
             return null;
+        } catch (Exception e) {
+            System.out.println("No se ha podido modificar el servicio");
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public void delete(Service k) {
+        try {
+            List<Service> services = jsonFileRepository.load();
+            services.remove(k);
+            jsonFileRepository.save(services);
+        } catch (Exception e) {
+            System.out.println("No se ha podido eliminar el servicio");
+            System.out.println(e.getMessage());
         }
     }
 
     @Override
     public List<Service> readAll() {
         try {
-            return jsonRepository.load();
-
-        } catch (Exception e) {
-            System.out.println("No se ha podido obtener la información de los servicios");
-            return null;
-        }
-    }
-
-    @Override
-    public Service read(Service key) {
-        try {
-            return jsonRepository.load().stream()
-                    .filter(s -> s.getName().equalsIgnoreCase(key.getName()))
-                    .findFirst()
-                    .orElse(null);
-
-        } catch (Exception e) {
-            System.out.println("No se ha podido recuperar la información del servicio solicitado");
-            return null;
-        }
-    }
-
-    @Override
-    public Service update(Service s, Service j) {
-        try {
-            List<Service> list = jsonRepository.load();
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getName().equalsIgnoreCase(s.getName())) {
-                    list.set(i, j);
-                    jsonRepository.save(list);
-                    return j;
+            List<Service> services = jsonFileRepository.load();
+            if (services == null) {
+                return java.util.Collections.emptyList();
+            }
+            // Filtra servicios inválidos y captura errores de duración
+            services.removeIf(s -> {
+                try {
+                    // Si la duración no es válida, Duration.parse lanzará excepción
+                    Duration d = s.getDuration();
+                    d.toMinutes(); // fuerza acceso para detectar errores de parseo
+                    return false;
+                } catch (Exception ex) {
+                    System.out.println("Error al parsear la duración de un servicio: " + ex.getMessage());
+                    return true;
                 }
+            });
+            return services;
+        } catch (Exception e) {
+            System.out.println("No se ha podido recuperar la información de los servicios");
+            System.out.println(e.getMessage());
+            return java.util.Collections.emptyList();
+        }
+    }
+
+    @Override
+    public Service read(Service k) {
+        try {
+            List<Service> services = readAll();
+            if (services == null || services.isEmpty()) {
+                return null;
+            }
+            if (k.getId() != null) {
+                return services.stream()
+                        .filter(s -> s.getId().equals(k.getId()))
+                        .findFirst()
+                        .orElse(null);
             }
             return null;
-
         } catch (Exception e) {
-            System.out.println("No se ha podido modificar la información del servicio solicitado");
+            System.out.println("No se ha podido encontrar el servicio");
+            System.out.println(e.getMessage());
             return null;
         }
     }
 
     @Override
-    public void delete(Service s) {
+    public Service create(Service k) {
         try {
-            List<Service> list = jsonRepository.load();
-            list.removeIf(existing -> existing.getName().equalsIgnoreCase(s.getName()));
-            jsonRepository.save(list);
-
+            List<Service> services = readAll();
+            if (services == null) {
+                services = new java.util.ArrayList<>();
+            }
+            services.add(k);
+            jsonFileRepository.save(services);
+            return k;
         } catch (Exception e) {
-            System.out.println("No se ha podido eliminar al servicio");
+            System.out.println("No se ha podido crear el servicio");
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
     @Override
     public Service findById(Long id) {
         try {
-            return jsonRepository.load().stream()
+            List<Service> services = readAll();
+            if (services == null || services.isEmpty()) {
+                return null;
+            }
+            return services.stream()
                     .filter(s -> s.getId().equals(id))
                     .findFirst()
                     .orElse(null);
         } catch (Exception e) {
             System.out.println("No se ha podido encontrar el servicio por id");
+            System.out.println(e.getMessage());
             return null;
         }
     }

@@ -6,6 +6,7 @@ package com.tecno_comfenalco.easywashproject.models;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import com.tecno_comfenalco.easywashproject.enums.EnumAppointmentStatus;
@@ -27,11 +28,11 @@ public class Appointment {
     private Employee employee;
     private EnumAppointmentStatus status;
     private LocalDate date;
-    private Duration startTime;
+    private LocalTime startTime;
 
     // Constructor
     public Appointment(List<Service> services, Client client, Employee employee, EnumAppointmentStatus status,
-            LocalDate date, Duration startTime) {
+            LocalDate date, LocalTime startTime) {
         // Obtengo el ID de la cita y lo asigno
         this.appointmentRepositoryImpl = new AppointmentRepositoryImpl();
 
@@ -103,11 +104,11 @@ public class Appointment {
     }
 
     // Getter y Setter para hora de inicio
-    public Duration getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Duration time) {
+    public void setStartTime(LocalTime time) {
         this.startTime = time;
     }
 
@@ -118,6 +119,19 @@ public class Appointment {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "id=" + id +
+                ", services=" + services +
+                ", client=" + client +
+                ", employee=" + employee +
+                ", status=" + status +
+                ", date=" + date +
+                ", startTime=" + startTime +
+                '}';
     }
 
 }

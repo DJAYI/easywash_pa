@@ -4,64 +4,52 @@
  */
 package com.tecno_comfenalco.easywashproject.controllers;
 
-import com.tecno_comfenalco.easywashproject.models.Appointment;
-import com.tecno_comfenalco.easywashproject.models.Employee;
+import java.util.List;
+
 import com.tecno_comfenalco.easywashproject.models.User;
-import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.AppointmentRepositoryImpl;
-import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.EmployeeRepositoryImpl;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.UserRepositoryImpl;
-import javax.swing.JOptionPane;
 
 /**
- *
- * @author danil
+ * Controlador para la gestión de usuarios.
+ * Utiliza UserRepositoryImpl para la persistencia.
  */
 public class UserController {
-    public void create(User user) {
-        UserRepositoryImpl userRepositoryImpl = new UserRepositoryImpl();
 
-        try {
-            userRepositoryImpl.create(user);
-            JOptionPane.showMessageDialog(null, "Usuario exitosamente creado", "Usuario creado", JOptionPane.OK_OPTION);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al crear al usuario", "Error usuario",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+    private final UserRepositoryImpl userRepository;
+
+    public UserController() {
+        this.userRepository = new UserRepositoryImpl();
     }
 
-    public void remove(Long id) {
-        UserRepositoryImpl userRepositoryImpl = new UserRepositoryImpl();
-        User user = userRepositoryImpl.findById(id);
-        if (user == null) {
-            JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error usuario", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        try {
-            userRepositoryImpl.delete(user);
-            JOptionPane.showMessageDialog(null, "Usuario exitosamente eliminado", "Usuario eliminada",
-                    JOptionPane.OK_OPTION);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al eliminar al usuario", "Error empleado",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+    /**
+     * Crea un nuevo usuario.
+     * 
+     * @param user Usuario a crear.
+     * @return Usuario creado o null si falla.
+     */
+    public User createUser(User user) {
+        return userRepository.create(user);
     }
 
-    public void modify(Long id, User userModified) {
-        UserRepositoryImpl userRepositoryImpl = new UserRepositoryImpl();
-        User user = userRepositoryImpl.findById(id);
-        if (user == null) {
-            JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error usuario", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        try {
-            userRepositoryImpl.update(user, userModified);
-            JOptionPane.showMessageDialog(null, "Usuario exitosamente actualizado", "Usuario actualizado",
-                    JOptionPane.OK_OPTION);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al actualizar al usuario", "Error usuario",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+    /**
+     * Busca un usuario por credenciales.
+     * 
+     * @param username Nombre de usuario.
+     * @param password Contraseña.
+     * @return Usuario encontrado o null.
+     */
+    public User findByCredentials(String username, String password) {
+        return userRepository.findByCredentials(username, password);
     }
+
+    /**
+     * Obtiene todos los usuarios.
+     * 
+     * @return Lista de usuarios.
+     */
+    public List<User> getAllUsers() {
+        return userRepository.readAll();
+    }
+
+    // Otros métodos: eliminar, actualizar, buscar por ID, etc.
 }
