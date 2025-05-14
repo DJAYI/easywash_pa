@@ -4,6 +4,8 @@
  */
 package com.tecno_comfenalco.easywashproject.views.employees;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author jacob
@@ -15,6 +17,8 @@ public class EditEmployeedAdministrador extends javax.swing.JFrame {
      */
     public EditEmployeedAdministrador() {
         initComponents();
+        setLocationRelativeTo(null); //Centra la ventana
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //No cerrar toda la app
     }
 
     /**
@@ -102,6 +106,7 @@ public class EditEmployeedAdministrador extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(153, 153, 153));
         jButton1.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         jButton1.setText("Registrar");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bg.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 393, 160, 40));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));

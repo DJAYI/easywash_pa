@@ -4,6 +4,8 @@
  */
 package com.tecno_comfenalco.easywashproject.views.vehicles;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author jacob
@@ -15,6 +17,8 @@ public class RegisterVehicle extends javax.swing.JFrame {
      */
     public RegisterVehicle() {
         initComponents();
+        setLocationRelativeTo(null); //Centra la ventana
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //No cerrar toda la app
     }
 
     /**

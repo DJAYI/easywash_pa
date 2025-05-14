@@ -7,6 +7,7 @@ package com.tecno_comfenalco.easywashproject.views.auth;
 import com.tecno_comfenalco.easywashproject.controllers.AuthController;
 import com.tecno_comfenalco.easywashproject.views.admin.DashboardUserView;
 import java.awt.event.ActionEvent;
+import javax.swing.JFrame;
 
 /**
  *
@@ -19,6 +20,8 @@ public class LoginUserView extends javax.swing.JFrame {
      */
     public LoginUserView() {
         initComponents();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
     }
 
     /**

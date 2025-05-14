@@ -11,6 +11,7 @@ import com.tecno_comfenalco.easywashproject.views.appointments.VerCitasPanel;
 import com.tecno_comfenalco.easywashproject.views.appointments.VerHistorialPanel;
 import com.tecno_comfenalco.easywashproject.views.vehicles.VerMisVehiculos;
 import java.awt.BorderLayout;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,6 +30,8 @@ public class DashboardClientView extends javax.swing.JFrame {
 
         initComponents();
 
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         VerCitasPanel p1 = new VerCitasPanel();
         p1.setSize(640, 400);
         p1.setLocation(0, 0);

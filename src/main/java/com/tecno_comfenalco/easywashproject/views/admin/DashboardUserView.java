@@ -11,6 +11,7 @@ import com.tecno_comfenalco.easywashproject.views.appointments.VerHistorialPanel
 import com.tecno_comfenalco.easywashproject.views.employees.VerTrabajadoresAdministradorPanel;
 import com.tecno_comfenalco.easywashproject.views.services.VerServiciosAdministradorPanel;
 import java.awt.BorderLayout;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,6 +28,9 @@ public class DashboardUserView extends javax.swing.JFrame {
     public DashboardUserView(Person session) {
         this.session = session;
         initComponents();
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
         VerCitasAdministradorPanel p4 = new VerCitasAdministradorPanel();
         p4.setSize(630, 400);
