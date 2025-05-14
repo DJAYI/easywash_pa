@@ -5,14 +5,13 @@
 package com.tecno_comfenalco.easywashproject.views.admin;
 
 import com.tecno_comfenalco.easywashproject.controllers.NavigationManager;
+import com.tecno_comfenalco.easywashproject.models.Person;
 import com.tecno_comfenalco.easywashproject.views.appointments.VerCitasAdministradorPanel;
-import com.tecno_comfenalco.easywashproject.views.appointments.VerHistorialAdministradorPanel;
 import com.tecno_comfenalco.easywashproject.views.appointments.VerHistorialPanel;
 import com.tecno_comfenalco.easywashproject.views.employees.VerTrabajadoresAdministradorPanel;
 import com.tecno_comfenalco.easywashproject.views.services.VerServiciosAdministradorPanel;
 import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
-import javax.swing.text.AbstractDocument.Content;
 
 /**
  *
@@ -23,13 +22,29 @@ public class DashboardUserView extends javax.swing.JFrame {
     /**
      * Creates new form DashBoardUserView1
      */
-    public DashboardUserView() {
+    private Person session;
+
+    public DashboardUserView(Person session) {
+        this.session = session;
         initComponents();
-        
+
         VerCitasAdministradorPanel p4 = new VerCitasAdministradorPanel();
         p4.setSize(630, 400);
         p4.setLocation(0, 0);
-        
+
+        Content.removeAll();
+        Content.add(p4, BorderLayout.CENTER);
+        Content.revalidate();
+        Content.repaint();
+    }
+
+    public DashboardUserView() {
+        initComponents();
+
+        VerCitasAdministradorPanel p4 = new VerCitasAdministradorPanel();
+        p4.setSize(630, 400);
+        p4.setLocation(0, 0);
+
         Content.removeAll();
         Content.add(p4, BorderLayout.CENTER);
         Content.revalidate();
@@ -65,18 +80,22 @@ public class DashboardUserView extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 800, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 40, Short.MAX_VALUE)
         );
 
         bg.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
 
         TextTitulo.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
-        TextTitulo.setText("¡Bienvenido al Sistema, usuario!");
+        if (session != null) {
+            TextTitulo.setText("¡Bienvenido al Sistema, " + session.getFullname() + "!");
+        } else {
+            TextTitulo.setText("¡Bienvenido al Sistema, usuario!");
+        }
         bg.add(TextTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, -1));
 
         VerCitas.setBackground(new java.awt.Color(153, 204, 255));
@@ -137,12 +156,12 @@ public class DashboardUserView extends javax.swing.JFrame {
         javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
         Content.setLayout(ContentLayout);
         ContentLayout.setHorizontalGroup(
-            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+                ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 640, Short.MAX_VALUE)
         );
         ContentLayout.setVerticalGroup(
-            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+                ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 400, Short.MAX_VALUE)
         );
 
         bg.add(Content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 640, 400));
@@ -151,12 +170,12 @@ public class DashboardUserView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void VerServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerServiciosActionPerformed
         VerServiciosAdministradorPanel p6 = new VerServiciosAdministradorPanel();
         p6.setSize(630, 400);
         p6.setLocation(0, 0);
-        
+
         Content.removeAll();
         Content.add(p6, BorderLayout.CENTER);
         Content.revalidate();
@@ -167,7 +186,7 @@ public class DashboardUserView extends javax.swing.JFrame {
         VerCitasAdministradorPanel p4 = new VerCitasAdministradorPanel();
         p4.setSize(630, 400);
         p4.setLocation(0, 0);
-        
+
         Content.removeAll();
         Content.add(p4, BorderLayout.CENTER);
         Content.revalidate();
@@ -190,7 +209,7 @@ public class DashboardUserView extends javax.swing.JFrame {
         VerTrabajadoresAdministradorPanel p7 = new VerTrabajadoresAdministradorPanel();
         p7.setSize(630, 400);
         p7.setLocation(0, 0);
-        
+
         Content.removeAll();
         Content.add(p7, BorderLayout.CENTER);
         Content.revalidate();
@@ -199,10 +218,10 @@ public class DashboardUserView extends javax.swing.JFrame {
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         int confirmacion = JOptionPane.showConfirmDialog(
-            this,
-            "¿Estas seguro que desea salir?",
-            "Confirmar salida",
-            JOptionPane.YES_NO_OPTION
+                this,
+                "¿Estas seguro que desea salir?",
+                "Confirmar salida",
+                JOptionPane.YES_NO_OPTION
         );
 
         if (confirmacion == JOptionPane.YES_OPTION) {
@@ -210,7 +229,7 @@ public class DashboardUserView extends javax.swing.JFrame {
             NavigationManager.showMainView();
         }
     }//GEN-LAST:event_SalirActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */
@@ -218,7 +237,7 @@ public class DashboardUserView extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -253,15 +272,6 @@ public class DashboardUserView extends javax.swing.JFrame {
         });
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Content;
     private javax.swing.JButton Salir;

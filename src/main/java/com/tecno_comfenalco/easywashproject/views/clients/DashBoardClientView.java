@@ -4,7 +4,6 @@
  */
 package com.tecno_comfenalco.easywashproject.views.clients;
 
-import com.tecno_comfenalco.easywashproject.controllers.AuthController;
 import com.tecno_comfenalco.easywashproject.controllers.NavigationManager;
 import com.tecno_comfenalco.easywashproject.models.Person;
 import com.tecno_comfenalco.easywashproject.views.appointments.AgendarCitaPanel;
@@ -20,13 +19,27 @@ import javax.swing.JOptionPane;
  */
 public class DashboardClientView extends javax.swing.JFrame {
 
-    private final AuthController authController;
+    private Person session;
 
     /**
      * Creates new form DashBoardClientView1
      */
+    public DashboardClientView(Person session) {
+        this.session = session;
+
+        initComponents();
+
+        VerCitasPanel p1 = new VerCitasPanel();
+        p1.setSize(640, 400);
+        p1.setLocation(0, 0);
+
+        Content.removeAll();
+        Content.add(p1, BorderLayout.CENTER);
+        Content.revalidate();
+        Content.repaint();
+    }
+
     public DashboardClientView() {
-        authController = new AuthController();
         initComponents();
 
         VerCitasPanel p1 = new VerCitasPanel();
@@ -65,9 +78,8 @@ public class DashboardClientView extends javax.swing.JFrame {
 
         Titulo.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
 
-        Person person = authController.getSession();
-        if (person != null) {
-            Titulo.setText("¡Bienvenido al Sistema, " + authController.getSession().getFullname() + "!");
+        if (session != null) {
+            Titulo.setText("¡Bienvenido al Sistema, " + session.getFullname() + "!");
         } else {
             Titulo.setText("¡Bienvenido al Sistema, cliente!");
         }
@@ -247,6 +259,10 @@ public class DashboardClientView extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(DashboardClientView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

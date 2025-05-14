@@ -115,7 +115,7 @@ public class LoginUserView extends javax.swing.JFrame {
         if (authentication) {
             this.setVisible(false);
 
-            new DashboardUserView().setVisible(true);
+            new DashboardUserView(authController.getSession()).setVisible(true);
         }
     }
 

@@ -182,7 +182,7 @@ public class LoginClienteView extends javax.swing.JFrame {
 
         if (authentication) {
             this.setVisible(false);
-            new DashboardClientView().setVisible(true);
+            new DashboardClientView(authController.getSession()).setVisible(true);
         }
     }
 
