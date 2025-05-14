@@ -18,7 +18,7 @@ import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.Ap
 public class Appointment {
 
     // Llamo a la implementación del repositorio de citas
-    private transient final AppointmentRepositoryImpl appointmentRepositoryImpl = new AppointmentRepositoryImpl();
+    private transient final AppointmentRepositoryImpl appointmentRepositoryImpl;
 
     // Atributos
     private Long id;
@@ -33,8 +33,14 @@ public class Appointment {
     public Appointment(List<Service> services, Client client, Employee employee, EnumAppointmentStatus status,
             LocalDate date, Duration startTime) {
         // Obtengo el ID de la cita y lo asigno
-        List<Appointment> appointmentList = appointmentRepositoryImpl.readAll();
-        this.id = appointmentList.isEmpty() ? 1L : appointmentList.get(appointmentList.size() - 1).getId() + 1;
+        this.appointmentRepositoryImpl = new AppointmentRepositoryImpl();
+
+        List<Appointment> appointmentList = this.appointmentRepositoryImpl.readAll();
+        if (appointmentList == null || appointmentList.isEmpty()) {
+            this.setId(1L);
+        } else {
+            this.setId((appointmentList.get(appointmentList.size() - 1).getId() + 1));
+        }
 
         this.services = services;
         this.client = client;

@@ -84,6 +84,8 @@ public class Main {
                         appointmentRepo.create(appointment);
                 }
 
+                appointmentRepo.readAll().forEach(System.out::println);
+
                 // Crear y guardar un usuario solo si no existe
                 UserRepositoryImpl userRepo = new UserRepositoryImpl();
                 User user = userRepo.findByCredentials("admin", "password123");

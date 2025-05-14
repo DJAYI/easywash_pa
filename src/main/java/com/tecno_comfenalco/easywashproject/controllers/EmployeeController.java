@@ -17,34 +17,42 @@ import javax.swing.JOptionPane;
 public class EmployeeController {
     public void create(Employee employee) {
         EmployeeRepositoryImpl employeeRepositoryImpl = new EmployeeRepositoryImpl();
-        
+
         try {
             employeeRepositoryImpl.create(employee);
-            JOptionPane.showMessageDialog(null, "Empleado exitosamente creado", "Empleado creado", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, "Empleado exitosamente creado", "Empleado creado",
+                    JOptionPane.OK_OPTION);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al crear al empleado", "Error empleado", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ha habido un error al crear al empleado", "Error empleado",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    public void remove(Appointment appointment) {
-        AppointmentRepositoryImpl appointmentRepositoryImpl = new AppointmentRepositoryImpl();
-        
-        try {
-            appointmentRepositoryImpl.delete(appointment);
-            JOptionPane.showMessageDialog(null, "Empleado exitosamente eliminado", "Empleado eliminada", JOptionPane.OK_OPTION);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al eliminar al empleado", "Error empleado", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    
-    public void modify(Employee employeeToModify, Employee employeeModified) {
+
+    public void remove(Long id) {
         EmployeeRepositoryImpl employeeRepositoryImpl = new EmployeeRepositoryImpl();
-        
+        Employee employee = employeeRepositoryImpl.findById(id);
+
         try {
-            employeeRepositoryImpl.update(employeeToModify, employeeModified);
-            JOptionPane.showMessageDialog(null, "Empleado exitosamente actualizado", "Empleado actualizado", JOptionPane.OK_OPTION);
+            employeeRepositoryImpl.delete(employee);
+            JOptionPane.showMessageDialog(null, "Empleado exitosamente eliminado", "Empleado eliminada",
+                    JOptionPane.OK_OPTION);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al actualizar al empleado", "Error empleado", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ha habido un error al eliminar al empleado", "Error empleado",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void modify(Long id, Employee employeeModified) {
+        EmployeeRepositoryImpl employeeRepositoryImpl = new EmployeeRepositoryImpl();
+        Employee employee = employeeRepositoryImpl.findById(id);
+
+        try {
+            employeeRepositoryImpl.update(employee, employeeModified);
+            JOptionPane.showMessageDialog(null, "Empleado exitosamente actualizado", "Empleado actualizado",
+                    JOptionPane.OK_OPTION);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha habido un error al actualizar al empleado", "Error empleado",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 }

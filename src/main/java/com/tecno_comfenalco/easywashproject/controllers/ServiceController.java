@@ -17,34 +17,42 @@ import javax.swing.JOptionPane;
 public class ServiceController {
     public void create(Service service) {
         ServiceRepositoryImpl serviceRepositoryImpl = new ServiceRepositoryImpl();
-        
+
         try {
             serviceRepositoryImpl.create(service);
-            JOptionPane.showMessageDialog(null, "Servicio exitosamente creado", "Servicio creado", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, "Servicio exitosamente creado", "Servicio creado",
+                    JOptionPane.OK_OPTION);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al crear el servicio", "Error servicio", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ha habido un error al crear el servicio", "Error servicio",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    public void remove(Service service) {
+
+    public void remove(Long id) {
         ServiceRepositoryImpl serviceRepositoryImpl = new ServiceRepositoryImpl();
-        
+        Service service = serviceRepositoryImpl.findById(id);
+
         try {
             serviceRepositoryImpl.delete(service);
-            JOptionPane.showMessageDialog(null, "Servicio exitosamente eliminado", "Servicio eliminada", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, "Servicio exitosamente eliminado", "Servicio eliminada",
+                    JOptionPane.OK_OPTION);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al eliminar al servicio", "Error servicio", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ha habido un error al eliminar al servicio", "Error servicio",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    public void modify(Service serviceToModify, Service serviceModified) {
+
+    public void modify(Long id, Service serviceModified) {
         ServiceRepositoryImpl serviceRepositoryImpl = new ServiceRepositoryImpl();
-        
+        Service service = serviceRepositoryImpl.findById(id);
+
         try {
-            serviceRepositoryImpl.update(serviceToModify, serviceModified);
-            JOptionPane.showMessageDialog(null, "Servicio exitosamente actualizado", "Servicio actualizado", JOptionPane.OK_OPTION);
+            serviceRepositoryImpl.update(service, serviceModified);
+            JOptionPane.showMessageDialog(null, "Servicio exitosamente actualizado", "Servicio actualizado",
+                    JOptionPane.OK_OPTION);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al actualizar al servicio", "Error servicio", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ha habido un error al actualizar al servicio", "Error servicio",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 }

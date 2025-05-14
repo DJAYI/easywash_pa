@@ -19,34 +19,49 @@ import javax.swing.JOptionPane;
 public class UserController {
     public void create(User user) {
         UserRepositoryImpl userRepositoryImpl = new UserRepositoryImpl();
-        
+
         try {
             userRepositoryImpl.create(user);
             JOptionPane.showMessageDialog(null, "Usuario exitosamente creado", "Usuario creado", JOptionPane.OK_OPTION);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al crear al usuario", "Error usuario", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ha habido un error al crear al usuario", "Error usuario",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    public void remove(User user) {
+
+    public void remove(Long id) {
         UserRepositoryImpl userRepositoryImpl = new UserRepositoryImpl();
-        
+        User user = userRepositoryImpl.findById(id);
+        if (user == null) {
+            JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error usuario", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         try {
             userRepositoryImpl.delete(user);
-            JOptionPane.showMessageDialog(null, "Usuario exitosamente eliminado", "Usuario eliminada", JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, "Usuario exitosamente eliminado", "Usuario eliminada",
+                    JOptionPane.OK_OPTION);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al eliminar al usuario", "Error empleado", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ha habido un error al eliminar al usuario", "Error empleado",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    public void modify(User userToModify, User userModified) {
+
+    public void modify(Long id, User userModified) {
         UserRepositoryImpl userRepositoryImpl = new UserRepositoryImpl();
-        
+        User user = userRepositoryImpl.findById(id);
+        if (user == null) {
+            JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error usuario", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         try {
-            userRepositoryImpl.update(userToModify, userModified);
-            JOptionPane.showMessageDialog(null, "Usuario exitosamente actualizado", "Usuario actualizado", JOptionPane.OK_OPTION);
+            userRepositoryImpl.update(user, userModified);
+            JOptionPane.showMessageDialog(null, "Usuario exitosamente actualizado", "Usuario actualizado",
+                    JOptionPane.OK_OPTION);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha habido un error al actualizar al usuario", "Error usuario", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ha habido un error al actualizar al usuario", "Error usuario",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 }

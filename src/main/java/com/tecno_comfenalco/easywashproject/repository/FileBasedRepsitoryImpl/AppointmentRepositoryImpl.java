@@ -113,7 +113,7 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
 
         } catch (Exception e) {
             System.out.println("No se ha podido recuperar la información de las citas");
-            return null;
+            return java.util.Collections.emptyList();
         }
     }
 
@@ -141,7 +141,6 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
 
         } catch (Exception e) {
             System.out.println("No se ha podido crear la cita");
-            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -155,6 +154,7 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
                     .orElse(null);
         } catch (Exception e) {
             System.out.println("No se ha podido encontrar la cita por id");
+            System.out.println(e.getMessage());
             return null;
         }
     }
