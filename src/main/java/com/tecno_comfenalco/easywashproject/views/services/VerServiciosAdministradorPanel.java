@@ -4,6 +4,10 @@
  */
 package com.tecno_comfenalco.easywashproject.views.services;
 
+import com.tecno_comfenalco.easywashproject.models.Service;
+import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ServiceRepositoryImpl;
+import java.util.List;
+
 /**
  *
  * @author jacob
@@ -30,9 +34,9 @@ public class VerServiciosAdministradorPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnDeleteService = new javax.swing.JButton();
+        btnAddService = new javax.swing.JButton();
+        btnEditService = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -42,64 +46,56 @@ public class VerServiciosAdministradorPanel extends javax.swing.JPanel {
         jLabel1.setText("Ver Servicios");
         bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
 
+        // 1. Se llama a la lista de servicio directamente del archivo JSON
+        List<Service> servicios = new ServiceRepositoryImpl().readAll();
+
+        // 2. Se inicializan las columnas y filas que se van a utilizar
+        Object[][] data = new Object[servicios.size()][3];
+
+        // 3. Se rellenan las filas segun su columna respectiva
+        for (int i = 0; i < servicios.size(); i++) {
+            Service s = servicios.get(i);
+            data[i][0] = s.getName();
+            data[i][1] = s.getPrice();
+            data[i][2] = s.getDescription();
+        }
+
+        // 4. Se asigna el modelo de datos y columnas a la tabla
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Nombre", "Precio", "Concepto"
-            }
+                data,
+                new String[]{"Nombre", "Precio", "Concepto"}
         ));
+
         jScrollPane1.setViewportView(jTable1);
 
         bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 57, 600, 280));
 
-        jButton1.setBackground(new java.awt.Color(153, 153, 153));
-        jButton1.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
-        jButton1.setText("Eliminar Servicio");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bg.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, 180, 40));
+        btnDeleteService.setBackground(new java.awt.Color(153, 153, 153));
+        btnDeleteService.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        btnDeleteService.setText("Eliminar Servicio");
+        btnDeleteService.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bg.add(btnDeleteService, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, 180, 40));
 
-        jButton2.setBackground(new java.awt.Color(153, 153, 153));
-        jButton2.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
-        jButton2.setText("Añadir Servicio");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bg.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 180, 40));
+        btnAddService.setBackground(new java.awt.Color(153, 153, 153));
+        btnAddService.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        btnAddService.setText("Añadir Servicio");
+        btnAddService.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bg.add(btnAddService, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 180, 40));
 
-        jButton3.setBackground(new java.awt.Color(153, 153, 153));
-        jButton3.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
-        jButton3.setText("Editar Servicio");
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bg.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 180, 40));
+        btnEditService.setBackground(new java.awt.Color(153, 153, 153));
+        btnEditService.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        btnEditService.setText("Editar Servicio");
+        btnEditService.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bg.add(btnEditService, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 180, 40));
 
         add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 400));
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnDeleteService;
+    private javax.swing.JButton btnAddService;
+    private javax.swing.JButton btnEditService;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

@@ -73,7 +73,8 @@ public class ClientRepositoryImpl implements ClientRepository {
     @Override
     public Client read(Client k) {
         try {
-            return jsonFileRepository.load().stream().filter((t) -> t.getDocumentNumber().equals(k.getDocumentNumber())).findFirst().orElse(null);
+            return jsonFileRepository.load().stream().filter((t) -> t.getDocumentNumber().equals(k.getDocumentNumber()))
+                    .findFirst().orElse(null);
 
         } catch (Exception e) {
             System.out.println("No se ha podido recuperar al cliente solicitado");
@@ -92,6 +93,7 @@ public class ClientRepositoryImpl implements ClientRepository {
             return k;
         } catch (Exception e) {
             System.out.println("No se ha podido insertar un nuevo cliente");
+            System.out.println(e.getMessage());
             return null;
         }
 
@@ -100,11 +102,11 @@ public class ClientRepositoryImpl implements ClientRepository {
     @Override
     public Client findByEmailAndDocument(String email, String document) {
         try {
-            //Cargar todos los clientes desde el archivo json
+            // Cargar todos los clientes desde el archivo json
             List<Client> clients = jsonFileRepository.load();
             return clients.stream()
                     .filter(client -> client.getMailAddress().equalsIgnoreCase(email)
-                    && client.getDocumentNumber().equals(document))
+                            && client.getDocumentNumber().equals(document))
                     .findFirst()
                     .orElse(null);
         } catch (Exception e) {
@@ -123,6 +125,19 @@ public class ClientRepositoryImpl implements ClientRepository {
                     .orElse(null);
         } catch (Exception e) {
             System.err.println("Error al buscar cliente por email: " + e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Client findById(Long id) {
+        try {
+            return jsonFileRepository.load().stream()
+                    .filter(c -> c.getId().equals(id))
+                    .findFirst()
+                    .orElse(null);
+        } catch (Exception e) {
+            System.out.println("No se ha podido encontrar el cliente por id");
             return null;
         }
     }

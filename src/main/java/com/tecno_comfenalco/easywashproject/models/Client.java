@@ -5,6 +5,8 @@
 package com.tecno_comfenalco.easywashproject.models;
 
 import com.tecno_comfenalco.easywashproject.enums.EnumDocType;
+import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ClientRepositoryImpl;
+import java.util.List;
 
 /**
  *
@@ -12,10 +14,27 @@ import com.tecno_comfenalco.easywashproject.enums.EnumDocType;
  */
 public class Client extends Person {
 
+    // LLamo a la implementaciín del repositorio de cliente
+    private transient final ClientRepositoryImpl clientRepositoryImpl = new ClientRepositoryImpl();
+
+    // Atributos
+    private Long id;
     private Vehicle vehicle;
 
-    public Client(Vehicle vehicle, String fullname, EnumDocType documentType, String documentNumber, String phoneNumber, String emailAddress) {
+    // Constructor
+    public Client(Vehicle vehicle, String fullname, EnumDocType documentType, String documentNumber, String phoneNumber,
+            String emailAddress) {
+
+        // Constructor de la clase Abstracta
         super(fullname, documentType, documentNumber, phoneNumber, emailAddress);
+
+        // Obtengo el ID del cliente y lo asigno
+        List<Client> clientList = clientRepositoryImpl.readAll();
+        if (clientList.isEmpty()) {
+            this.id = 1L;
+        } else {
+            this.id = clientList.get(clientList.size() - 1).getId() + 1;
+        }
 
         this.vehicle = vehicle;
     }
@@ -26,6 +45,14 @@ public class Client extends Person {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

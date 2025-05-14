@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.tecno_comfenalco.easywashproject.enums.EnumAppointmentStatus;
+import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.AppointmentRepositoryImpl;
 
 /**
  *
@@ -16,6 +17,11 @@ import com.tecno_comfenalco.easywashproject.enums.EnumAppointmentStatus;
  */
 public class Appointment {
 
+    // Llamo a la implementación del repositorio de citas
+    private transient final AppointmentRepositoryImpl appointmentRepositoryImpl = new AppointmentRepositoryImpl();
+
+    // Atributos
+    private Long id;
     private List<Service> services;
     private Client client;
     private Employee employee;
@@ -23,8 +29,13 @@ public class Appointment {
     private LocalDate date;
     private Duration startTime;
 
+    // Constructor
     public Appointment(List<Service> services, Client client, Employee employee, EnumAppointmentStatus status,
             LocalDate date, Duration startTime) {
+        // Obtengo el ID de la cita y lo asigno
+        List<Appointment> appointmentList = appointmentRepositoryImpl.readAll();
+        this.id = appointmentList.isEmpty() ? 1L : appointmentList.get(appointmentList.size() - 1).getId() + 1;
+
         this.services = services;
         this.client = client;
         this.employee = employee;
@@ -33,12 +44,14 @@ public class Appointment {
         this.startTime = startTime;
     }
 
+    // Método para obtener la duración total de la cita
     public Duration getDurationAppointment() {
         return services.stream()
                 .map(Service::getDuration)
                 .reduce(Duration.ZERO, Duration::plus);
     }
 
+    // Getter y Setter para servicios
     public List<Service> getService() {
         return services;
     }
@@ -47,6 +60,7 @@ public class Appointment {
         this.services = service;
     }
 
+    // Getter y Setter para cliente
     public Client getClient() {
         return client;
     }
@@ -55,6 +69,7 @@ public class Appointment {
         this.client = client;
     }
 
+    // Getter y Setter para empleado
     public Employee getEmployee() {
         return employee;
     }
@@ -63,6 +78,7 @@ public class Appointment {
         this.employee = employee;
     }
 
+    // Getter y Setter para estado
     public EnumAppointmentStatus getStatus() {
         return status;
     }
@@ -71,6 +87,7 @@ public class Appointment {
         this.status = status;
     }
 
+    // Getter y Setter para fecha
     public LocalDate getDate() {
         return date;
     }
@@ -79,12 +96,22 @@ public class Appointment {
         this.date = date;
     }
 
+    // Getter y Setter para hora de inicio
     public Duration getStartTime() {
         return startTime;
     }
 
     public void setStartTime(Duration time) {
         this.startTime = time;
+    }
+
+    // Getter y Setter para ID
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

@@ -6,11 +6,12 @@ package com.tecno_comfenalco.easywashproject.repository;
 
 import com.tecno_comfenalco.easywashproject.models.Appointment;
 import java.util.List;
+
 /**
  *
  * @author danil
  */
-public interface AppointmentRepository extends Repository<Appointment, Appointment>{
+public interface AppointmentRepository extends Repository<Appointment, Appointment> {
 
     @Override
     public Appointment update(Appointment k, Appointment j);
@@ -26,5 +27,8 @@ public interface AppointmentRepository extends Repository<Appointment, Appointme
 
     @Override
     public Appointment create(Appointment k);
-    
+
+    @Override
+    public Appointment findById(Long id);
+
 }

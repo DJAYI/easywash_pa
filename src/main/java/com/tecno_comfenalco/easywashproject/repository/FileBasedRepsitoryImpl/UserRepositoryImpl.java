@@ -110,7 +110,8 @@ public class UserRepositoryImpl implements UserRepository {
         try {
             return this.jsonFileRepository.load()
                     .stream()
-                    .filter(user -> user.getUsername().equalsIgnoreCase(username) && user.getPassword().equalsIgnoreCase(password))
+                    .filter(user -> user.getUsername().equalsIgnoreCase(username)
+                            && user.getPassword().equalsIgnoreCase(password))
                     .findFirst()
                     .orElse(null);
 
@@ -118,6 +119,11 @@ public class UserRepositoryImpl implements UserRepository {
             System.out.println("No se ha podido recuperar la información del usuario solicitado");
             return null;
         }
+    }
+
+    @Override
+    public User findById(Long id) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

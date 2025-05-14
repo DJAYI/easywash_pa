@@ -3,13 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package com.tecno_comfenalco.easywashproject.repository;
+
 import com.tecno_comfenalco.easywashproject.models.Service;
 import java.util.List;
+
 /**
  *
  * @author danil
  */
-public interface ServiceRepository extends Repository<Service, Service>{
+public interface ServiceRepository extends Repository<Service, Service> {
 
     @Override
     public Service update(Service k, Service j);
@@ -25,5 +27,8 @@ public interface ServiceRepository extends Repository<Service, Service>{
 
     @Override
     public Service create(Service k);
-    
+
+    @Override
+    public Service findById(Long id);
+
 }

@@ -18,7 +18,8 @@ public abstract class Person {
     private String phoneNumber;
     private String mailAddress;
 
-    public Person(String fullname, EnumDocType documentType, String documentNumber, String phoneNumber, String mailAddress) {
+    public Person(String fullname, EnumDocType documentType, String documentNumber, String phoneNumber,
+            String mailAddress) {
         this.fullname = fullname;
         this.documentType = documentType;
         this.documentNumber = documentNumber;
