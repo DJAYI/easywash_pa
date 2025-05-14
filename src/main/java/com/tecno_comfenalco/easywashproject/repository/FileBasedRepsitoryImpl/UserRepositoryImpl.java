@@ -8,10 +8,10 @@ import com.google.gson.reflect.TypeToken;
 import com.tecno_comfenalco.easywashproject.models.User;
 import com.tecno_comfenalco.easywashproject.repository.UserRepository;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -91,8 +91,10 @@ public class UserRepositoryImpl implements UserRepository {
         try {
             List<User> userList = this.jsonFileRepository.load();
             Set<User> userSet = new HashSet<>(userList);
-            userList.add(k);
-            this.jsonFileRepository.save(userSet.stream().collect(Collectors.toList()));
+
+            userSet.add(k); // Agregar el nuevo usuario al set (evita duplicados automáticamente)
+
+            this.jsonFileRepository.save(new ArrayList<>(userSet));
 
             return k;
 
@@ -100,6 +102,7 @@ public class UserRepositoryImpl implements UserRepository {
             System.out.println("No se ha podido insertar al usuario al sistema");
             return null;
         }
+
     }
 
     @Override

@@ -5,6 +5,7 @@
 package com.tecno_comfenalco.easywashproject.controllers;
 
 import com.tecno_comfenalco.easywashproject.models.Client;
+import com.tecno_comfenalco.easywashproject.models.Person;
 import com.tecno_comfenalco.easywashproject.models.User;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ClientRepositoryImpl;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.UserRepositoryImpl;
@@ -16,36 +17,82 @@ import javax.swing.JOptionPane;
  */
 public class AuthController {
 
-    public boolean authenticate(String email, String documento) {
-        //validacion basica de campos vacios
-        if (email == null || email.isEmpty() || documento == null || documento.isEmpty()) {
+    private Person session;
+    private final ClientRepositoryImpl clientRepository;
+    private final UserRepositoryImpl userRepository;
+
+    public AuthController() {
+        this.clientRepository = new ClientRepositoryImpl();
+        this.userRepository = new UserRepositoryImpl();
+    }
+
+    public Person getSession() {
+        return session;
+    }
+
+    public void setSession(Person session) {
+        this.session = session;
+    }
+
+    private boolean isNullOrBlank(String... values) {
+        for (String value : values) {
+            if (value == null || value.isBlank()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean authenticateClient(String email, String documento) {
+        if (isNullOrBlank(email, documento)) {
             return false;
         }
 
         try {
-            //Buscar cliente en el repositorio
-            ClientRepositoryImpl clientRepositoryImpl = new ClientRepositoryImpl();
-            Client cliente = clientRepositoryImpl.findByEmailAndDocument(email, documento);
-            return cliente != null;
+            Client client = clientRepository.findByEmailAndDocument(email, documento);
+            if (client != null) {
+                setSession(client);
+                return true;
+            }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Cliente con email y documento solicitados no encontrado o datos incorrectos", "INVALID AUTHENTICATION", JOptionPane.ERROR_MESSAGE);
-            return false;
+            e.printStackTrace();
         }
+
+        JOptionPane.showMessageDialog(null,
+                "Cliente no encontrado o datos incorrectos",
+                "INVALID AUTHENTICATION",
+                JOptionPane.ERROR_MESSAGE);
+
+        return false;
     }
 
     public boolean authenticateUser(String username, String password) {
-        if (username.isBlank() || password.isBlank()) {
+        if (isNullOrBlank(username, password)) {
+            JOptionPane.showMessageDialog(null,
+                    "Los campos son obligatorios",
+                    "INVALID AUTHENTICATION",
+                    JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
         try {
-            UserRepositoryImpl userRepositoryImpl = new UserRepositoryImpl();
-            User user = userRepositoryImpl.findByCredentials(username, password);
-
-            return user != null;
+            User user = userRepository.findByCredentials(username, password);
+            if (user != null) {
+                setSession(user);
+                JOptionPane.showMessageDialog(null,
+                        "Autenticación exitosa",
+                        "Autenticado",
+                        JOptionPane.INFORMATION_MESSAGE);
+                return true;
+            }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Usuario con numbre de usuario y contraseña solicitados no encontrado o datos incorrectos", "INVALID AUTHENTICATION", JOptionPane.ERROR_MESSAGE);
-            return false;
+            e.printStackTrace();
         }
+
+        JOptionPane.showMessageDialog(null,
+                "Usuario no encontrado o datos incorrectos",
+                "INVALID AUTHENTICATION",
+                JOptionPane.ERROR_MESSAGE);
+        return false;
     }
 }

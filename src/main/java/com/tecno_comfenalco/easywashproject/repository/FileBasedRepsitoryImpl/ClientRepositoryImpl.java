@@ -8,7 +8,10 @@ import com.google.gson.reflect.TypeToken;
 import com.tecno_comfenalco.easywashproject.models.Client;
 import com.tecno_comfenalco.easywashproject.repository.ClientRepository;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -82,8 +85,10 @@ public class ClientRepositoryImpl implements ClientRepository {
     public Client create(Client k) {
         try {
             List<Client> clients = jsonFileRepository.load();
-            clients.add(k);
-            jsonFileRepository.save(clients);
+            Set<Client> clientSet = new HashSet<>(clients);
+
+            clientSet.add(k);
+            jsonFileRepository.save(new ArrayList<>(clientSet));
             return k;
         } catch (Exception e) {
             System.out.println("No se ha podido insertar un nuevo cliente");
@@ -91,10 +96,10 @@ public class ClientRepositoryImpl implements ClientRepository {
         }
 
     }
-    
+
     @Override
-    public Client findByEmailAndDocument(String email, String document){
-        try{
+    public Client findByEmailAndDocument(String email, String document) {
+        try {
             //Cargar todos los clientes desde el archivo json
             List<Client> clients = jsonFileRepository.load();
             return clients.stream()
@@ -105,12 +110,12 @@ public class ClientRepositoryImpl implements ClientRepository {
         } catch (Exception e) {
             System.err.println("Error al buscar cliente por email y documento: " + e.getMessage());
             return null;
-        }    
-    }  
-    
+        }
+    }
+
     @Override
     public Client findByEmail(String email) {
-        try{
+        try {
             List<Client> clients = jsonFileRepository.load();
             return clients.stream()
                     .filter(client -> client.getMailAddress().equalsIgnoreCase(email))
@@ -122,8 +127,3 @@ public class ClientRepositoryImpl implements ClientRepository {
         }
     }
 }
-            
-        
-    
-
-

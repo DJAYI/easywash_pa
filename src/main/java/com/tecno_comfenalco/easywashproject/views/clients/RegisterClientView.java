@@ -7,6 +7,7 @@ package com.tecno_comfenalco.easywashproject.views.clients;
 import com.tecno_comfenalco.easywashproject.enums.EnumDocType;
 import com.tecno_comfenalco.easywashproject.models.Client;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ClientRepositoryImpl;
+import com.tecno_comfenalco.easywashproject.views.auth.LoginClienteView;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
@@ -33,7 +34,7 @@ public class RegisterClientView extends javax.swing.JFrame {
     }
 
     public String getTipoDocumento() {
-        return jComboBox1.getSelectedItem().toString();
+        return comboDocumentType.getSelectedItem().toString();
     }
 
     public String getDocumento() {
@@ -65,12 +66,12 @@ public class RegisterClientView extends javax.swing.JFrame {
     }
 
     private void loadDocumentTypes() {
-        jComboBox1.setModel(new DefaultComboBoxModel<>(EnumDocType.getDescripciones()));
+        comboDocumentType.setModel(new DefaultComboBoxModel<>(EnumDocType.getDescripciones()));
     }
 
     private void limpiarCampos() {
         NombreSave.setText("");
-        jComboBox1.setSelectedIndex(0);
+        comboDocumentType.setSelectedIndex(0);
         DocumentoSave.setText("");
         NumberPhoneSave.setText("");
         DocumentoSave.setText("");
@@ -103,8 +104,7 @@ public class RegisterClientView extends javax.swing.JFrame {
         NombreSave = new javax.swing.JTextField();
         DocumentoSave = new javax.swing.JTextField();
         correoSave = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboDocumentType = new javax.swing.JComboBox<>();
         btnCancelar = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
 
@@ -175,9 +175,9 @@ public class RegisterClientView extends javax.swing.JFrame {
         correoSave.setText("Ingrese su dirección de correo");
         bg.add(correoSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 220, 40));
 
-        jComboBox1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Cedula de Ciudadanía", "Tarjeta de Identidad", "Cedula Extranjeria", "Pasaporte", "Permiso Provisional de permanencia"}));
-        bg.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 220, 40));
+        comboDocumentType.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        comboDocumentType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Cedula de Ciudadanía", "Tarjeta de Identidad", "Cedula Extranjeria", "Pasaporte", "Permiso Provisional de permanencia"}));
+        bg.add(comboDocumentType, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 220, 40));
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
         btnCancelar.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
@@ -211,7 +211,7 @@ public class RegisterClientView extends javax.swing.JFrame {
 
         // 1. Obtengo la información de los campos ✅
         String nombreCompleto = NombreSave.getText();
-        String tipoDocumento = (String) jComboBox1.getSelectedItem();
+        String tipoDocumento = (String) comboDocumentType.getSelectedItem();
         String numeroDocumento = DocumentoSave.getText();
         String numeroTelefono = NumberPhoneSave.getText();
         String correo = correoSave.getText();
@@ -249,6 +249,10 @@ public class RegisterClientView extends javax.swing.JFrame {
 
             // 2.6 Limpio los campos
             limpiarCampos();
+
+            // 2.6.1 Ocultar la vista actual y mostrar la siguiente
+            this.setVisible(false);
+            new LoginClienteView().setVisible(true);
         } catch (IllegalArgumentException e) {
             // 2.7 Exepcion para cuando el tipo de documento no sea valido
             JOptionPane.showMessageDialog(this, "Tipo de documento no valido", "Error", JOptionPane.ERROR_MESSAGE);
@@ -314,8 +318,7 @@ public class RegisterClientView extends javax.swing.JFrame {
     private javax.swing.JPanel bg;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> comboDocumentType;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

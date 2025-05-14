@@ -4,7 +4,9 @@
  */
 package com.tecno_comfenalco.easywashproject.views.clients;
 
+import com.tecno_comfenalco.easywashproject.controllers.AuthController;
 import com.tecno_comfenalco.easywashproject.controllers.NavigationManager;
+import com.tecno_comfenalco.easywashproject.models.Person;
 import com.tecno_comfenalco.easywashproject.views.appointments.AgendarCitaPanel;
 import com.tecno_comfenalco.easywashproject.views.appointments.VerCitasPanel;
 import com.tecno_comfenalco.easywashproject.views.appointments.VerHistorialPanel;
@@ -16,18 +18,21 @@ import javax.swing.JOptionPane;
  *
  * @author jacob
  */
-public class DashBoardClientView extends javax.swing.JFrame {
+public class DashboardClientView extends javax.swing.JFrame {
+
+    private final AuthController authController;
 
     /**
      * Creates new form DashBoardClientView1
      */
-    public DashBoardClientView() {
+    public DashboardClientView() {
+        authController = new AuthController();
         initComponents();
-        
+
         VerCitasPanel p1 = new VerCitasPanel();
         p1.setSize(640, 400);
         p1.setLocation(0, 0);
-        
+
         Content.removeAll();
         Content.add(p1, BorderLayout.CENTER);
         Content.revalidate();
@@ -59,7 +64,14 @@ public class DashBoardClientView extends javax.swing.JFrame {
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Titulo.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
-        Titulo.setText("¡Bienvenido al Sistema, cliente!");
+
+        Person person = authController.getSession();
+        if (person != null) {
+            Titulo.setText("¡Bienvenido al Sistema, " + authController.getSession().getFullname() + "!");
+        } else {
+            Titulo.setText("¡Bienvenido al Sistema, cliente!");
+        }
+
         bg.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, -1));
 
         VerCitas.setBackground(new java.awt.Color(153, 204, 255));
@@ -120,12 +132,12 @@ public class DashBoardClientView extends javax.swing.JFrame {
         javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
         Content.setLayout(ContentLayout);
         ContentLayout.setHorizontalGroup(
-            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+                ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 640, Short.MAX_VALUE)
         );
         ContentLayout.setVerticalGroup(
-            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+                ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 400, Short.MAX_VALUE)
         );
 
         bg.add(Content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 640, 400));
@@ -135,12 +147,12 @@ public class DashBoardClientView extends javax.swing.JFrame {
         javax.swing.GroupLayout BarraSuperiorLayout = new javax.swing.GroupLayout(BarraSuperior);
         BarraSuperior.setLayout(BarraSuperiorLayout);
         BarraSuperiorLayout.setHorizontalGroup(
-            BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+                BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 800, Short.MAX_VALUE)
         );
         BarraSuperiorLayout.setVerticalGroup(
-            BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+                BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 40, Short.MAX_VALUE)
         );
 
         bg.add(BarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
@@ -150,64 +162,60 @@ public class DashBoardClientView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
     private void VerHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerHistorialActionPerformed
-        
+
         VerHistorialPanel p2 = new VerHistorialPanel();
         p2.setSize(640, 400);
         p2.setLocation(0, 0);
-        
+
         Content.removeAll();
         Content.add(p2, BorderLayout.CENTER);
         Content.revalidate();
         Content.repaint();
     }//GEN-LAST:event_VerHistorialActionPerformed
-    
+
     private void VerCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerCitasActionPerformed
-       
-        
+
         VerCitasPanel p1 = new VerCitasPanel();
-        p1.setSize(640,400);
+        p1.setSize(640, 400);
         p1.setLocation(0, 0);
-        
+
         Content.removeAll();
         Content.add(p1, BorderLayout.CENTER);
         Content.revalidate();
         Content.repaint();
     }//GEN-LAST:event_VerCitasActionPerformed
-    
+
     private void AgendarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgendarCitaActionPerformed
         AgendarCitaPanel p3 = new AgendarCitaPanel();
         p3.setSize(640, 400);
         p3.setLocation(0, 0);
-        
+
         Content.removeAll();
         Content.add(p3, BorderLayout.CENTER);
         Content.revalidate();
         Content.repaint();
     }//GEN-LAST:event_AgendarCitaActionPerformed
-    
+
     private void VerVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerVehiculoActionPerformed
         VerMisVehiculos p3 = new VerMisVehiculos();
         p3.setSize(640, 400);
         p3.setLocation(0, 0);
-        
+
         Content.removeAll();
         Content.add(p3, BorderLayout.CENTER);
         Content.revalidate();
         Content.repaint();
     }//GEN-LAST:event_VerVehiculoActionPerformed
-    
-    
+
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         int confirmacion = JOptionPane.showConfirmDialog(
-        this,
-        "¿Estas seguro que desea salir?",
-        "Confirmar salida",
-        JOptionPane.YES_NO_OPTION
+                this,
+                "¿Estas seguro que desea salir?",
+                "Confirmar salida",
+                JOptionPane.YES_NO_OPTION
         );
-        
+
         if (confirmacion == JOptionPane.YES_OPTION) {
             this.dispose();
             NavigationManager.showMainView();
@@ -221,7 +229,7 @@ public class DashBoardClientView extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -231,21 +239,23 @@ public class DashBoardClientView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashBoardClientView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardClientView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashBoardClientView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardClientView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashBoardClientView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardClientView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashBoardClientView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashboardClientView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DashBoardClientView().setVisible(true);
+                new DashboardClientView().setVisible(true);
             }
         });
     }
@@ -261,11 +271,9 @@ public class DashBoardClientView extends javax.swing.JFrame {
     private javax.swing.JButton VerVehiculo;
     private javax.swing.JPanel bg;
     // End of variables declaration//GEN-END:variables
-    
+
     public void close() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
-
-

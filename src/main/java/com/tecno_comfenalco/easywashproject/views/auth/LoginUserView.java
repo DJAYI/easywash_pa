@@ -5,6 +5,7 @@
 package com.tecno_comfenalco.easywashproject.views.auth;
 
 import com.tecno_comfenalco.easywashproject.controllers.AuthController;
+import com.tecno_comfenalco.easywashproject.views.admin.DashboardUserView;
 import java.awt.event.ActionEvent;
 
 /**
@@ -92,7 +93,7 @@ public class LoginUserView extends javax.swing.JFrame {
         loginButton.setText("Ingresar");
         loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        loginButton.addActionListener(this::loginButtonActionPerformed);
+        loginButton.addActionListener(e -> loginButtonActionPerformed(e));
 
         bg.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 383, 180, 50));
 
@@ -106,6 +107,17 @@ public class LoginUserView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loginButtonActionPerformed(ActionEvent ev) {
+        AuthController authController = new AuthController();
+        boolean authentication = authController.authenticateUser(IngresarUsuario.getText(), String.copyValueOf(IngresarContraseña.getPassword()));
+
+        if (authentication) {
+            this.setVisible(false);
+
+            new DashboardUserView().setVisible(true);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -141,11 +153,6 @@ public class LoginUserView extends javax.swing.JFrame {
                 new LoginUserView().setVisible(true);
             }
         });
-    }
-
-    private void loginButtonActionPerformed(ActionEvent ev) {
-        AuthController authController = new AuthController();
-        authController.authenticateUser(IngresarUsuario.getText(), String.copyValueOf(IngresarContraseña.getPassword()));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
