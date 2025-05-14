@@ -5,6 +5,7 @@
 package com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl;
 
 import com.google.gson.reflect.TypeToken;
+import com.tecno_comfenalco.easywashproject.models.Client;
 import com.tecno_comfenalco.easywashproject.models.Vehicle;
 import com.tecno_comfenalco.easywashproject.repository.VehicleRepository;
 import java.lang.reflect.Type;
@@ -25,11 +26,20 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     }
 
     @Override
-    public Vehicle create(Vehicle vehicle) {
+    public Vehicle createAndAssignToOwner(Vehicle vehicle, Long clientId) {
         try {
             List<Vehicle> list = jsonRepository.load();
             list.add(vehicle);
             jsonRepository.save(list);
+
+            ClientRepositoryImpl clientRepositoryImpl = new ClientRepositoryImpl();
+
+            Client client = clientRepositoryImpl.findById(clientId);
+            Client clientOwner = client;
+            clientOwner.setVehicle(vehicle);
+
+            clientRepositoryImpl.update(client, clientOwner);
+
             return vehicle;
 
         } catch (Exception e) {
@@ -110,6 +120,22 @@ public class VehicleRepositoryImpl implements VehicleRepository {
                     .orElse(null);
         } catch (Exception e) {
             System.out.println("No se ha podido encontrar el vehículo por id");
+            return null;
+        }
+    }
+
+    @Override
+    public Vehicle create(Vehicle vehicle) {
+        try {
+            List<Vehicle> list = jsonRepository.load();
+            list.add(vehicle);
+            jsonRepository.save(list);
+
+            return vehicle;
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido insertar el vehiculo al sistema");
+            System.out.println(e.getMessage());
             return null;
         }
     }

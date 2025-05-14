@@ -25,7 +25,8 @@ public interface VehicleRepository extends Repository<Vehicle, Vehicle> {
     @Override
     public Vehicle read(Vehicle k);
 
-    @Override
+    public Vehicle createAndAssignToOwner(Vehicle k, Long clientId);
+
     public Vehicle create(Vehicle k);
 
     @Override
