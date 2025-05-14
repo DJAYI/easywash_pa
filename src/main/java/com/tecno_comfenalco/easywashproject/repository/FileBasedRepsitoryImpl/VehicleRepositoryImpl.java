@@ -34,6 +34,7 @@ public class VehicleRepositoryImpl implements VehicleRepository {
 
         } catch (Exception e) {
             System.out.println("No se ha podido insertar el vehiculo al sistema");
+            System.out.println(e.getMessage());
             return null;
         }
     }
@@ -97,6 +98,19 @@ public class VehicleRepositoryImpl implements VehicleRepository {
         } catch (Exception e) {
             System.out.println("No se ha podido eliminar el vehiculo del sistema");
 
+        }
+    }
+
+    @Override
+    public Vehicle findById(Long id) {
+        try {
+            return jsonRepository.load().stream()
+                    .filter(v -> v.getId().equals(id))
+                    .findFirst()
+                    .orElse(null);
+        } catch (Exception e) {
+            System.out.println("No se ha podido encontrar el vehículo por id");
+            return null;
         }
     }
 

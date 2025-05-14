@@ -14,26 +14,27 @@ import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.Cl
  * @author danil
  */
 public class ClientController {
+
     private final ClientRepository clientRepository;
-    
+
     public ClientController() {
         this.clientRepository = new ClientRepositoryImpl();
     }
-    
+
     public boolean registerClient(String nombre, String tipoDoc, String documento, String telefono, String correo) {
         //Validacion basica de campos obligatorios
-        if (nombre == null || nombre.isEmpty() || documento == null || documento.isEmpty()){ 
+        if (nombre.isBlank() || documento.isBlank()) {
             System.err.println("Todos los campos son obligatorios.");
             return false;
         }
-        
+
         try {
             //Convertir String a EnumDocType
             EnumDocType docType = EnumDocType.fromDescripcion(tipoDoc.toUpperCase());
-            
-            //Crear nuevo cliente 
+
+            //Crear nuevo cliente
             Client newClient = new Client(null, nombre, docType, documento, telefono, correo);
-            
+
             //Guardar en el repositorio
             return clientRepository.create(newClient) != null;
         } catch (IllegalArgumentException e) {
@@ -44,7 +45,7 @@ public class ClientController {
             return false;
         }
     }
-    
+
     //Metodo adicional para buscar cliente por email
     public Client findClientByEmail(String email) {
         if (email == null || email.isEmpty()) {

@@ -1,5 +1,11 @@
 package com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl;
 
+import java.lang.reflect.Type;
+import java.time.Duration;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -10,20 +16,33 @@ import com.google.gson.reflect.TypeToken;
 import com.tecno_comfenalco.easywashproject.models.Service;
 import com.tecno_comfenalco.easywashproject.records.TypeAdapterConfig;
 import com.tecno_comfenalco.easywashproject.repository.ServiceRepository;
-import java.lang.reflect.Type;
-import java.time.Duration;
-import java.util.List;
 
 public class ServiceRepositoryImpl implements ServiceRepository {
 
     private final JsonFileRepository<Service> jsonRepository;
 
     public ServiceRepositoryImpl() {
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         // Lista de adaptadores
         List<TypeAdapterConfig<?>> adapters = List.of(
-                new TypeAdapterConfig<>(Duration.class, (JsonDeserializer<Duration>) (JsonElement json, Type typeOfT, JsonDeserializationContext context) -> Duration.parse(json.getAsString())),
-                new TypeAdapterConfig<>(Duration.class, (JsonSerializer<Duration>) (Duration src, Type typeOfSrc, JsonSerializationContext context) -> new JsonPrimitive(src.toString()))
-        );
+                new TypeAdapterConfig<>(Duration.class,
+                        (JsonDeserializer<Duration>) (JsonElement json, Type typeOfT,
+                                JsonDeserializationContext context) -> {
+                            String timeStr = json.getAsString();
+                            LocalTime lt = LocalTime.parse(timeStr, timeFormatter);
+                            return Duration.ofHours(lt.getHour()).plusMinutes(lt.getMinute())
+                                    .plusSeconds(lt.getSecond());
+                        }),
+                new TypeAdapterConfig<>(Duration.class, (JsonSerializer<Duration>) (Duration src, Type typeOfSrc,
+                        JsonSerializationContext context) -> {
+                    long seconds = src.getSeconds();
+                    long absSeconds = Math.abs(seconds);
+                    String formatted = String.format("%02d:%02d:%02d",
+                            absSeconds / 3600,
+                            (absSeconds % 3600) / 60,
+                            absSeconds % 60);
+                    return new JsonPrimitive(formatted);
+                }));
 
         // Define el tipo de la lista de servicios
         Type listType = new TypeToken<List<Service>>() {
@@ -99,6 +118,19 @@ public class ServiceRepositoryImpl implements ServiceRepository {
 
         } catch (Exception e) {
             System.out.println("No se ha podido eliminar al servicio");
+        }
+    }
+
+    @Override
+    public Service findById(Long id) {
+        try {
+            return jsonRepository.load().stream()
+                    .filter(s -> s.getId().equals(id))
+                    .findFirst()
+                    .orElse(null);
+        } catch (Exception e) {
+            System.out.println("No se ha podido encontrar el servicio por id");
+            return null;
         }
     }
 }

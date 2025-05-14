@@ -9,12 +9,22 @@ package com.tecno_comfenalco.easywashproject.models;
  * @author danil
  */
 public class VehicleBrand {
+
+    private Long id;
     private String name;
     private String description;
 
     public VehicleBrand(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -32,6 +42,5 @@ public class VehicleBrand {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    
+
 }

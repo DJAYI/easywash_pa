@@ -4,6 +4,13 @@
  */
 package com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl;
 
+import java.lang.reflect.Type;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -15,15 +22,7 @@ import com.tecno_comfenalco.easywashproject.models.Appointment;
 import com.tecno_comfenalco.easywashproject.models.Employee;
 import com.tecno_comfenalco.easywashproject.records.TypeAdapterConfig;
 import com.tecno_comfenalco.easywashproject.repository.AppointmentRepository;
-import java.lang.reflect.Type;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 
-/**
- *
- * @author danil
- */
 public class AppointmentRepositoryImpl implements AppointmentRepository {
 
     private final JsonFileRepository<Appointment> jsonFileRepository;
@@ -32,12 +31,44 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
         Type listType = new TypeToken<List<Employee>>() {
         }.getType();
 
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+        // Custom TypeAdapter for Duration
+        JsonSerializer<Duration> durationSerializer = (src, typeOfSrc, context) -> new JsonPrimitive(src.toString());
+        JsonDeserializer<Duration> durationDeserializer = (json, typeOfT, context) -> Duration
+                .parse(json.getAsString());
+
         List<TypeAdapterConfig<?>> adapters = List.of(
-                new TypeAdapterConfig<>(LocalTime.class, (JsonDeserializer<LocalTime>) (JsonElement json, Type typeOfT, JsonDeserializationContext context) -> LocalTime.parse(json.getAsString())),
-                new TypeAdapterConfig<>(LocalTime.class, (JsonSerializer<LocalTime>) (LocalTime src, Type typeOfSrc, JsonSerializationContext context) -> new JsonPrimitive(src.toString())),
-                new TypeAdapterConfig<>(LocalDate.class, (JsonDeserializer<LocalDate>) (JsonElement json, Type typeOfT, JsonDeserializationContext context) -> LocalDate.parse(json.getAsString())),
-                new TypeAdapterConfig<>(LocalDate.class, (JsonSerializer<LocalDate>) (LocalDate src, Type typeOfSrc, JsonSerializationContext context) -> new JsonPrimitive(src.toString()))
-        );
+                new TypeAdapterConfig<>(LocalTime.class,
+                        (JsonDeserializer<LocalTime>) (JsonElement json, Type typeOfT,
+                                JsonDeserializationContext context) -> LocalTime.parse(json.getAsString(),
+                                        timeFormatter)),
+                new TypeAdapterConfig<>(LocalTime.class,
+                        (JsonSerializer<LocalTime>) (LocalTime src, Type typeOfSrc,
+                                JsonSerializationContext context) -> new JsonPrimitive(src.format(timeFormatter))),
+                new TypeAdapterConfig<>(LocalDate.class,
+                        (JsonDeserializer<LocalDate>) (JsonElement json, Type typeOfT,
+                                JsonDeserializationContext context) -> LocalDate.parse(json.getAsString(),
+                                        dateFormatter)),
+                new TypeAdapterConfig<>(LocalDate.class, (JsonSerializer<LocalDate>) (LocalDate src, Type typeOfSrc,
+                        JsonSerializationContext context) -> new JsonPrimitive(src.format(dateFormatter))),
+                // Register Duration adapters
+                new TypeAdapterConfig<>(Duration.class, durationSerializer),
+                new TypeAdapterConfig<>(Duration.class, durationDeserializer),
+                // Employee adapters (serialize as ID, deserialize by ID)
+                new TypeAdapterConfig<>(Employee.class,
+                        (JsonSerializer<Employee>) (Employee src, Type typeOfSrc,
+                                JsonSerializationContext context) -> new JsonPrimitive(src.getId())),
+                new TypeAdapterConfig<>(Employee.class,
+                        (JsonDeserializer<Employee>) (JsonElement json, Type typeOfT,
+                                JsonDeserializationContext context) -> {
+                            Long id = json.getAsLong();
+                            // Implementa aquí la lógica para obtener el empleado por ID.
+                            // Por ejemplo, podrías tener un método estático EmployeeRepository.findById(id)
+                            // Aquí se deja como ejemplo:
+                            return new EmployeeRepositoryImpl().findById(id);
+                        }));
 
         this.jsonFileRepository = new JsonFileRepository<Appointment>("appointments.json", listType, adapters);
 
@@ -110,6 +141,20 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
 
         } catch (Exception e) {
             System.out.println("No se ha podido crear la cita");
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Appointment findById(Long id) {
+        try {
+            return jsonFileRepository.load().stream()
+                    .filter(a -> a.getId().equals(id))
+                    .findFirst()
+                    .orElse(null);
+        } catch (Exception e) {
+            System.out.println("No se ha podido encontrar la cita por id");
             return null;
         }
     }

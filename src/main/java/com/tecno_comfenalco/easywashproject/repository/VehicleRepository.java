@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author danil
  */
-public interface VehicleRepository extends Repository<Vehicle, Vehicle>{
+public interface VehicleRepository extends Repository<Vehicle, Vehicle> {
 
     @Override
     public Vehicle update(Vehicle k, Vehicle j);
@@ -27,5 +27,8 @@ public interface VehicleRepository extends Repository<Vehicle, Vehicle>{
 
     @Override
     public Vehicle create(Vehicle k);
-    
+
+    @Override
+    public Vehicle findById(Long id);
+
 }

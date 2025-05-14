@@ -16,6 +16,7 @@ import com.tecno_comfenalco.easywashproject.records.TypeAdapterConfig;
 import com.tecno_comfenalco.easywashproject.repository.EmployeeRepository;
 import java.lang.reflect.Type;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -30,10 +31,15 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         Type listType = new TypeToken<List<Employee>>() {
         }.getType();
 
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
         List<TypeAdapterConfig<?>> adapters = List.of(
-                new TypeAdapterConfig<>(LocalTime.class, (JsonDeserializer<LocalTime>) (JsonElement json, Type typeOfT, JsonDeserializationContext context) -> LocalTime.parse(json.getAsString())),
-                new TypeAdapterConfig<>(LocalTime.class, (JsonSerializer<LocalTime>) (LocalTime src, Type typeOfSrc, JsonSerializationContext context) -> new JsonPrimitive(src.toString()))
-        );
+                new TypeAdapterConfig<>(LocalTime.class,
+                        (JsonDeserializer<LocalTime>) (JsonElement json, Type typeOfT,
+                                JsonDeserializationContext context) -> LocalTime.parse(json.getAsString(),
+                                        timeFormatter)),
+                new TypeAdapterConfig<>(LocalTime.class, (JsonSerializer<LocalTime>) (LocalTime src, Type typeOfSrc,
+                        JsonSerializationContext context) -> new JsonPrimitive(src.format(timeFormatter))));
 
         this.jsonFileRepository = new JsonFileRepository<Employee>("employees.json", listType, adapters);
     }
@@ -106,6 +112,19 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
         } catch (Exception e) {
             System.out.println("No se ha podido modificar la información del empleado solicitado");
+            return null;
+        }
+    }
+
+    @Override
+    public Employee findById(Long id) {
+        try {
+            return jsonFileRepository.load().stream()
+                    .filter(e -> e.getId().equals(id))
+                    .findFirst()
+                    .orElse(null);
+        } catch (Exception e) {
+            System.out.println("No se ha podido encontrar el empleado por id");
             return null;
         }
     }

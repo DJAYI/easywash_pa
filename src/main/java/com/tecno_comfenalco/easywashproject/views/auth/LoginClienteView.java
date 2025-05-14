@@ -4,6 +4,9 @@
  */
 package com.tecno_comfenalco.easywashproject.views.auth;
 
+import com.tecno_comfenalco.easywashproject.controllers.AuthController;
+import com.tecno_comfenalco.easywashproject.views.clients.DashboardClientView;
+import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -109,6 +112,9 @@ public class LoginClienteView extends javax.swing.JFrame {
         btnIngresar.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         btnIngresar.setText("Ingresar");
         btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        btnIngresar.addActionListener(e -> btnIngresarActionPerformed(e));
+
         bg.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 160, 50));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/EasyWash_transparente_v2.png"))); // NOI18N
@@ -121,10 +127,6 @@ public class LoginClienteView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,6 +174,16 @@ public class LoginClienteView extends javax.swing.JFrame {
 
     public void ShowError(String por_favor_complete_todos_los_campos) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void btnIngresarActionPerformed(ActionEvent evt) {
+        AuthController authController = new AuthController();
+        boolean authentication = authController.authenticateClient(txtEmail.getText(), txtDocumento.getText());
+
+        if (authentication) {
+            this.setVisible(false);
+            new DashboardClientView(authController.getSession()).setVisible(true);
+        }
     }
 
     public void close() {
