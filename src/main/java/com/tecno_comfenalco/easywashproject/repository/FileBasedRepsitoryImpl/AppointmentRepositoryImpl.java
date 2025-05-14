@@ -4,6 +4,13 @@
  */
 package com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl;
 
+import java.lang.reflect.Type;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -15,12 +22,6 @@ import com.tecno_comfenalco.easywashproject.models.Appointment;
 import com.tecno_comfenalco.easywashproject.models.Employee;
 import com.tecno_comfenalco.easywashproject.records.TypeAdapterConfig;
 import com.tecno_comfenalco.easywashproject.repository.AppointmentRepository;
-import java.lang.reflect.Type;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.time.Duration;
 
 public class AppointmentRepositoryImpl implements AppointmentRepository {
 
@@ -54,7 +55,20 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
                         JsonSerializationContext context) -> new JsonPrimitive(src.format(dateFormatter))),
                 // Register Duration adapters
                 new TypeAdapterConfig<>(Duration.class, durationSerializer),
-                new TypeAdapterConfig<>(Duration.class, durationDeserializer));
+                new TypeAdapterConfig<>(Duration.class, durationDeserializer),
+                // Employee adapters (serialize as ID, deserialize by ID)
+                new TypeAdapterConfig<>(Employee.class,
+                        (JsonSerializer<Employee>) (Employee src, Type typeOfSrc,
+                                JsonSerializationContext context) -> new JsonPrimitive(src.getId())),
+                new TypeAdapterConfig<>(Employee.class,
+                        (JsonDeserializer<Employee>) (JsonElement json, Type typeOfT,
+                                JsonDeserializationContext context) -> {
+                            Long id = json.getAsLong();
+                            // Implementa aquí la lógica para obtener el empleado por ID.
+                            // Por ejemplo, podrías tener un método estático EmployeeRepository.findById(id)
+                            // Aquí se deja como ejemplo:
+                            return new EmployeeRepositoryImpl().findById(id);
+                        }));
 
         this.jsonFileRepository = new JsonFileRepository<Appointment>("appointments.json", listType, adapters);
 
