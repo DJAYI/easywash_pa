@@ -23,7 +23,7 @@ public class Vehicle {
     // Atributos del vehículo
     private Long id; // Identificador único
     private String model; // Modelo del vehículo
-    private VehicleBrand brand; // Marca del vehículo
+    private String brand; // Marca del vehículo
     private String plate; // Placa del vehículo
     private String color; // Color del vehículo
     private EnumVehicleType type; // Tipo de vehículo (enum)
@@ -38,7 +38,7 @@ public class Vehicle {
      * @param color Color del vehículo
      * @param type  Tipo de vehículo
      */
-    public Vehicle(String model, VehicleBrand brand, String plate, String color, EnumVehicleType type) {
+    public Vehicle(String model, String brand, String plate, String color, EnumVehicleType type) {
         // Obtengo la lista de vehículos existentes
         List<Vehicle> vehicleList = vehicleRepositoryImpl.readAll();
         // Si la lista está vacía, asigno el ID 1. Si no, sumo 1 al último ID.
@@ -73,12 +73,12 @@ public class Vehicle {
     }
 
     // Getter para la marca
-    public VehicleBrand getBrand() {
+    public String getBrand() {
         return brand;
     }
 
     // Setter para la marca
-    public void setBrand(VehicleBrand brand) {
+    public void setBrand(String brand) {
         this.brand = brand;
     }
 

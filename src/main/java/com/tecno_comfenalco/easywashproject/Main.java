@@ -33,14 +33,12 @@ import com.tecno_comfenalco.easywashproject.views.layouts.VistaPrincipal;
 public class Main {
 
         public static void main(String[] args) {
-                // Crear y guardar una marca de vehículo solo si no existe
-                VehicleBrand brand = new VehicleBrand("Mazda", "Marca japonesa");
 
                 // Crear y guardar un vehículo solo si no existe
                 VehicleRepositoryImpl vehicleRepo = new VehicleRepositoryImpl();
                 Vehicle vehicle = vehicleRepo.findById(1L);
                 if (vehicle == null) {
-                        vehicle = new Vehicle("3", brand, "ABC123", "Rojo", EnumVehicleType.CARRO);
+                        vehicle = new Vehicle("3", "Mazda", "ABC123", "Rojo", EnumVehicleType.CARRO);
                         vehicleRepo.create(vehicle);
                 }
 
