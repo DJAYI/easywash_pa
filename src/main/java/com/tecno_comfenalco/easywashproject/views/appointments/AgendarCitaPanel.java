@@ -8,7 +8,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Collections;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
@@ -111,17 +110,24 @@ public class AgendarCitaPanel extends javax.swing.JPanel {
             return;
         }
 
-        // Agendar la cita
-        Service selectedService = allServices.get(selectedServiceIdx);
-        var appointment = appointmentController.bookAppointment(date, time, Collections.singletonList(selectedService),
-                client);
+        // Agendar la cita con múltiples servicios
+        int[] selectedServiceIndices = comboServices.getSelectedIndices();
+        if (selectedServiceIndices.length == 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione al menos un servicio.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        List<Service> selectedServices = new java.util.ArrayList<>();
+        for (int idx : selectedServiceIndices) {
+            selectedServices.add(allServices.get(idx));
+        }
+        var appointment = appointmentController.bookAppointment(date, time, selectedServices, client);
 
         if (appointment != null) {
             JOptionPane.showMessageDialog(this, "Cita agendada exitosamente.", "Éxito",
-                    JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "No fue posible agendar la cita. Verifique disponibilidad.", "Error",
-                    JOptionPane.ERROR_MESSAGE);
+                JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -166,10 +172,11 @@ public class AgendarCitaPanel extends javax.swing.JPanel {
 
         comboServices.setFont(new Font("Roboto", 0, 14));
         comboServices.setModel(new DefaultComboBoxModel<>(
-                allServices.stream()
-                        .map(Service::getName)
-                        .toArray(String[]::new)));
-        bg.add(comboServices, new AbsoluteConstraints(90, 210, 220, 40));
+            allServices.stream()
+                .map(Service::getName)
+                .toArray(String[]::new)));
+        comboServices.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        bg.add(comboServices, new AbsoluteConstraints(90, 210, 220, 80));
 
         labelChooseDate.setFont(new Font("Roboto Black", 0, 18));
         labelChooseDate.setText("Fecha & Hora");

@@ -28,7 +28,16 @@ public class EmployeeController {
      * @return Empleado creado o null si falla.
      */
     public Employee createEmployee(Employee employee) {
-        return employeeRepository.create(employee);
+        try {
+            Employee created = employeeRepository.create(employee);
+            javax.swing.JOptionPane.showMessageDialog(null, "Empleado creado exitosamente.", "Éxito",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            return created;
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al crear empleado: " + e.getMessage(), "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
     }
 
     /**
@@ -38,7 +47,21 @@ public class EmployeeController {
      * @return Empleado encontrado o null.
      */
     public Employee findById(Long id) {
-        return employeeRepository.findById(id);
+        try {
+            Employee found = employeeRepository.findById(id);
+            if (found != null) {
+                javax.swing.JOptionPane.showMessageDialog(null, "Empleado encontrado exitosamente.", "Éxito",
+                        javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(null, "Empleado no encontrado.", "Información",
+                        javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
+            return found;
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al buscar empleado: " + e.getMessage(), "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
     }
 
     /**
@@ -47,7 +70,16 @@ public class EmployeeController {
      * @return Lista de empleados.
      */
     public List<Employee> getAllEmployees() {
-        return employeeRepository.readAll();
+        try {
+            List<Employee> employees = employeeRepository.readAll();
+            javax.swing.JOptionPane.showMessageDialog(null, "Empleados obtenidos exitosamente.", "Éxito",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            return employees;
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Error al obtener empleados: " + e.getMessage(), "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+            return java.util.Collections.emptyList();
+        }
     }
 
     // Otros métodos: eliminar, actualizar, buscar por documento, etc.
