@@ -122,7 +122,7 @@ public class CreateNewEmployeedAdministrador extends javax.swing.JFrame {
         bg.add(textFieldPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 220, 40));
 
         comboBoxDocumentType.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        comboBoxDocumentType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula de Ciudadanía",
+        comboBoxDocumentType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula de Ciudadania",
                 "Tarjeta de Identidad", "Cedula Extranjeria", "Pasaporte", "Permiso Provisional de permanencia" }));
         bg.add(comboBoxDocumentType, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 132, 220, 40));
 
