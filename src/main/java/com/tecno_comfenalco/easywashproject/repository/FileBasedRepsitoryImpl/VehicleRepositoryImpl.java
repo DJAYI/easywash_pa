@@ -31,7 +31,7 @@ public class VehicleRepositoryImpl implements VehicleRepository {
             ClientRepositoryImpl clientRepositoryImpl = new ClientRepositoryImpl();
 
             Client client = clientRepositoryImpl.findById(clientId);
-            System.out.println("Cliente encontrado Repositorio: " + client);
+            System.out.println("Cliente encontrado Repositorio: " + client.getId());
 
             if (client == null) {
                 System.out.println("No se encontró el cliente con ID: " + clientId);
@@ -47,8 +47,16 @@ public class VehicleRepositoryImpl implements VehicleRepository {
             client.setVehicles(vehicles);
 
             // Actualiza el cliente en el repositorio
-            clientRepositoryImpl.update(client, client);
+            clientRepositoryImpl.update(clientRepositoryImpl.findById(clientId), client);
 
+            // Guarda el vehículo en el repositorio
+            List<Vehicle> existingVehicles = jsonFileRepository.load();
+            if (existingVehicles == null) {
+                existingVehicles = new java.util.ArrayList<>();
+            }
+            existingVehicles.add(vehicle);
+            jsonFileRepository.save(existingVehicles);
+            System.out.println("Vehículo asignado al cliente y guardado correctamente.");
             return vehicle;
 
         } catch (Exception e) {

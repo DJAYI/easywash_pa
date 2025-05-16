@@ -6,14 +6,16 @@ package com.tecno_comfenalco.easywashproject.views.vehicles;
 
 import java.util.List;
 
+import com.tecno_comfenalco.easywashproject.controllers.AuthController;
 import com.tecno_comfenalco.easywashproject.models.Vehicle;
-import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.VehicleRepositoryImpl;
+import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ClientRepositoryImpl;
 
 /**
  *
  * @author jacob
  */
 public class VerMisVehiculos extends javax.swing.JPanel {
+    private final AuthController authController = AuthController.getInstance();
 
     /**
      * Creates new form VerMisVehiculos1
@@ -49,7 +51,8 @@ public class VerMisVehiculos extends javax.swing.JPanel {
         bg.add(labelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
 
         // 1. Se llama a la lista de servicio directamente del archivo JSON
-        List<Vehicle> vehicles = new VehicleRepositoryImpl().readAll();
+        List<Vehicle> vehicles = new ClientRepositoryImpl().findByDocumentNumber(authController.getSession())
+                .getVehicles();
         // 2. Se inicializan las columnas y filas que se van a utilizar
         Object[][] data = new Object[vehicles.size()][4];
 

@@ -36,6 +36,8 @@ public class ClientRepositoryImpl implements ClientRepository {
             for (int i = 0; i < clients.size(); i++) {
                 if (k.getDocumentNumber().equals(clients.get(i).getDocumentNumber())) {
                     clients.set(i, j);
+                    jsonFileRepository.save(clients);
+                    System.out.println("Cliente actualizado correctamente");
                     return j;
                 }
             }
