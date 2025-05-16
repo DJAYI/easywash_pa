@@ -65,6 +65,12 @@ public class VerCitasAdministradorPanel extends javax.swing.JPanel {
             return;
         } 
         
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de cambiar el estado a " + nuevoEstado + "?", "Confirmar cambio de estado", JOptionPane.YES_NO_OPTION);
+        
+        if (confirmacion != JOptionPane.YES_OPTION){
+            return;
+        }
+        
         //Tomar la informacion basica de la fila seleccionada
         String fecha = dtm.getValueAt(filaSeleccionada, 4).toString();
         String hora = dtm.getValueAt(filaSeleccionada, 5).toString();
