@@ -82,6 +82,7 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
             for (int i = 0; i < appointments.size(); i++) {
                 if (appointments.get(i).equals(k)) {
                     appointments.set(i, j);
+                    jsonFileRepository.save(appointments);
                     return j;
                 }
             }
@@ -182,6 +183,27 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
         } catch (Exception e) {
             System.out.println("No se ha podido encontrar la cita por id");
             System.out.println(e.getMessage());
+            return null;
+        }
+    }
+    
+    public Appointment update(Appointment updateAppointment) {
+        try {
+            List<Appointment> appointments = jsonFileRepository.load();
+            
+            for (int i = 0; i < appointments.size(); i++) {
+                if (appointments.get(i).getId().equals(updateAppointment.getId())) {
+                    appointments.set(i, updateAppointment);
+                    jsonFileRepository.save(appointments);
+                    return updateAppointment;
+                }
+            }
+            
+            return null; // No se encontro la cita
+            
+        } catch (Exception e) {
+            System.out.println("No se ha podido modificar la cita");
+            e.printStackTrace();
             return null;
         }
     }

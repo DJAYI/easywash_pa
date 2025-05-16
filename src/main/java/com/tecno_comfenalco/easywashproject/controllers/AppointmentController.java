@@ -23,6 +23,7 @@ import com.tecno_comfenalco.easywashproject.services.AppointmentBookingService;
 public class AppointmentController {
     private final AppointmentBookingService bookingService;
     private final AppointmentRepositoryImpl appointmentRepository;
+    private AppointmentRepositoryImpl repo = new AppointmentRepositoryImpl();
 
     /**
      * Constructor que recibe la lista de empleados y crea los servicios necesarios.
@@ -74,4 +75,8 @@ public class AppointmentController {
 
     // Puedes agregar más métodos según las necesidades del sistema (cancelar cita,
     // actualizar, etc.)
+    
+    public void updateAppointment(Appointment appointment) {
+        repo.update(appointment);
+    }
 }
