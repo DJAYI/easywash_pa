@@ -71,7 +71,8 @@ public class VerHistorialPanel extends javax.swing.JPanel {
                         || appointment.getEmployee() == null)
                     continue;
 
-                if (appointment.getClient().getDocumentNumber().equals(client.getDocumentNumber())) {
+                if (appointment.getClient().getDocumentNumber().equals(client.getDocumentNumber())
+                        && appointment.getStatus().toString().equals("COTIZADO")) {
                     for (Service service : appointment.getService()) {
                         dtm.addRow(new Object[] {
                                 service.getName(), service.getPrice(), appointment.getEmployee().getFullname(),
@@ -106,7 +107,7 @@ public class VerHistorialPanel extends javax.swing.JPanel {
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
-        jLabel1.setText("Ver Historial");
+        jLabel1.setText("Ver Historial de citas cotizadas");
         bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
