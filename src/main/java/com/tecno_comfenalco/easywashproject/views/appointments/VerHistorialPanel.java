@@ -4,18 +4,43 @@
  */
 package com.tecno_comfenalco.easywashproject.views.appointments;
 
+import com.tecno_comfenalco.easywashproject.models.Appointment;
+import com.tecno_comfenalco.easywashproject.models.Service;
+import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.AppointmentRepositoryImpl;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jacob
  */
 public class VerHistorialPanel extends javax.swing.JPanel {
+    private DefaultTableModel dtm = new DefaultTableModel();
 
     /**
      * Creates new form VerHistorialPanel1
      */
     public VerHistorialPanel() {
         initComponents();
+        String[] titulo = new String[]{"Tipo de servicio", "Precio", "Trabajador", "Fecha", "Hora"};
+        dtm.setColumnIdentifiers(titulo);
+        
+        AppointmentRepositoryImpl repo = new AppointmentRepositoryImpl();
+        List<Appointment> appointments = repo.readAll();
+        
+        for (Appointment appointment : appointments) {
+            if (appointment.getService() == null || appointment.getEmployee()== null) continue;
+        
+            for (Service service : appointment.getService()) {
+                dtm.addRow(new Object[]{
+                    service.getName(), service.getPrice(), appointment.getEmployee().getFullname(),appointment.getDate(), appointment.getStartTime()
+            });
+        }
     }
+        
+        jTable1.setModel(dtm);
+        
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
