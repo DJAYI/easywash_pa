@@ -145,4 +145,27 @@ public class UserRepositoryImpl implements UserRepository {
             return null;
         }
     }
+
+    /**
+     * Busca un usuario por número de documento.
+     *
+     * @param documentNumber Número de documento a buscar.
+     * @return Usuario encontrado o null si no existe.
+     */
+    public User findByDocumentNumber(String documentNumber) {
+        try {
+            List<User> users = readAll();
+            if (users == null || users.isEmpty()) {
+                return null;
+            }
+            return users.stream()
+                    .filter(u -> u.getDocumentNumber().equals(documentNumber))
+                    .findFirst()
+                    .orElse(null);
+        } catch (Exception e) {
+            System.out.println("No se ha podido encontrar el usuario por documento");
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }

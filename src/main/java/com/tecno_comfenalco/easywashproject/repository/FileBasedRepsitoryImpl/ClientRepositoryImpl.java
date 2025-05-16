@@ -141,4 +141,27 @@ public class ClientRepositoryImpl implements ClientRepository {
             return null;
         }
     }
+
+    /**
+     * Busca un cliente por número de documento.
+     *
+     * @param documentNumber Número de documento a buscar.
+     * @return Cliente encontrado o null si no existe.
+     */
+    public Client findByDocumentNumber(String documentNumber) {
+        try {
+            List<Client> clients = readAll();
+            if (clients == null || clients.isEmpty()) {
+                return null;
+            }
+            return clients.stream()
+                    .filter(c -> c.getDocumentNumber().equals(documentNumber))
+                    .findFirst()
+                    .orElse(null);
+        } catch (Exception e) {
+            System.out.println("No se ha podido encontrar el cliente por documento");
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }

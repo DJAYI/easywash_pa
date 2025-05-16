@@ -4,9 +4,11 @@
  */
 package com.tecno_comfenalco.easywashproject.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.tecno_comfenalco.easywashproject.enums.EnumDocType;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ClientRepositoryImpl;
-import java.util.List;
 
 /**
  *
@@ -19,14 +21,16 @@ public class Client extends Person {
 
     // Atributos
     private Long id;
-    private Vehicle vehicle;
+    private List<Vehicle> vehicles;
 
     // Constructor
-    public Client(Vehicle vehicle, String fullname, EnumDocType documentType, String documentNumber, String phoneNumber,
+    public Client(List<Vehicle> vehicles, String fullname, EnumDocType documentType, String documentNumber,
+            String phoneNumber,
             String emailAddress) {
 
         // Constructor de la clase Abstracta
         super(fullname, documentType, documentNumber, phoneNumber, emailAddress);
+        this.vehicles = (vehicles != null) ? vehicles : new ArrayList<>();
 
         // Obtengo el ID del cliente y lo asigno
         List<Client> clientList = clientRepositoryImpl.readAll();
@@ -35,16 +39,23 @@ public class Client extends Person {
         } else {
             this.id = clientList.get(clientList.size() - 1).getId() + 1;
         }
-
-        this.vehicle = vehicle;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
+    // Constructor de conveniencia para un solo vehículo
+    public Client(Vehicle vehicle, String fullname, EnumDocType documentType, String documentNumber, String phoneNumber,
+            String emailAddress) {
+        this(new ArrayList<>(List.of(vehicle)), fullname, documentType, documentNumber, phoneNumber, emailAddress);
     }
 
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public List<Vehicle> getVehicles() {
+        if (vehicles == null) {
+            vehicles = new ArrayList<>();
+        }
+        return vehicles;
+    }
+
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 
     public Long getId() {
@@ -53,6 +64,20 @@ public class Client extends Person {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    // Método para agregar un vehículo al cliente
+    public void addVehicle(Vehicle vehicle) {
+        getVehicles().add(vehicle);
+    }
+
+    @Override
+    public String toString() {
+        return "Client [clientRepositoryImpl=" + clientRepositoryImpl + ", id=" + id + ", vehicles=" + vehicles
+                + ", getFullname()=" + getFullname() + ", getDocumentType()=" + getDocumentType()
+                + ", getDocumentNumber()=" + getDocumentNumber() + ", getClass()=" + getClass() + ", getPhoneNumber()="
+                + getPhoneNumber() + ", getMailAddress()=" + getMailAddress() + ", getVehicles()=" + getVehicles()
+                + ", getId()=" + getId() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
     }
 
 }

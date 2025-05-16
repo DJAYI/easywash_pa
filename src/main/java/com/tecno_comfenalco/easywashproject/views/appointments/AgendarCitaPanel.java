@@ -39,21 +39,44 @@ public class AgendarCitaPanel extends javax.swing.JPanel {
 
     private final AppointmentController appointmentController;
     private final List<Service> allServices;
-    private final List<Vehicle> allVehicles;
-    private final List<Client> allClients;
+    private List<Vehicle> clientVehicles;
+    private final Client sessionClient;
+    private final VehicleRepositoryImpl vehicleRepository = new VehicleRepositoryImpl();
 
-    public AgendarCitaPanel() {
-        // Inicializa datos y controlador
+    /**
+     * Recibe el número de documento del cliente autenticado,
+     * busca el cliente y carga solo sus vehículos en el combo box.
+     */
+    public AgendarCitaPanel(String documentNumber) {
         allServices = new ServiceRepositoryImpl().readAll();
-        allVehicles = new VehicleRepositoryImpl().readAll();
-        allClients = new ClientRepositoryImpl().readAll();
-        // Puedes pasar la lista de empleados reales aquí
         appointmentController = new AppointmentController(
                 new com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.EmployeeRepositoryImpl()
                         .readAll());
+
+        // Buscar el cliente por número de documento
+        ClientRepositoryImpl clientRepo = new ClientRepositoryImpl();
+        Client foundClient = clientRepo.findByDocumentNumber(documentNumber);
+        this.sessionClient = foundClient;
+
+        // Cargar solo los vehículos del cliente autenticado
+        if (foundClient != null && foundClient.getVehicles() != null) {
+            clientVehicles = foundClient.getVehicles();
+        } else {
+            clientVehicles = new java.util.ArrayList<>();
+        }
+
         initComponents();
         customizeUI();
         addListeners();
+        loadClientVehicles();
+    }
+
+    private void loadClientVehicles() {
+        // Actualiza el combo de vehículos solo con los del cliente autenticado
+        comboVehicles.setModel(new DefaultComboBoxModel<>(
+                clientVehicles.stream()
+                        .map(Vehicle::getPlate)
+                        .toArray(String[]::new)));
     }
 
     private void customizeUI() {
@@ -74,14 +97,13 @@ public class AgendarCitaPanel extends javax.swing.JPanel {
     }
 
     private void onCreateAppointment() {
-        // Validaciones
-        int selectedServiceIdx = comboServices.getSelectedIndex();
+        int[] selectedServiceIndices = comboServices.getSelectedIndices();
         int selectedVehicleIdx = comboVehicles.getSelectedIndex();
         LocalDate date = dateField.getDatePicker().getDate();
         LocalTime time = timePickerField.getTime();
 
-        if (selectedServiceIdx == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione un servicio.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (selectedServiceIndices.length == 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione al menos un servicio.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (selectedVehicleIdx == -1) {
@@ -97,37 +119,53 @@ public class AgendarCitaPanel extends javax.swing.JPanel {
             return;
         }
 
-        // Buscar el cliente por vehículo seleccionado
-        String selectedPlate = allVehicles.get(selectedVehicleIdx).getPlate();
-        Client client = allClients.stream()
-                .filter(c -> c.getVehicle().getPlate().equals(selectedPlate))
-                .findFirst()
-                .orElse(null);
-
-        if (client == null) {
-            JOptionPane.showMessageDialog(this, "No se encontró el cliente para el vehículo seleccionado.", "Error",
+        if (sessionClient == null) {
+            JOptionPane.showMessageDialog(this, "Debe iniciar sesión como cliente para agendar una cita.", "Error",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Agendar la cita con múltiples servicios
-        int[] selectedServiceIndices = comboServices.getSelectedIndices();
-        if (selectedServiceIndices.length == 0) {
-            JOptionPane.showMessageDialog(this, "Seleccione al menos un servicio.", "Error", JOptionPane.ERROR_MESSAGE);
+        // Obtener el vehículo seleccionado (por placa)
+        String selectedPlate = (String) comboVehicles.getSelectedItem();
+        Vehicle selectedVehicle = vehicleRepository.readAll().stream()
+                .filter(v -> v.getPlate().equals(selectedPlate))
+                .findFirst()
+                .orElse(null);
+
+        if (selectedVehicle == null) {
+            JOptionPane.showMessageDialog(this, "No se encontró el vehículo seleccionado.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
+
+        // Obtener los servicios seleccionados
         List<Service> selectedServices = new java.util.ArrayList<>();
         for (int idx : selectedServiceIndices) {
             selectedServices.add(allServices.get(idx));
         }
-        var appointment = appointmentController.bookAppointment(date, time, selectedServices, client);
 
-        if (appointment != null) {
+        // Crear la cita incluyendo el vehículo
+        var appointment = new com.tecno_comfenalco.easywashproject.models.Appointment(
+                selectedServices,
+                sessionClient,
+                null, // El empleado se asigna en el servicio
+                null, // El estado se asigna en el servicio
+                date,
+                time,
+                selectedVehicle);
+
+        // Usar el controlador para guardar la cita (esto asignará empleado y estado)
+        var created = appointmentController.bookAppointment(date, time, selectedServices, sessionClient,
+                selectedVehicle);
+
+        // Actualiza el vehículo en la cita creada
+        if (created != null) {
+            created.setVehicle(selectedVehicle);
             JOptionPane.showMessageDialog(this, "Cita agendada exitosamente.", "Éxito",
-                JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "No fue posible agendar la cita. Verifique disponibilidad.", "Error",
-                JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -160,10 +198,7 @@ public class AgendarCitaPanel extends javax.swing.JPanel {
         bg.add(labelChooseVehicle, new AbsoluteConstraints(90, 90, -1, -1));
 
         comboVehicles.setFont(new Font("Roboto", 0, 14));
-        comboVehicles.setModel(new DefaultComboBoxModel<>(
-                allVehicles.stream()
-                        .map(Vehicle::getPlate)
-                        .toArray(String[]::new)));
+        // El modelo se actualiza en loadClientVehicles()
         bg.add(comboVehicles, new AbsoluteConstraints(90, 120, 220, 40));
 
         labelChooseService.setFont(new Font("Roboto Black", 0, 18));
@@ -172,9 +207,9 @@ public class AgendarCitaPanel extends javax.swing.JPanel {
 
         comboServices.setFont(new Font("Roboto", 0, 14));
         comboServices.setModel(new DefaultComboBoxModel<>(
-            allServices.stream()
-                .map(Service::getName)
-                .toArray(String[]::new)));
+                allServices.stream()
+                        .map(Service::getName)
+                        .toArray(String[]::new)));
         comboServices.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         bg.add(comboServices, new AbsoluteConstraints(90, 210, 220, 80));
 

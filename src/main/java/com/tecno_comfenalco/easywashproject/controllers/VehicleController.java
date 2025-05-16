@@ -97,4 +97,22 @@ public class VehicleController {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    public Vehicle createVehicleAndAssignToOwner(Vehicle vehicle, Long clientId) {
+        try {
+            Vehicle created = vehicleRepository.createAndAssignToOwner(vehicle, clientId);
+            if (created != null) {
+                JOptionPane.showMessageDialog(null, "Vehículo registrado y asignado al cliente exitosamente.", "Éxito",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo registrar/asignar el vehículo.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+            return created;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al registrar/asignar el vehículo: " + e.getMessage(), "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+    }
 }

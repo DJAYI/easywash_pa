@@ -4,16 +4,25 @@
  */
 package com.tecno_comfenalco.easywashproject.views.vehicles;
 
+import com.tecno_comfenalco.easywashproject.controllers.AuthController;
 import com.tecno_comfenalco.easywashproject.controllers.VehicleController;
 import com.tecno_comfenalco.easywashproject.enums.EnumVehicleType;
+import com.tecno_comfenalco.easywashproject.models.Client;
 import com.tecno_comfenalco.easywashproject.models.Vehicle;
+
 import javax.swing.JFrame;
+
+import com.tecno_comfenalco.easywashproject.repository.ClientRepository;
+import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ClientRepositoryImpl;
 
 /**
  *
  * @author jacob
  */
 public class RegisterVehicle extends javax.swing.JFrame {
+
+    // Instancia de AuthController para obtener la sesión actual
+    private final AuthController authController = AuthController.getInstance();
 
     /**
      * Creates new form RegisterVehicle1
@@ -54,9 +63,30 @@ public class RegisterVehicle extends javax.swing.JFrame {
                 return;
             }
 
+            Client client;
+            String session = authController.getSession();
+
+            if (session == null) {
+                javax.swing.JOptionPane.showMessageDialog(this, "No hay sesión activa.", "Error",
+                        javax.swing.JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            ClientRepositoryImpl clientRepository = new ClientRepositoryImpl();
+
+            client = clientRepository.findByDocumentNumber(session);
+
+            if (client == null) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Debe iniciar sesión como cliente para registrar un vehículo.", "Error",
+                        javax.swing.JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Registrar el vehículo y asignarlo al cliente autenticado
             Vehicle vehicle = new Vehicle(model, brand, plate, color, type);
             VehicleController controller = new VehicleController();
-            controller.createVehicle(vehicle);
+            controller.createVehicleAndAssignToOwner(vehicle, client.getId());
         } catch (Exception ex) {
             javax.swing.JOptionPane.showMessageDialog(this, "Error al registrar el vehículo: " + ex.getMessage(),
                     "Error", javax.swing.JOptionPane.ERROR_MESSAGE);

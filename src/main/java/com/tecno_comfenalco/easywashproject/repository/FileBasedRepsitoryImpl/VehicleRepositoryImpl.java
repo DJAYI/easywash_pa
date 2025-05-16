@@ -35,10 +35,16 @@ public class VehicleRepositoryImpl implements VehicleRepository {
             ClientRepositoryImpl clientRepositoryImpl = new ClientRepositoryImpl();
 
             Client client = clientRepositoryImpl.findById(clientId);
-            Client clientOwner = client;
-            clientOwner.setVehicle(vehicle);
-
-            clientRepositoryImpl.update(client, clientOwner);
+            if (client != null) {
+                // Asegura que la lista de vehículos no sea null
+                List<Vehicle> vehicles = client.getVehicles();
+                if (vehicles == null) {
+                    vehicles = new java.util.ArrayList<>();
+                }
+                vehicles.add(vehicle);
+                client.setVehicles(vehicles);
+                clientRepositoryImpl.update(client, client);
+            }
 
             return vehicle;
 

@@ -17,7 +17,6 @@ import com.tecno_comfenalco.easywashproject.models.Employee;
 import com.tecno_comfenalco.easywashproject.models.Service;
 import com.tecno_comfenalco.easywashproject.models.User;
 import com.tecno_comfenalco.easywashproject.models.Vehicle;
-import com.tecno_comfenalco.easywashproject.models.VehicleBrand;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.AppointmentRepositoryImpl;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ClientRepositoryImpl;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.EmployeeRepositoryImpl;
@@ -79,7 +78,7 @@ public class Main {
                                         employee,
                                         EnumAppointmentStatus.PENDIENTE,
                                         LocalDate.now(),
-                                        LocalTime.of(10, 0));
+                                        LocalTime.of(10, 0), vehicle);
                         appointmentRepo.create(appointment);
                 }
 

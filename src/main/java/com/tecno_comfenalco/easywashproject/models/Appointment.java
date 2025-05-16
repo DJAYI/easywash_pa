@@ -29,10 +29,11 @@ public class Appointment {
     private EnumAppointmentStatus status;
     private LocalDate date;
     private LocalTime startTime;
+    private Vehicle vehicle; // Nuevo campo para el vehículo de la cita
 
     // Constructor
     public Appointment(List<Service> services, Client client, Employee employee, EnumAppointmentStatus status,
-            LocalDate date, LocalTime startTime) {
+            LocalDate date, LocalTime startTime, Vehicle vehicle) {
         // Obtengo el ID de la cita y lo asigno
         this.appointmentRepositoryImpl = new AppointmentRepositoryImpl();
 
@@ -49,6 +50,7 @@ public class Appointment {
         this.status = status;
         this.date = date;
         this.startTime = startTime;
+        this.vehicle = vehicle;
     }
 
     // Método para obtener la duración total de la cita
@@ -121,6 +123,15 @@ public class Appointment {
         this.id = id;
     }
 
+    // Getter y Setter para vehículo
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
     @Override
     public String toString() {
         return "Appointment{" +
@@ -131,6 +142,7 @@ public class Appointment {
                 ", status=" + status +
                 ", date=" + date +
                 ", startTime=" + startTime +
+                ", vehicle=" + vehicle +
                 '}';
     }
 

@@ -4,12 +4,13 @@
  */
 package com.tecno_comfenalco.easywashproject.controllers;
 
+import javax.swing.JFrame;
+
 import com.tecno_comfenalco.easywashproject.views.auth.LoginClienteView;
 import com.tecno_comfenalco.easywashproject.views.auth.LoginUserView;
 import com.tecno_comfenalco.easywashproject.views.clients.DashboardClientView;
 import com.tecno_comfenalco.easywashproject.views.clients.MainClientView;
 import com.tecno_comfenalco.easywashproject.views.clients.RegisterClientView;
-import javax.swing.JFrame;
 
 /**
  *
@@ -17,7 +18,7 @@ import javax.swing.JFrame;
  */
 public class NavigationManager {
 
-    //Instancias de las vistas
+    // Instancias de las vistas
     private static JFrame currentVisibleView;
     private static MainClientView mainView;
     private static LoginClienteView loginView;
@@ -25,18 +26,8 @@ public class NavigationManager {
     private static DashboardClientView dashboardView;
     private static LoginUserView loginUserView;
 
-    //Controladores relacionados
-    private static AuthController authController;
-    private static ClientController clientController;
-
-    //Inicializacion de controladores
-    static {
-        authController = new AuthController();
-        clientController = new ClientController();
-    }
-
-    //Muestra MainClientView
-    //Muestra la vista principal
+    // Muestra MainClientView
+    // Muestra la vista principal
     public static void showMainView() {
         if (mainView == null) {
             mainView = new MainClientView();
@@ -47,7 +38,7 @@ public class NavigationManager {
         currentVisibleView = mainView;
     }
 
-    //Muestra el formulario de login
+    // Muestra el formulario de login
     public static void showLoginView() {
         if (loginView == null) {
             loginView = new LoginClienteView();
@@ -69,7 +60,7 @@ public class NavigationManager {
         currentVisibleView = loginUserView;
     }
 
-    //Muestra el formulario de registro
+    // Muestra el formulario de registro
     public static void showRegisterView() {
         if (registerView == null) {
             registerView = new RegisterClientView();
@@ -79,7 +70,7 @@ public class NavigationManager {
         currentVisibleView = registerView;
     }
 
-    //Muestra el dashboard del cliente
+    // Muestra el dashboard del cliente
     public static void showDashboard() {
         if (dashboardView == null) {
             dashboardView = new DashboardClientView();
@@ -87,7 +78,7 @@ public class NavigationManager {
         dashboardView.setVisible(true);
     }
 
-    //Configuracion de vistas
+    // Configuracion de vistas
     private static void configureMainView() {
         mainView.setLoginListener(e -> {
             mainView.close();

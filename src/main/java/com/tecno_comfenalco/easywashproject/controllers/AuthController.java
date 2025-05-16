@@ -4,12 +4,12 @@
  */
 package com.tecno_comfenalco.easywashproject.controllers;
 
+import javax.swing.JOptionPane;
+
 import com.tecno_comfenalco.easywashproject.models.Client;
-import com.tecno_comfenalco.easywashproject.models.Person;
 import com.tecno_comfenalco.easywashproject.models.User;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ClientRepositoryImpl;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.UserRepositoryImpl;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,20 +17,32 @@ import javax.swing.JOptionPane;
  */
 public class AuthController {
 
-    private Person session;
+    // Instancia singleton
+    private static AuthController instance;
+
+    private String session;
     private final ClientRepositoryImpl clientRepository;
     private final UserRepositoryImpl userRepository;
 
-    public AuthController() {
+    // Constructor privado para singleton
+    private AuthController() {
         this.clientRepository = new ClientRepositoryImpl();
         this.userRepository = new UserRepositoryImpl();
     }
 
-    public Person getSession() {
+    // Método para obtener la instancia singleton
+    public static AuthController getInstance() {
+        if (instance == null) {
+            instance = new AuthController();
+        }
+        return instance;
+    }
+
+    public String getSession() {
         return session;
     }
 
-    public void setSession(Person session) {
+    public void setSession(String session) {
         this.session = session;
     }
 
@@ -51,7 +63,7 @@ public class AuthController {
         try {
             Client client = clientRepository.findByEmailAndDocument(email, documento);
             if (client != null) {
-                setSession(client);
+                setSession(client.getDocumentNumber());
                 return true;
             }
         } catch (Exception e) {
@@ -78,7 +90,7 @@ public class AuthController {
         try {
             User user = userRepository.findByCredentials(username, password);
             if (user != null) {
-                setSession(user);
+                setSession(user.getDocumentNumber());
                 JOptionPane.showMessageDialog(null,
                         "Autenticación exitosa",
                         "Autenticado",

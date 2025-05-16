@@ -9,6 +9,7 @@ import com.tecno_comfenalco.easywashproject.models.Appointment;
 import com.tecno_comfenalco.easywashproject.models.Client;
 import com.tecno_comfenalco.easywashproject.models.Employee;
 import com.tecno_comfenalco.easywashproject.models.Service;
+import com.tecno_comfenalco.easywashproject.models.Vehicle;
 
 public class AppointmentBookingService {
 
@@ -18,8 +19,9 @@ public class AppointmentBookingService {
         this.employees = employees;
     }
 
-    public Appointment bookingAppointment(LocalDate date, LocalTime startTime, List<Service> services, Client client) {
-        Appointment appointment = new Appointment(services, client, null, null, date, startTime);
+    public Appointment bookingAppointment(LocalDate date, LocalTime startTime, List<Service> services, Client client,
+            Vehicle vehicle) {
+        Appointment appointment = new Appointment(services, client, null, null, date, startTime, vehicle);
         Employee assignedEmployee = SchedulerService.assignEmployee(employees, date, startTime, appointment);
 
         if (assignedEmployee != null) {

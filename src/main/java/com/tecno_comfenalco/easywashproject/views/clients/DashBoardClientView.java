@@ -5,14 +5,18 @@
 package com.tecno_comfenalco.easywashproject.views.clients;
 
 import com.tecno_comfenalco.easywashproject.controllers.NavigationManager;
-import com.tecno_comfenalco.easywashproject.models.Person;
 import com.tecno_comfenalco.easywashproject.views.appointments.AgendarCitaPanel;
 import com.tecno_comfenalco.easywashproject.views.appointments.VerCitasPanel;
 import com.tecno_comfenalco.easywashproject.views.appointments.VerHistorialPanel;
 import com.tecno_comfenalco.easywashproject.views.vehicles.VerMisVehiculos;
+
 import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import com.tecno_comfenalco.easywashproject.models.Client;
+import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ClientRepositoryImpl;
 
 /**
  *
@@ -20,13 +24,17 @@ import javax.swing.JOptionPane;
  */
 public class DashboardClientView extends javax.swing.JFrame {
 
-    private Person session;
+    private String session;
+    private Client client;
 
     /**
      * Creates new form DashBoardClientView1
      */
-    public DashboardClientView(Person session) {
+    public DashboardClientView(String session) {
         this.session = session;
+
+        ClientRepositoryImpl clientRepository = new ClientRepositoryImpl();
+        this.client = clientRepository.findByDocumentNumber(session);
 
         initComponents();
 
@@ -83,7 +91,7 @@ public class DashboardClientView extends javax.swing.JFrame {
         Titulo.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
 
         if (session != null) {
-            Titulo.setText("¡Bienvenido al Sistema, " + session.getFullname() + "!");
+            Titulo.setText("¡Bienvenido al Sistema, " + client.getFullname() + "!");
         } else {
             Titulo.setText("¡Bienvenido al Sistema, cliente!");
         }
@@ -199,14 +207,20 @@ public class DashboardClientView extends javax.swing.JFrame {
     }// GEN-LAST:event_VerCitasActionPerformed
 
     private void AgendarCitaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_AgendarCitaActionPerformed
-        AgendarCitaPanel p3 = new AgendarCitaPanel();
-        p3.setSize(640, 400);
-        p3.setLocation(0, 0);
+        // Obtiene el cliente autenticado desde la sesión
+        if (client != null) {
+            AgendarCitaPanel p3 = new AgendarCitaPanel(client.getDocumentNumber());
+            p3.setSize(640, 400);
+            p3.setLocation(0, 0);
 
-        Content.removeAll();
-        Content.add(p3, BorderLayout.CENTER);
-        Content.revalidate();
-        Content.repaint();
+            Content.removeAll();
+            Content.add(p3, BorderLayout.CENTER);
+            Content.revalidate();
+            Content.repaint();
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe iniciar sesión como cliente para agendar una cita.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }// GEN-LAST:event_AgendarCitaActionPerformed
 
     private void VerVehiculoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_VerVehiculoActionPerformed

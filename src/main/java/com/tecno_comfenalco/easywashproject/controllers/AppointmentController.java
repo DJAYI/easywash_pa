@@ -12,6 +12,7 @@ import com.tecno_comfenalco.easywashproject.models.Appointment;
 import com.tecno_comfenalco.easywashproject.models.Client;
 import com.tecno_comfenalco.easywashproject.models.Employee;
 import com.tecno_comfenalco.easywashproject.models.Service;
+import com.tecno_comfenalco.easywashproject.models.Vehicle;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.AppointmentRepositoryImpl;
 import com.tecno_comfenalco.easywashproject.services.AppointmentBookingService;
 
@@ -43,9 +44,10 @@ public class AppointmentController {
      * @param client    Cliente que solicita la cita.
      * @return La cita creada o null si no fue posible agendarla.
      */
-    public Appointment bookAppointment(LocalDate date, LocalTime startTime, List<Service> services, Client client) {
+    public Appointment bookAppointment(LocalDate date, LocalTime startTime, List<Service> services, Client client,
+            Vehicle vehicle) {
         // Usa el servicio para agendar la cita y asignar un empleado disponible
-        Appointment appointment = bookingService.bookingAppointment(date, startTime, services, client);
+        Appointment appointment = bookingService.bookingAppointment(date, startTime, services, client, vehicle);
         if (appointment != null) {
             // Persiste la cita en el repositorio
             appointmentRepository.create(appointment);
