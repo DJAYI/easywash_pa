@@ -9,7 +9,26 @@ package com.tecno_comfenalco.easywashproject.enums;
  * @author danil
  */
 public enum EnumVehicleType {
-    CAMIONETA,
-    CARRO,
-    MOTO,
+    CAMIONETA("Camioneta"),
+    CARRO("Carro"),
+    MOTO("Moto");
+
+    private String description;
+
+    EnumVehicleType(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public static EnumVehicleType fromDescription(String description) {
+        for (EnumVehicleType type : EnumVehicleType.values()) {
+            if (type.getDescription().equalsIgnoreCase(description)) {
+                return type;
+            }
+        }
+        throw new IllegalArgumentException("No se encontró el tipo de vehículo con la descripción: " + description);
+    }
 }
