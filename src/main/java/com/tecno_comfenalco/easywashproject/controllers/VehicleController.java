@@ -101,6 +101,9 @@ public class VehicleController {
     public Vehicle createVehicleAndAssignToOwner(Vehicle vehicle, Long clientId) {
         try {
             Vehicle created = vehicleRepository.createAndAssignToOwner(vehicle, clientId);
+
+            System.out.println("Vehículo creado y asignado al cliente: " + created);
+            System.out.println("ID del cliente Controlador: " + clientId);
             if (created != null) {
                 JOptionPane.showMessageDialog(null, "Vehículo registrado y asignado al cliente exitosamente.", "Éxito",
                         JOptionPane.INFORMATION_MESSAGE);

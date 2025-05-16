@@ -83,6 +83,8 @@ public class RegisterVehicle extends javax.swing.JFrame {
                 return;
             }
 
+            System.out.println("Cliente autenticado: " + client.getDocumentNumber());
+
             // Registrar el vehículo y asignarlo al cliente autenticado
             Vehicle vehicle = new Vehicle(model, brand, plate, color, type);
             VehicleController controller = new VehicleController();

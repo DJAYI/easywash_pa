@@ -28,23 +28,26 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     @Override
     public Vehicle createAndAssignToOwner(Vehicle vehicle, Long clientId) {
         try {
-            List<Vehicle> list = jsonFileRepository.load();
-            list.add(vehicle);
-            jsonFileRepository.save(list);
-
             ClientRepositoryImpl clientRepositoryImpl = new ClientRepositoryImpl();
 
             Client client = clientRepositoryImpl.findById(clientId);
-            if (client != null) {
-                // Asegura que la lista de vehículos no sea null
-                List<Vehicle> vehicles = client.getVehicles();
-                if (vehicles == null) {
-                    vehicles = new java.util.ArrayList<>();
-                }
-                vehicles.add(vehicle);
-                client.setVehicles(vehicles);
-                clientRepositoryImpl.update(client, client);
+            System.out.println("Cliente encontrado Repositorio: " + client);
+
+            if (client == null) {
+                System.out.println("No se encontró el cliente con ID: " + clientId);
+                return vehicle;
             }
+
+            // Asegura que la lista de vehículos no sea null
+            List<Vehicle> vehicles = client.getVehicles();
+            if (vehicles == null) {
+                vehicles = new java.util.ArrayList<>();
+            }
+            vehicles.add(vehicle);
+            client.setVehicles(vehicles);
+
+            // Actualiza el cliente en el repositorio
+            clientRepositoryImpl.update(client, client);
 
             return vehicle;
 
