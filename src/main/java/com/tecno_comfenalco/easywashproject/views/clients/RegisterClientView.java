@@ -8,6 +8,7 @@ import com.tecno_comfenalco.easywashproject.enums.EnumDocType;
 import com.tecno_comfenalco.easywashproject.models.Client;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ClientRepositoryImpl;
 import com.tecno_comfenalco.easywashproject.views.auth.LoginClienteView;
+import java.awt.Color;
 
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -92,7 +93,7 @@ public class RegisterClientView extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
@@ -123,19 +124,30 @@ public class RegisterClientView extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("X");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel1MouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout BarraSuperiorLayout = new javax.swing.GroupLayout(BarraSuperior);
         BarraSuperior.setLayout(BarraSuperiorLayout);
         BarraSuperiorLayout.setHorizontalGroup(
-                BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                BarraSuperiorLayout.createSequentialGroup()
-                                        .addGap(0, 749, Short.MAX_VALUE)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)));
+            BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraSuperiorLayout.createSequentialGroup()
+                .addGap(0, 749, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
         BarraSuperiorLayout.setVerticalGroup(
-                BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE));
+            BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
 
         bg.add(BarraSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
 
@@ -176,12 +188,11 @@ public class RegisterClientView extends javax.swing.JFrame {
         bg.add(DocumentoSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 220, 40));
 
         correoSave.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        correoSave.setText("Ingrese su dirección de correo");
-        bg.add(correoSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 220, 40));
+        correoSave.setText("Ingrese su correo");
+        bg.add(correoSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 220, 40));
 
         comboDocumentType.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        comboDocumentType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula de Ciudadanía",
-                "Tarjeta de Identidad", "Cedula Extranjeria", "Pasaporte", "Permiso Provisional de permanencia" }));
+        comboDocumentType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula de Ciudadanía", "Tarjeta de Identidad", "Cedula Extranjeria", "Pasaporte", "Permiso Provisional de permanencia" }));
         bg.add(comboDocumentType, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 220, 40));
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
@@ -210,6 +221,20 @@ public class RegisterClientView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+        jLabel1.setBackground(Color.red);
+        jLabel1.setForeground(Color.white);
+    }//GEN-LAST:event_jLabel1MouseEntered
+
+    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
+        jLabel1.setBackground(Color.WHITE);
+        jLabel1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jLabel1MouseExited
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegistrarActionPerformed
         // Metodo para registrar nuevo cliente
@@ -324,7 +349,6 @@ public class RegisterClientView extends javax.swing.JFrame {
     private javax.swing.JPanel BarraSuperior;
     private javax.swing.JLabel CuartoParametro;
     private javax.swing.JTextField DocumentoSave;
-    private javax.swing.JTextField correoSave;
     private javax.swing.JTextField NombreSave;
     private javax.swing.JTextField NumberPhoneSave;
     private javax.swing.JLabel PrimerParametro;
@@ -336,6 +360,7 @@ public class RegisterClientView extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> comboDocumentType;
+    private javax.swing.JTextField correoSave;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
