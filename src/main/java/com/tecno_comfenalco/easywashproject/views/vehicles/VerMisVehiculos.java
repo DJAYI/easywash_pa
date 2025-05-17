@@ -9,6 +9,9 @@ import java.util.List;
 import com.tecno_comfenalco.easywashproject.controllers.AuthController;
 import com.tecno_comfenalco.easywashproject.models.Vehicle;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ClientRepositoryImpl;
+import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.VehicleRepositoryImpl;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +25,13 @@ public class VerMisVehiculos extends javax.swing.JPanel {
      */
     public VerMisVehiculos() {
         initComponents();
+        // Asocia el evento al botón de eliminar vehículo
+        btnDeleteVehicle.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarVehiculo();
+            }
+        });
     }
 
     /**
@@ -90,7 +100,8 @@ public class VerMisVehiculos extends javax.swing.JPanel {
         btnEditVehicle.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         btnEditVehicle.setText("Editar Vehiculo");
         btnEditVehicle.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bg.add(btnEditVehicle, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 350, 180, 40));
+        // bg.add(btnEditVehicle, new org.netbeans.lib.awtextra.AbsoluteConstraints(231,
+        // 350, 180, 40));
 
         add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 400));
 
@@ -105,6 +116,79 @@ public class VerMisVehiculos extends javax.swing.JPanel {
     private void btnAddVehicleActionPerformed(java.awt.event.ActionEvent evt) {
         RegisterVehicle registerVehicle = new RegisterVehicle();
         registerVehicle.setVisible(true);
+    }
+
+    // Método privado para eliminar un vehículo seleccionado por placa
+    private void eliminarVehiculo() {
+        int selectedRow = tableVehicles.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un vehículo de la tabla.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Se asume que la placa está en la columna 2
+        String placa = tableVehicles.getValueAt(selectedRow, 2).toString();
+        if (placa == null || placa.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No se pudo obtener la placa del vehículo seleccionado.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        VehicleRepositoryImpl vehicleRepo = new VehicleRepositoryImpl();
+        List<Vehicle> vehiculos = vehicleRepo.readAll();
+        Vehicle vehiculoAEliminar = null;
+        for (Vehicle v : vehiculos) {
+            if (v.getPlate().equalsIgnoreCase(placa)) {
+                vehiculoAEliminar = v;
+                break;
+            }
+        }
+
+        if (vehiculoAEliminar == null) {
+            JOptionPane.showMessageDialog(this, "No se encontró el vehículo con la placa especificada.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "¿Está seguro que desea eliminar el vehículo con placa: " + placa + "?",
+                "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        vehicleRepo.delete(vehiculoAEliminar);
+
+        // Quitar el vehículo de la lista del cliente actual y actualizar el cliente
+        ClientRepositoryImpl clientRepo = new ClientRepositoryImpl();
+        var cliente = clientRepo.findByDocumentNumber(authController.getSession());
+        if (cliente != null) {
+            cliente.getVehicles().removeIf(v -> v.getPlate().equalsIgnoreCase(placa));
+            clientRepo.update(clientRepo.findByDocumentNumber(authController.getSession()), cliente);
+        }
+
+        JOptionPane.showMessageDialog(this, "Vehículo eliminado correctamente.",
+                "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        // Recargar la tabla después de eliminar
+        List<Vehicle> vehicles = new ClientRepositoryImpl().findByDocumentNumber(authController.getSession())
+                .getVehicles();
+        Object[][] data = new Object[vehicles.size()][4];
+        for (int i = 0; i < vehicles.size(); i++) {
+            Vehicle v = vehicles.get(i);
+            data[i][0] = v.getBrand();
+            data[i][1] = v.getModel();
+            data[i][2] = v.getPlate();
+            data[i][3] = v.getType();
+        }
+        tableVehicles.setModel(new javax.swing.table.DefaultTableModel(
+                data,
+                new String[] {
+                        "Marca", "Modelo", "Placa", "Tipo"
+                }));
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

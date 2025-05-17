@@ -91,7 +91,7 @@ public class VerTrabajadoresAdministradorPanel extends javax.swing.JPanel {
         btnEditEmployee.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         btnEditEmployee.setText("Editar Trabajador");
         btnEditEmployee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bg.add(btnEditEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 160, 40));
+        // bg.add(btnEditEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 160, 40));
 
         btnCreateEmployee.addActionListener(new java.awt.event.ActionListener() {
             @Override

@@ -92,7 +92,7 @@ public class VerServiciosAdministradorPanel extends javax.swing.JPanel {
         btnEditService.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         btnEditService.setText("Editar Servicio");
         btnEditService.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bg.add(btnEditService, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 180, 40));
+        // bg.add(btnEditService, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 180, 40));
 
         btnAddService.addActionListener(new java.awt.event.ActionListener() {
             @Override

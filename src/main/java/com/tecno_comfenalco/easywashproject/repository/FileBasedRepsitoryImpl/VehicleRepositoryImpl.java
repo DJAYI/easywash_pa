@@ -126,7 +126,10 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     public void delete(Vehicle k) {
         try {
             List<Vehicle> vehicles = jsonFileRepository.load();
-            vehicles.remove(k);
+            if (vehicles == null) {
+                vehicles = new java.util.ArrayList<>();
+            }
+            vehicles.removeIf(v -> v.getPlate() != null && v.getPlate().equals(k.getPlate()));
             jsonFileRepository.save(vehicles);
         } catch (Exception e) {
             System.out.println("No se ha podido eliminar el vehículo");
