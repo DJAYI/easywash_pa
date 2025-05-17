@@ -129,6 +129,13 @@ public class LoginClienteView extends javax.swing.JFrame {
         btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bg.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 160, 50));
 
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
+
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/EasyWash_transparente_v2.png"))); // NOI18N
         bg.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 450, 300));
 

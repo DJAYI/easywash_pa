@@ -50,16 +50,18 @@ public class VerHistorialPanel extends javax.swing.JPanel {
         }
 
         if (user != null) {
-            // Si hay un usuario, muestra todas las citas
+            // Si hay un usuario, muestra solo las citas con estado "COTIZADO"
             for (Appointment appointment : appointments) {
                 if (appointment.getService() == null || appointment.getEmployee() == null)
                     continue;
 
-                for (Service service : appointment.getService()) {
-                    dtm.addRow(new Object[] {
-                            service.getName(), service.getPrice(), appointment.getEmployee().getFullname(),
-                            appointment.getDate(), appointment.getStartTime()
-                    });
+                if (appointment.getStatus().toString().equals("COTIZADO")) {
+                    for (Service service : appointment.getService()) {
+                        dtm.addRow(new Object[] {
+                                service.getName(), service.getPrice(), appointment.getEmployee().getFullname(),
+                                appointment.getDate(), appointment.getStartTime()
+                        });
+                    }
                 }
             }
         }

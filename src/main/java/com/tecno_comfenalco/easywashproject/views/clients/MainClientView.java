@@ -148,7 +148,7 @@ public class MainClientView extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/IconRegister (1).png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 206, 190, 200));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/EasyWash2 (1).png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/EasyWash_transparente_v2.png"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 430, 280));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/EasyWash5 (1).jpg"))); // NOI18N

@@ -109,16 +109,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
         TextTitulo2.setText("de Gestion de Citas EasyWash");
         bg.add(TextTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("//public/IconCliente (1).png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/IconCliente (1).png"))); // NOI18N
         bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 190, 220));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("//public/IconEmpresario (1).png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/IconEmpresario (1).png"))); // NOI18N
         bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 190, 220));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("//public/EasyWash_transparente_v2.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/EasyWash_transparente_v2.png"))); // NOI18N
         bg.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 450, 330));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("//public/EasyWash4 (1).jpg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/EasyWash4 (1).jpg"))); // NOI18N
         bg.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 36, 400, 470));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));

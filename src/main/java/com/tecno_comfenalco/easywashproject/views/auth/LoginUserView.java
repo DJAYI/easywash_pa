@@ -113,7 +113,14 @@ public class LoginUserView extends javax.swing.JFrame {
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bg.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 383, 180, 50));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/EasyWash2 (1).png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/EasyWash_transparente_v2.png"))); // NOI18N
         bg.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 460, 290));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/public/Imagen lavadero.png"))); // NOI18N
