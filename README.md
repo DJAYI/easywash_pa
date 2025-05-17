@@ -20,7 +20,22 @@
 
 ## Estructura del Proyecto
 
-easywash_pa/ ├── src/ │ ├── main/ │ │ ├── java/ │ │ │ └── com/tecno_comfenalco/easywashproject/ │ │ │ ├── controllers/ │ │ │ ├── enums/ │ │ │ ├── models/ │ │ │ ├── repository/ │ │ │ └── views/ │ │ └── resources/ │ │ └── public/ │ └── test/ ├── \*.json (archivos de datos) ├── pom.xml (archivo de configuración Maven) └── README.md
+easywash_pa/ <br>
+├── src/ <br>
+│ ├── main/ <br>
+│ │ ├── java/ <br>
+│ │ │ └── com/tecno_comfenalco/easywashproject/ <br>
+│ │ │ ├── controllers/ <br>
+│ │ │ ├── enums/ <br>
+│ │ │ ├── models/ <br>
+│ │ │ ├── repository/<br>
+│ │ │ └── views/ <br>
+│ │ └── resources/ <br>
+│ │ └── public/ <br>
+│ └── test/ <br>
+├── \*.json (archivos de datos) <br>
+├── pom.xml (archivo de configuración Maven) <br>
+└── README.md <br>
 
 ---
 
@@ -159,29 +174,45 @@ easywash_pa/ ├── src/ │ ├── main/ │ │ ├── java/ │ │ 
 Ejecutar la Aplicación
 Desde tu IDE, ejecuta la clase Main.
 O desde terminal:
-Notas para Principiantes
-¿Qué es un archivo JSON?
+
+```bash
+mvn exec:java -Dexec.mainClass="com.tecno_comfenalco.easywashproject.Main"
+```
+
+# Notas para principiantes
+
+### ¿Qué es un archivo JSON?
+
 Es un formato de texto para almacenar datos estructurados, similar a un diccionario o un objeto en muchos lenguajes de programación.
 
-¿Qué es una clase?
+### ¿Qué es una clase?
+
 Es una plantilla para crear objetos en programación orientada a objetos. Por ejemplo, la clase Client define cómo es un cliente.
 
-¿Qué es un método?
+### ¿Qué es un método?
+
 Es una función definida dentro de una clase que realiza una acción o devuelve un valor.
 
-¿Qué es una interfaz gráfica (GUI)?
+### ¿Qué es una interfaz gráfica (GUI)?
+
 Es la parte visual de la aplicación con la que interactúa el usuario (ventanas, botones, formularios).
 
-¿Qué es un Enum?
+### ¿Qué es un Enum?
+
 Es un tipo especial de clase que representa un conjunto fijo de constantes (por ejemplo, tipos de documento).
 
-¿Qué es un controlador?
+### ¿Qué es un controlador?
+
 Es una clase que contiene la lógica para manipular los datos y coordinar la interacción entre la vista y el modelo.
 
-¿Qué es persistencia?
+### ¿Qué es persistencia?
+
 Es la capacidad de guardar datos para que no se pierdan cuando se cierra la aplicación. Aquí se hace usando archivos JSON.
 
-Créditos
+## Créditos
+
 Desarrollado por: jacob, danil
-Licencia
+
+## Licencia
+
 Este proyecto es solo para fines educativos.
