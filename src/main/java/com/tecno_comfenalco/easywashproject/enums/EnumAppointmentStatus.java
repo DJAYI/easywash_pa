@@ -11,5 +11,6 @@ package com.tecno_comfenalco.easywashproject.enums;
 public enum EnumAppointmentStatus {
     PENDIENTE,
     REALIZADO,
-    COTIZADO
+    COTIZADO,
+    CANCELADA,
 }

@@ -30,7 +30,7 @@ public class VerCitasPanel extends javax.swing.JPanel {
      */
     public VerCitasPanel() {
         initComponents();
-        String[] titulo = new String[] { "Tipo de servicio", "Precio", "Trabajador", "Estado", "Fecha", "Hora" };
+        String[] titulo = new String[] { "Id", "Tipo de servicio", "Precio", "Trabajador", "Estado", "Fecha", "Hora" };
         dtm.setColumnIdentifiers(titulo);
 
         Client client = new ClientRepositoryImpl().findByDocumentNumber(authController.getSession());
@@ -54,6 +54,7 @@ public class VerCitasPanel extends javax.swing.JPanel {
                 if (appointment.getClient().getDocumentNumber().equals(client.getDocumentNumber())) {
                     for (Service service : appointment.getService()) {
                         dtm.addRow(new Object[] {
+                                appointment.getId(),
                                 service.getName(), service.getPrice(), appointment.getEmployee().getFullname(),
                                 appointment.getStatus(), appointment.getDate(), appointment.getStartTime().toString()
                         });

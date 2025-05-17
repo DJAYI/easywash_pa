@@ -20,7 +20,6 @@ public class VerCitasAdministradorPanel extends javax.swing.JPanel {
     private AppointmentRepositoryImpl repo;
     private List<Appointment> appointments;
     private DefaultTableModel dtm;
-    
 
     /**
      * Creates new form VerCitasAdministradorPanel1
@@ -31,63 +30,58 @@ public class VerCitasAdministradorPanel extends javax.swing.JPanel {
         appointments = repo.readAll();
         cargarTabla();
         configurarAcciones();
-        
-}
-    
+
+    }
+
     private void cargarTabla() {
         dtm = new DefaultTableModel();
-        String[] titulo = new String[]{"Tipo de servicio", "Precio","Trabajador", "Estado", "Fecha","Hora"};
+        String[] titulo = new String[] { "Id", "Tipo de servicio", "Precio", "Trabajador", "Estado", "Fecha", "Hora" };
         dtm.setColumnIdentifiers(titulo);
-        
+
         for (Appointment appointment : appointments) {
-            if (appointment.getService() == null || appointment.getEmployee()== null) continue;
-            for (Service service : appointment.getService()){
-                dtm.addRow(new Object[]{
-                    service.getName(), service.getPrice(), appointment.getEmployee().getFullname(),appointment.getStatus(), appointment.getDate(), appointment.getStartTime()
+            if (appointment.getService() == null || appointment.getEmployee() == null)
+                continue;
+            for (Service service : appointment.getService()) {
+                dtm.addRow(new Object[] {
+                        appointment.getId(), service.getName(), service.getPrice(),
+                        appointment.getEmployee().getFullname(), appointment.getStatus(), appointment.getDate(),
+                        appointment.getStartTime()
                 });
             }
         }
-        
+
         jTable1.setModel(dtm);
     }
-    
-    private  void configurarAcciones() {
-        jButton2.addActionListener(e -> CambiarEstado("Realizada"));
-        jButton3.addActionListener(e -> CambiarEstado("Cotizada"));
-        jButton1.addActionListener(e -> CambiarEstado("Cancelada"));
-    } 
-    
-    private void CambiarEstado(String nuevoEstado) {
+
+    private void configurarAcciones() {
+        btnSetAppointmentRealizada.addActionListener(e -> CambiarEstado(EnumAppointmentStatus.REALIZADO));
+        btnSetAppointmentCotizada.addActionListener(e -> CambiarEstado(EnumAppointmentStatus.COTIZADO));
+        btnSetAppointmentCancelada.addActionListener(e -> CambiarEstado(EnumAppointmentStatus.CANCELADA));
+    }
+
+    private void CambiarEstado(EnumAppointmentStatus nuevoEstado) {
         int filaSeleccionada = jTable1.getSelectedRow();
-        
+
         if (filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(this, "Por favor selecciona una cita de la tabla");
             return;
-        } 
-        
-        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estas seguro de cambiar el estado a " + nuevoEstado + "?", "Confirmar cambio de estado", JOptionPane.YES_NO_OPTION);
-        
-        if (confirmacion != JOptionPane.YES_OPTION){
+        }
+
+        int confirmacion = JOptionPane.showConfirmDialog(this,
+                "¿Estas seguro de cambiar el estado a " + nuevoEstado + "?", "Confirmar cambio de estado",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirmacion != JOptionPane.YES_OPTION) {
             return;
         }
-        
-        //Tomar la informacion basica de la fila seleccionada
-        String fecha = dtm.getValueAt(filaSeleccionada, 4).toString();
-        String hora = dtm.getValueAt(filaSeleccionada, 5).toString();
-        
-        //Buscar la cita correspondiente
-        Appointment citaSeleccionada = null;
-        for (Appointment a : appointments) {
-            if (a.getDate().toString().equals(fecha) && a.getStartTime().toString().equals(hora)){
-                citaSeleccionada = a;
-                break;
-            }
-        }
-    
-        
+
+        // Obtener cita por id
+        Long id = (Long) jTable1.getValueAt(filaSeleccionada, 0);
+        Appointment citaSeleccionada = repo.findById(id);
+
         if (citaSeleccionada != null) {
             try {
-                EnumAppointmentStatus estadoEnum = EnumAppointmentStatus.valueOf(nuevoEstado.toUpperCase());
+                EnumAppointmentStatus estadoEnum = nuevoEstado;
                 citaSeleccionada.setStatus(estadoEnum);
                 repo.update(citaSeleccionada);
                 appointments = repo.readAll();
@@ -96,11 +90,10 @@ public class VerCitasAdministradorPanel extends javax.swing.JPanel {
             } catch (IllegalArgumentException e) {
                 JOptionPane.showMessageDialog(this, "Estado Invalido: " + nuevoEstado);
             }
-    } else {
+        } else {
             JOptionPane.showMessageDialog(this, "No se pudo encontrar la cita correspondiente");
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,16 +101,17 @@ public class VerCitasAdministradorPanel extends javax.swing.JPanel {
      * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnSetAppointmentCancelada = new javax.swing.JButton();
+        btnSetAppointmentRealizada = new javax.swing.JButton();
+        btnSetAppointmentCotizada = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -128,95 +122,88 @@ public class VerCitasAdministradorPanel extends javax.swing.JPanel {
         bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Tipo de Servicio", "Precio", "Trabajador", "Estado", "Fecha", "Hora"
-            }
-        ));
+                new Object[][] {
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null },
+                        { null, null, null, null, null, null }
+                },
+                new String[] {
+                        "Tipo de Servicio", "Precio", "Trabajador", "Estado", "Fecha", "Hora"
+                }));
         jScrollPane1.setViewportView(jTable1);
 
         bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 67, 600, 260));
 
-        jButton1.setBackground(new java.awt.Color(153, 153, 153));
-        jButton1.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
-        jButton1.setText("Cambiar Estado a Cancelada");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSetAppointmentCancelada.setBackground(new java.awt.Color(153, 153, 153));
+        btnSetAppointmentCancelada.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        btnSetAppointmentCancelada.setText("Cambiar Estado a Cancelada");
+        btnSetAppointmentCancelada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSetAppointmentCancelada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSetAppointmentCanceladaActionPerformed(evt);
             }
         });
-        bg.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, -1, 40));
+        bg.add(btnSetAppointmentCancelada, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, -1, 40));
 
-        jButton2.setBackground(new java.awt.Color(153, 153, 153));
-        jButton2.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
-        jButton2.setText("Cambiar Estado a Realizada");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnSetAppointmentRealizada.setBackground(new java.awt.Color(153, 153, 153));
+        btnSetAppointmentRealizada.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        btnSetAppointmentRealizada.setText("Cambiar Estado a Realizada");
+        btnSetAppointmentRealizada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSetAppointmentRealizada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnSetAppointmentRealizadaActionPerformed(evt);
             }
         });
-        bg.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 190, 40));
+        bg.add(btnSetAppointmentRealizada, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 190, 40));
 
-        jButton3.setBackground(new java.awt.Color(153, 153, 153));
-        jButton3.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
-        jButton3.setText("Cambiar Estado a Cotizada");
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnSetAppointmentCotizada.setBackground(new java.awt.Color(153, 153, 153));
+        btnSetAppointmentCotizada.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
+        btnSetAppointmentCotizada.setText("Cambiar Estado a Cotizada");
+        btnSetAppointmentCotizada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSetAppointmentCotizada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnSetAppointmentCotizadaActionPerformed(evt);
             }
         });
-        bg.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, 40));
+        bg.add(btnSetAppointmentCotizada, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, 40));
 
         add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 400));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnSetAppointmentRealizadaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSetAppointmentRealizadaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }// GEN-LAST:event_btnSetAppointmentRealizadaActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnSetAppointmentCotizadaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSetAppointmentCotizadaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }// GEN-LAST:event_btnSetAppointmentCotizadaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSetAppointmentCanceladaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSetAppointmentCanceladaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    
-    
-    
-    
-    
+    }// GEN-LAST:event_btnSetAppointmentCanceladaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnSetAppointmentCancelada;
+    private javax.swing.JButton btnSetAppointmentRealizada;
+    private javax.swing.JButton btnSetAppointmentCotizada;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
