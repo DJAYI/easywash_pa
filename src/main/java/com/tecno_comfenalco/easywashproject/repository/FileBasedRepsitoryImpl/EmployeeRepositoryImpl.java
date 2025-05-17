@@ -100,7 +100,11 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     public void delete(Employee k) {
         try {
             List<Employee> employees = jsonFileRepository.load();
-            employees.remove(k);
+            if (employees == null) {
+                System.out.println("No hay empleados para eliminar");
+                return;
+            }
+            employees.removeIf(e -> e.getId() != null && e.getId().equals(k.getId()));
             jsonFileRepository.save(employees);
         } catch (Exception e) {
             System.out.println("No se ha podido eliminar el empleado");
@@ -140,6 +144,26 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                     .orElse(null);
         } catch (Exception e) {
             System.out.println("No se ha podido encontrar el empleado por id");
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public Employee findByDocumentNumber(String documentNumber) {
+        try {
+            List<Employee> employees = readAll();
+            if (employees == null || employees.isEmpty()) {
+                return null;
+            }
+
+            System.out.println("Document Number: " + documentNumber);
+
+            return employees.stream()
+                    .filter(e -> e.getDocumentNumber().equals(documentNumber))
+                    .findFirst()
+                    .orElse(null);
+        } catch (Exception e) {
+            System.out.println("No se ha podido encontrar el empleado por número de documento");
             System.out.println(e.getMessage());
             return null;
         }

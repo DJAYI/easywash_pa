@@ -6,6 +6,8 @@ package com.tecno_comfenalco.easywashproject.views.employees;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import com.tecno_comfenalco.easywashproject.models.Employee;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.EmployeeRepositoryImpl;
 
@@ -98,6 +100,13 @@ public class VerTrabajadoresAdministradorPanel extends javax.swing.JPanel {
             }
         });
 
+        btnDeleteEmployee.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteEmployeeActionPerformed(evt);
+            }
+        });
+
         add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 400));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -105,6 +114,40 @@ public class VerTrabajadoresAdministradorPanel extends javax.swing.JPanel {
         CreateNewEmployeedAdministrador createNewEmployeedAdministrador = new CreateNewEmployeedAdministrador();
         createNewEmployeedAdministrador.setVisible(true);
     }// GEN-LAST:event_btnAddServiceActionPerformed
+
+    private void btnDeleteEmployeeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDeleteEmployeeActionPerformed
+        String selectedEmployee = jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();
+        System.out.println("Selected Employee: " + selectedEmployee);
+
+        if (selectedEmployee != null) {
+            EmployeeRepositoryImpl employeeRepository = new EmployeeRepositoryImpl();
+            // Eliminar el empleado seleccionado
+            employeeRepository.delete(employeeRepository.findByDocumentNumber(selectedEmployee));
+
+            // Actualizar la tabla después de eliminar el empleado
+            List<Employee> employees = employeeRepository.readAll();
+            Object[][] data = new Object[employees.size()][5];
+            for (int i = 0; i < employees.size(); i++) {
+                Employee e = employees.get(i);
+                data[i][0] = e.getFullname();
+                data[i][1] = e.getDocumentNumber();
+                data[i][2] = e.getSalary();
+                data[i][3] = e.getMailAddress();
+                data[i][4] = e.getPhoneNumber();
+            }
+            jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                    data,
+                    new String[] {
+                            "Nombre", "Documento", "Salario", "Correo", "Telefono"
+                    }));
+
+            JOptionPane.showMessageDialog(this, "Trabajador eliminado correctamente",
+                    "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un trabajador",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }// GEN-LAST:event_btnDeleteEmployeeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
