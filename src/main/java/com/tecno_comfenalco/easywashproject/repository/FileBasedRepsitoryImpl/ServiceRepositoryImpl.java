@@ -57,7 +57,11 @@ public class ServiceRepositoryImpl implements ServiceRepository {
     public void delete(Service k) {
         try {
             List<Service> services = jsonFileRepository.load();
-            services.remove(k);
+            if (k.getId() != null) {
+                services.removeIf(s -> k.getId().equals(s.getId()));
+            } else {
+                services.remove(k);
+            }
             jsonFileRepository.save(services);
         } catch (Exception e) {
             System.out.println("No se ha podido eliminar el servicio");

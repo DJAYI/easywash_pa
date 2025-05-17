@@ -6,7 +6,11 @@ package com.tecno_comfenalco.easywashproject.views.services;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import com.tecno_comfenalco.easywashproject.models.Service;
+import com.tecno_comfenalco.easywashproject.models.Service;
+import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ServiceRepositoryImpl;
 import com.tecno_comfenalco.easywashproject.repository.FileBasedRepsitoryImpl.ServiceRepositoryImpl;
 
 /**
@@ -52,20 +56,21 @@ public class VerServiciosAdministradorPanel extends javax.swing.JPanel {
         List<Service> servicios = new ServiceRepositoryImpl().readAll();
 
         // 2. Se inicializan las columnas y filas que se van a utilizar
-        Object[][] data = new Object[servicios.size()][3];
+        Object[][] data = new Object[servicios.size()][4];
 
         // 3. Se rellenan las filas segun su columna respectiva
         for (int i = 0; i < servicios.size(); i++) {
             Service s = servicios.get(i);
-            data[i][0] = s.getName();
-            data[i][1] = s.getPrice();
-            data[i][2] = s.getDescription();
+            data[i][0] = s.getId();
+            data[i][1] = s.getName();
+            data[i][2] = s.getPrice();
+            data[i][3] = s.getDescription();
         }
 
         // 4. Se asigna el modelo de datos y columnas a la tabla
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 data,
-                new String[] { "Nombre", "Precio", "Concepto" }));
+                new String[] { "Id", "Nombre", "Precio", "Concepto" }));
 
         jScrollPane1.setViewportView(jTable1);
 
@@ -96,12 +101,65 @@ public class VerServiciosAdministradorPanel extends javax.swing.JPanel {
             }
         });
 
+        btnDeleteService.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteServiceActionPerformed(evt);
+            }
+        });
+
         add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 400));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddServiceActionPerformed(java.awt.event.ActionEvent evt) {
         CreateNewServiceAdministrador createNewService = new CreateNewServiceAdministrador();
         createNewService.setVisible(true);
+    }
+
+    private void btnDeleteServiceActionPerformed(java.awt.event.ActionEvent evt) {
+        String selectedService = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
+        System.out.println("Selected Service: " + selectedService);
+
+        if (selectedService != null) {
+            ServiceRepositoryImpl ServiceRepository = new ServiceRepositoryImpl();
+            // Convertir el valor seleccionado a Long
+            Long serviceId = null;
+            try {
+                serviceId = Long.parseLong(selectedService);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "ID de servicio inválido",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            // Eliminar el empleado seleccionado
+            ServiceRepository.delete(ServiceRepository.findById(serviceId));
+
+            // 1. Se llama a la lista de servicio directamente del archivo JSON
+            List<Service> servicios = new ServiceRepositoryImpl().readAll();
+
+            // 2. Se inicializan las columnas y filas que se van a utilizar
+            Object[][] data = new Object[servicios.size()][4];
+
+            // 3. Se rellenan las filas segun su columna respectiva
+            for (int i = 0; i < servicios.size(); i++) {
+                Service s = servicios.get(i);
+                data[i][0] = s.getId();
+                data[i][1] = s.getName();
+                data[i][2] = s.getPrice();
+                data[i][3] = s.getDescription();
+            }
+
+            // 4. Se asigna el modelo de datos y columnas a la tabla
+            jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                    data,
+                    new String[] { "Id", "Nombre", "Precio", "Concepto" }));
+
+            JOptionPane.showMessageDialog(this, "Trabajador eliminado correctamente",
+                    "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un trabajador",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
